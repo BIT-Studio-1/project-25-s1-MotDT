@@ -1,4 +1,6 @@
-﻿namespace Game_build_tool_kit
+﻿using TextAdventure;
+
+namespace Game_build_tool_kit
 {
     internal class Toolkit
     {
@@ -18,14 +20,14 @@
             Key = false //if the player has a key or not probibly will be changed latter to accomidate more items and give enemys a generic item drop system
         };
 
-        //This is the generic skeleton for a room it can be edited down 
-        static void INSERTROOM (Character Player) //This is the same as defining a function in python at the top we pass the player object into the room so that it can be effected
+        /// This is the generic skeleton for a room it can be edited down 
+        static void INSERTROOM(Character Player) //This is the same as defining a function in python at the top we pass the player object into the room so that it can be effected
         {
             string choice; //This is the variable that will store the players input
-            do 
+            do
             {
                 Console.Clear(); //This clears the console so that it is not cluttered
-                Animation.ROOM-ANIMATION(); //This plays an animation for the room
+                // Animation.ROOM-ANIMATION(); //This plays an animation for the room
                 Thread.Sleep(200);
                 Console.WriteLine("ROOM TEXT");
                 Thread.Sleep(500);
@@ -40,6 +42,10 @@
                 Console.WriteLine("What will you do?");
                 choice = Console.ReadLine(); //This gets the players input and stores it in the choice variable
                 choice = choice.ToUpper(); //This converts the players input to uppercase so that it is easier to compare
+
+                // PLACEHOLDER: This is to prevent errors due to var "MUSH" not existing.
+                bool Mush = false;
+
                 switch (choice)
                 {
                     case "SEARCH":
@@ -111,7 +117,4 @@
             Console.Clear();
         }
     }
-
-
-}
 }
