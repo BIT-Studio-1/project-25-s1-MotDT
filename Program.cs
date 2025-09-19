@@ -2,9 +2,10 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        // Causes entrypoint errors otherwise
+        // static void Main(string[] args)
+        // {
+        //     Console.WriteLine("Hello, World!");
+        // }
     }
 }

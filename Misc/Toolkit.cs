@@ -4,9 +4,9 @@ namespace Game_build_tool_kit
 {
     internal class Toolkit
     {
-        static void Main(string[] args)
-        {
-        }
+        // static void Main(string[] args)
+        // {
+        // }
 
         Character Player = new Character //this is the current character structure it will probibly be changed latter but currently all characters including monsters use this structure
         {
@@ -27,7 +27,10 @@ namespace Game_build_tool_kit
             do
             {
                 Console.Clear(); //This clears the console so that it is not cluttered
+
+                // NOTE: What is this meant to reference? It does not seem to exist?
                 // Animation.ROOM-ANIMATION(); //This plays an animation for the room
+                
                 Thread.Sleep(200);
                 Console.WriteLine("ROOM TEXT");
                 Thread.Sleep(500);
