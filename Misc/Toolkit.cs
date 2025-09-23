@@ -30,7 +30,7 @@ namespace Game_build_tool_kit
 
                 // NOTE: What is this meant to reference? It does not seem to exist?
                 // Animation.ROOM-ANIMATION(); //This plays an animation for the room
-                
+
                 Thread.Sleep(200);
                 Console.WriteLine("ROOM TEXT");
                 Thread.Sleep(500);
@@ -106,18 +106,33 @@ namespace Game_build_tool_kit
 
         static void Help() // This is the help function that prints the help menu
         {
-            Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
-            Console.WriteLine("            The commands are not case sensitive");
-            Thread.Sleep(500);
-            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
-            Thread.Sleep(500);
-            Console.WriteLine("     HELP      -- This command prints the help menu");
-            Thread.Sleep(500);
-            Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
-            Thread.Sleep(500);
-            Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
-            Thread.Sleep(2000);
-            Console.Clear();
+            MultiPrintDelay(new (string, int)[]{
+            ("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room",500),
+            ("     HELP      -- This command prints the help menu",500),
+            ("    SEARCH     -- This command searches the room the player is currently in",500),
+            ("    STATUS     -- This command shows an abridjed version of the players character sheet",2000)});
+
+            // Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
+            // Console.WriteLine("            The commands are not case sensitive");
+            // Thread.Sleep(500);
+            // Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
+            // Thread.Sleep(500);
+            // Console.WriteLine("     HELP      -- This command prints the help menu");
+            // Thread.Sleep(500);
+            // Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
+            // Thread.Sleep(500);
+            // Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
+            // Thread.Sleep(2000);
+            // Console.Clear();
+        }
+
+        public static void MultiPrintDelay((string, int)[] data)
+        {
+            foreach (var entry in data)
+            {
+                Thread.Sleep(entry.Item2);
+                Console.WriteLine(entry.Item1);
+            }
         }
     }
 }
