@@ -1,4 +1,6 @@
-﻿namespace Studio_1
+﻿using System;
+
+namespace Studio_1
 {
     internal class Program
     {
@@ -26,6 +28,15 @@
                     int attackBonus;
                     bool item1;
                 }
+        
+        static void PrintHealthBar(Character character)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            string remainingHealthBar = new string('█', Character.maxHP);
+            string totalHealthBar = new string('_', Character.maxHP - Character.curHP);
+            Console.WriteLine($"{character.Name} HP: {remainingHealthBar}{totalHealthBar} ({character.HP}/{character.MaxHP})");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
     }
 }
