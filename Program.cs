@@ -22,9 +22,8 @@ namespace Studio_1
             /// Character's health component
             public EntityHealth health;
             public string name;
-            int hitMod;
             int damDice;
-            int strength;
+            int strength; // this is used at hit mod i am stupid -Rory
             int fineese;
             int toughness;
             int presnase;
