@@ -34,7 +34,8 @@ namespace Studio_1
             EntityHealth health;
             string name;
             int damDice;
-            int attackBonus;
+            int dodgeDiff;
+            int hitDiff;
             bool item1;
         }
 
