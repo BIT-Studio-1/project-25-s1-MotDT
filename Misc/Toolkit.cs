@@ -126,6 +126,7 @@ namespace Game_build_tool_kit
             // Console.Clear();
         }
 
+        // Experimental function
         public static void MultiPrintDelay((string, int)[] data)
         {
             foreach (var entry in data)
