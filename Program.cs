@@ -12,15 +12,16 @@ namespace Studio_1
         {
             Console.ForegroundColor = ConsoleColor.Green;
             string remainingHealthBar = new string('█', character.health.maxHP);
-            string totalHealthBar = new string('_', Character.maxHP - Character.curHP);
-            Console.WriteLine($"{character.Name} HP: {remainingHealthBar}{totalHealthBar} ({character.HP}/{character.MaxHP})");
+            string totalHealthBar = new string('_',character.health.maxHP - character.health.curHP);
+            Console.WriteLine($"{character.name} HP: {remainingHealthBar}{totalHealthBar} ({character.health.curHP}/{character.health.maxHP})");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
         public class Character //idea with this character is way more simple  you test him self against dc10+monster attack
         {
+            /// Character's health component
             public EntityHealth health;
-            string name;
+            public string name;
             int hitMod;
             int damDice;
             int strength;
@@ -29,17 +30,22 @@ namespace Studio_1
             int presnase;
         }
 
-        public class monster
+        public class Monster
         {
-            EntityHealth health;
-            string name;
+            /// Monster's health component
+            public EntityHealth health;
+            public string name;
             int damDice;
-            int attackBonus;
+            int dodgeDiff;
+            int hitDiff;
             bool item1;
         }
 
+        /// Health class used by both players and monsters
         public class EntityHealth {
+            /// Max health of the entity
             public int maxHP;
+            /// Current Health of the entity
             public int curHP;
         }
     }
