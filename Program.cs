@@ -7,6 +7,49 @@ namespace Studio_1
         static void Main(string[] args)
         {
             // Main logic here
+            Character character = new Character
+            {
+                name = "Hero",
+                health = new EntityHealth { maxHP = 10, curHP = 10 },
+                damDice = 6,
+                strength = 2,
+                finesse = 1,
+                toughness = 1,
+                presence = 1
+            }
+
+            Character character1 = new Character
+            {
+                name = "Beef (Tough)",
+                health = new EntityHealth { maxHP = 12, curHP = 12 },
+                damDice = 4,
+                strength = 0,
+                finesse = 0,
+                toughness = 1,
+                presence = 1
+            }
+
+            Character character2 = new Character
+            {
+                name = "Stabbs",
+                health = new EntityHealth { maxHP = 8, curHP = 8 },
+                damDice = 8,
+                strength = 1,
+                finesse = -1,
+                toughness = 0,
+                presence = 0
+            }
+
+            Character character3 = new Character
+            {
+                name = "Dodgeo",
+                health = new EntityHealth { maxHP = 10, curHP = 10 },
+                damDice = 6,
+                strength = 2,
+                finesse = 1,
+                toughness = 0,
+                presence = 0
+            }
         }
 
         static void PrintHealthBar(Character character)
