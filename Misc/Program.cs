@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-using System.Text.Json;
-using System.Threading;
-using System.Xml.Linq;
+﻿using System.Text.Json;
 
 
 namespace TextAdventure
@@ -415,8 +410,8 @@ namespace TextAdventure
                 Console.WriteLine("The Savage Goblin has been defeated");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
-                choice = Console.ReadLine();
-                choice = choice.ToUpper();
+
+                choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":

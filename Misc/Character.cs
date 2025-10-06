@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace TextAdventure
+﻿namespace TextAdventure
 {
     public class Character
     {
@@ -70,39 +63,6 @@ namespace TextAdventure
             Console.WriteLine($"{nameof(AC)}: {AC}");
             Console.WriteLine($"{nameof(HitBonus)}: {HitBonus}");
             Console.WriteLine($"{nameof(AttackDice)}: 1d{AttackDice}");
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public class altchar2 //idea with this character is way more simple  you test him self against dc10+monster attack
-        {
-            public string name;
-            public int maxHP;
-            public int curHP;
-            public int hitMod;
-            public int damDice;
-            public int strength;
-            public int fineese;
-            public int toughness;
-            public int presnase;
-        }
-
-        public class monster2
-        {
-            public string name;
-            public int maxHP;
-            public string curHP;
-            public int damDice;
-            public int attackBonus;
         }
     }
 }

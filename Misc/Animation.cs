@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace TextAdventure
+﻿namespace TextAdventure
 {
     internal class Animation
     {
@@ -13,18 +6,26 @@ namespace TextAdventure
         {
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Clear();
-            Console.Beep(1000, 400);
+            #if (WINDOWS)
+                Console.Beep(1000, 400);
+            #endif
             Thread.Sleep(500);
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.Clear();
-            Console.Beep(1500, 400);
+            #if (WINDOWS)
+                Console.Beep(1500, 400);
+            #endif
             Thread.Sleep(500);
             Console.BackgroundColor = ConsoleColor.Cyan;
             Console.Clear();
-            Console.Beep(2000, 400);
+            #if (WINDOWS)
+                Console.Beep(2000, 400);
+            #endif
             Thread.Sleep(500);
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.Beep(2500, 400);
+            #if (WINDOWS)
+                Console.Beep(2500, 400);
+            #endif
             Console.Clear();
             Console.WriteLine("   ___                                                               __        ___                                    ");
             Thread.Sleep(200);
