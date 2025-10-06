@@ -4,7 +4,7 @@ namespace Studio_1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
@@ -14,11 +14,11 @@ namespace Studio_1
             Console.ReadLine();
             Console.WriteLine("Press 1 if you want to play the tough BEEF");
             Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
-            Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
-            int menu = Convert.ToInt32(Console.ReadLine);
-            if menu = 1
-                {
-                Character character = new Character
+            Console.WriteLine("Press 3 if you want to play the Dexterous Dodgio");
+            int menu = Convert.ToInt32(Console.ReadLine());
+            if (menu == 1)
+            {
+                Character hero = new Character
                 {
                     name = "Beef (Tough)",
                     health = new EntityHealth { maxHP = 12, curHP = 12 },
@@ -27,11 +27,11 @@ namespace Studio_1
                     finesse = 0,
                     toughness = 1,
                     presence = 1
-                }
-                }
-            else if menu = 2
+                };
+            }
+            else if (menu == 2)
                 {
-                Character character = new Character
+                Character hero = new Character
                 {
                     name = "Stabbs",
                     health = new EntityHealth { maxHP = 8, curHP = 8 },
@@ -40,12 +40,11 @@ namespace Studio_1
                     finesse = -1,
                     toughness = 0,
                     presence = 0
-                }
+                };
             }
-
             else
             {
-                Character character = new Character
+                Character hero = new Character
                 {
                     name = "Dodgeo",
                     health = new EntityHealth { maxHP = 10, curHP = 10 },
@@ -54,8 +53,11 @@ namespace Studio_1
                     finesse = 1,
                     toughness = 0,
                     presence = 0
-                }
+                };
             }
+            Console.WriteLine($"Your Character is");
+            Console.WriteLine(menu);
+            Console.ReadLine();
         }
 
         static void PrintHealthBar(Character character)
@@ -73,11 +75,11 @@ namespace Studio_1
         /// Character's health component
         public EntityHealth health;
         public string name;
-        int damDice;
-        int strength; // this is used as hit mod
-        int finesse;
-        int toughness;
-        int presence;
+        public int damDice;
+        public int strength; // this is used as hit mod
+        public int finesse;
+        public int toughness;
+        public int presence;
     }
 
     public class Monster

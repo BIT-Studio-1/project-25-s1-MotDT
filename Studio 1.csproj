@@ -8,4 +8,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Misc\**" />
+    <Compile Remove="Streamreader Example\**" />
+    <EmbeddedResource Remove="Misc\**" />
+    <EmbeddedResource Remove="Streamreader Example\**" />
+    <None Remove="Misc\**" />
+    <None Remove="Streamreader Example\**" />
+  </ItemGroup>
+
 </Project>
