@@ -11,7 +11,7 @@ namespace Studio_1
         static void PrintHealthBar(Character character)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            string remainingHealthBar = new string('█', Character.maxHP);
+            string remainingHealthBar = new string('█', character.health.maxHP);
             string totalHealthBar = new string('_', Character.maxHP - Character.curHP);
             Console.WriteLine($"{character.Name} HP: {remainingHealthBar}{totalHealthBar} ({character.HP}/{character.MaxHP})");
             Console.ForegroundColor = ConsoleColor.White;
@@ -19,9 +19,8 @@ namespace Studio_1
     }
         public class Character //idea with this character is way more simple  you test him self against dc10+monster attack
         {
+            public EntityHealth health;
             string name;
-            int maxHP;
-            int curHP;
             int hitMod;
             int damDice;
             int strength;
@@ -32,12 +31,16 @@ namespace Studio_1
 
         public class monster
         {
+            EntityHealth health;
             string name;
-            int maxHP;
-            string curHP;
             int damDice;
             int attackBonus;
             bool item1;
+        }
+
+        public class EntityHealth {
+            public int maxHP;
+            public int curHP;
         }
     }
 }
