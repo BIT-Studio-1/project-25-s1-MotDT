@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             //File variable can be assigned different value depending on what frame is to be displayed
-            string file = "Test.txt";
+            string file = "Test3.txt";
             try
             {
                 using (StreamReader sr = new StreamReader(file))
