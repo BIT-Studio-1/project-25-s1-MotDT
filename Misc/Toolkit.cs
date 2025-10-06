@@ -10,14 +10,15 @@ namespace Game_build_tool_kit
 
         Character Player = new Character //this is the current character structure it will probibly be changed latter but currently all characters including monsters use this structure
         {
-            Name = "Grognak", //name of the character
-            MaxHP = 13, //max health of the character
-            HP = 13, //current health of the character
-            Thac0 = 19, //thac0 of the character
-            AC = 4, //armor class of the character
-            HitBonus = 1, //bonus to hit of the character
-            AttackDice = 4, //The type of dice to roll for attack
-            Key = false //if the player has a key or not probibly will be changed latter to accomidate more items and give enemys a generic item drop system
+            string name = "Bob";
+            int maxHP = ;
+            int curHP;
+            int hitMod;
+            int damDice;
+            int strength;
+            int fineese;
+            int toughness;
+            int presnase;
         };
 
         /// This is the generic skeleton for a room it can be edited down 
