@@ -7,48 +7,54 @@ namespace Studio_1
         static void Main(string[] args)
         {
             // Main logic here
-            Character character = new Character
-            {
-                name = "Hero",
-                health = new EntityHealth { maxHP = 10, curHP = 10 },
-                damDice = 6,
-                strength = 2,
-                finesse = 1,
-                toughness = 1,
-                presence = 1
+            Console.WriteLine("Title Animation goes here very cool and epic adventure game");
+            Console.WriteLine("Cool intro lore stuff goes here");
+            Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
+            Console.WriteLine("Press Enter to start");
+            Console.ReadLine();
+            Console.WriteLine("Press 1 if you want to play the tough BEEF");
+            Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
+            Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
+            int menu = Convert.ToInt32(Console.ReadLine);
+            if menu = 1
+                {
+                Character character = new Character
+                {
+                    name = "Beef (Tough)",
+                    health = new EntityHealth { maxHP = 12, curHP = 12 },
+                    damDice = 4,
+                    strength = 0,
+                    finesse = 0,
+                    toughness = 1,
+                    presence = 1
+                }
+                }
+            else if menu = 2
+                {
+                Character character = new Character
+                {
+                    name = "Stabbs",
+                    health = new EntityHealth { maxHP = 8, curHP = 8 },
+                    damDice = 8,
+                    strength = 1,
+                    finesse = -1,
+                    toughness = 0,
+                    presence = 0
+                }
             }
 
-            Character character1 = new Character
+            else
             {
-                name = "Beef (Tough)",
-                health = new EntityHealth { maxHP = 12, curHP = 12 },
-                damDice = 4,
-                strength = 0,
-                finesse = 0,
-                toughness = 1,
-                presence = 1
-            }
-
-            Character character2 = new Character
-            {
-                name = "Stabbs",
-                health = new EntityHealth { maxHP = 8, curHP = 8 },
-                damDice = 8,
-                strength = 1,
-                finesse = -1,
-                toughness = 0,
-                presence = 0
-            }
-
-            Character character3 = new Character
-            {
-                name = "Dodgeo",
-                health = new EntityHealth { maxHP = 10, curHP = 10 },
-                damDice = 6,
-                strength = 2,
-                finesse = 1,
-                toughness = 0,
-                presence = 0
+                Character character = new Character
+                {
+                    name = "Dodgeo",
+                    health = new EntityHealth { maxHP = 10, curHP = 10 },
+                    damDice = 6,
+                    strength = 2,
+                    finesse = 1,
+                    toughness = 0,
+                    presence = 0
+                }
             }
         }
 
