@@ -63,12 +63,22 @@ namespace Studio_1
             Console.ReadLine();
         }
            
+        // Prints the health bar of the character
         static void PrintHealthBar(Character character)
         {
+            // Set the console text color to green for the health bar display
             Console.ForegroundColor = ConsoleColor.Green;
+
+            // Create a string of '█' characters representing the character's current health
             string remainingHealthBar = new string('█', character.health.curHP);
+
+            // Create a string of '_' characters representing missing health (maxHP - curHP)
             string totalHealthBar = new string('_', character.health.maxHP - character.health.curHP);
+
+            // Print the character's name, the visual health bar, and the numeric HP values (current/max)
             Console.WriteLine($"{character.name} HP: {remainingHealthBar}{totalHealthBar} ({character.health.curHP}/{character.health.maxHP})");
+
+            // Reset the console text color to white
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
