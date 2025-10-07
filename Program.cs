@@ -62,7 +62,7 @@ namespace Studio_1
             Console.WriteLine($"Your Character is {name}");
             Console.ReadLine();
         }
-           
+
         // Prints the health bar of the character
         static void PrintHealthBar(Character character)
         {
@@ -111,10 +111,23 @@ namespace Studio_1
     /// <summary>
     /// Generic Health class used by both players and monsters
     /// </summary>
-    public class EntityHealth {
+    public class EntityHealth
+    {
         /// Max health of the entity
         public int maxHP;
         /// Current Health of the entity
         public int curHP;
+
+        /// <summary>
+        /// Constructor function that automatically sets max health.
+        /// </summary>
+        public static EntityHealth InitHealth(int initHP)
+        {
+            return new EntityHealth
+            {
+                maxHP = initHP,
+                curHP = initHP
+            };
+        }
     }
 }
