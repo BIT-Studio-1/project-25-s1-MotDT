@@ -55,8 +55,7 @@ namespace Studio_1
                     presence = 0
                 };
             }
-            Console.WriteLine($"Your Character is");
-            Console.WriteLine(menu);
+            Console.WriteLine($"Your Character is {menu}");
             Console.ReadLine();
         }
 
@@ -69,7 +68,9 @@ namespace Studio_1
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
-
+    /// <summary>
+    /// Character Data
+    /// </summary>
     public class Character // This character is simpler; you test themself against DC10+ monster attack
     {
         /// Character's health component
@@ -93,7 +94,9 @@ namespace Studio_1
         bool item1;
     }
 
-    /// Health class used by both players and monsters
+    /// <summary>
+    /// Generic Health class used by both players and monsters
+    /// </summary>
     public class EntityHealth {
         /// Max health of the entity
         public int maxHP;
