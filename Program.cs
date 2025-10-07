@@ -6,6 +6,7 @@ namespace Studio_1
     {
         static void Main()
         {
+            string name;
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
             Console.WriteLine("Cool intro lore stuff goes here");
@@ -16,49 +17,52 @@ namespace Studio_1
             Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
             Console.WriteLine("Press 3 if you want to play the Dexterous Dodgio");
             int menu = Convert.ToInt32(Console.ReadLine());
-            if (menu == 1)
+            switch (menu)
             {
-                Character hero = new Character
-                {
-                    name = "Beef (Tough)",
-                    health = new EntityHealth { maxHP = 12, curHP = 12 },
-                    damDice = 4,
-                    strength = 0,
-                    finesse = 0,
-                    toughness = 1,
-                    presence = 1
-                };
+                case 1:
+                    Character hero = new Character
+                    {
+                        name = "Beef (Tough)",
+                        health = new EntityHealth { maxHP = 12, curHP = 12 },
+                        damDice = 4,
+                        strength = 0,
+                        finesse = 0,
+                        toughness = 1,
+                        presence = 1
+                    };
+                    name = "Beef";
+                    break;
+                case 2:
+                    character hero = new Character
+                    {
+                        name = "Stabbs",
+                        health = new EntityHealth { maxHP = 8, curHP = 8 },
+                        damDice = 8,
+                        strength = 1,
+                        finesse = -1,
+                        toughness = 0,
+                        presence = 0
+                    };
+                    break;
+                case 3:
+                    Character hero = new Character
+                    {
+                        name = "Dodgeo",
+                        health = new EntityHealth { maxHP = 10, curHP = 10 },
+                        damDice = 6,
+                        strength = 2,
+                        finesse = 1,
+                        toughness = 0,
+                        presence = 0
+                    };
+                    break;
+                default:
+                    Console.WriteLine("Add something about an error possibly list vailid choices and what not");
             }
-            else if (menu == 2)
-                {
-                Character hero = new Character
-                {
-                    name = "Stabbs",
-                    health = new EntityHealth { maxHP = 8, curHP = 8 },
-                    damDice = 8,
-                    strength = 1,
-                    finesse = -1,
-                    toughness = 0,
-                    presence = 0
-                };
-            }
-            else
-            {
-                Character hero = new Character
-                {
-                    name = "Dodgeo",
-                    health = new EntityHealth { maxHP = 10, curHP = 10 },
-                    damDice = 6,
-                    strength = 2,
-                    finesse = 1,
-                    toughness = 0,
-                    presence = 0
-                };
-            }
-            Console.WriteLine($"Your Character is {menu}");
+            Console.WriteLine($"Your Character is {name}");
             Console.ReadLine();
         }
-
+           
         static void PrintHealthBar(Character character)
         {
             Console.ForegroundColor = ConsoleColor.Green;
