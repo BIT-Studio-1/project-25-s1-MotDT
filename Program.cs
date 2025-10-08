@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace Studio_1
 {
@@ -69,6 +70,54 @@ namespace Studio_1
             Console.WriteLine($"Your Character is {name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
+
+            //Basic Room Template
+            string choice;
+            bool item = false;
+            do
+            {
+                Console.Clear();
+                //Animations Go here!!!
+                Console.WriteLine("You awake inside a dimly lit and damp cell");
+                Thread.Sleep(200);
+                Console.WriteLine("Chained to the wall is the corpse of your former companion");
+                Thread.Sleep(200);
+                Console.WriteLine("There is a rusted door to the South");
+                Thread.Sleep(200);
+                Console.WriteLine("What would you like to do?");
+                choice = Console.ReadLine();
+                choice = choice.ToUpper();
+                switch (choice)
+                {
+                    case "GO SOUTH":
+                        //Movement Goes here
+                        break;
+                    case "SEARCH":
+                        if (item == true)
+                        {
+                            //Stuff Goeshere
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nYou find nothing of use");
+                            Thread.Sleep(1000);
+                        }
+                        break;
+                    case "STATUS":
+                        //Print player status with a method
+                        Thread.Sleep(2000);
+                        break;
+                    case "HELP":
+                        //Print Commands with a method
+                        break;
+                    default:
+                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            }
+            while (choice != "Go South");
+
         }
 
         // Prints the health bar of the character
