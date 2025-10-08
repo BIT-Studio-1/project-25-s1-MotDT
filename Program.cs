@@ -6,7 +6,7 @@ namespace Studio_1
     {
         static void Main()
         {
-            string name;
+            string name = " ";
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
             Console.WriteLine("Cool intro lore stuff goes here");
@@ -20,46 +20,54 @@ namespace Studio_1
             switch (menu)
             {
                 case 1:
-                    Character hero = new Character
                     {
-                        name = "Beef (Tough)",
-                        health = new EntityHealth { maxHP = 12, curHP = 12 },
-                        damDice = 4,
-                        strength = 0,
-                        finesse = 0,
-                        toughness = 1,
-                        presence = 1
-                    };
-                    name = "Beef";
-                    break;
+                        Character hero = new Character
+                        {
+                            name = "Beef",
+                            health = new EntityHealth { maxHP = 12, curHP = 12 },
+                            damDice = 4,
+                            strength = 0,
+                            finesse = 0,
+                            toughness = 1,
+                            presence = 1
+                        };
+                        name = "Beef";
+                        break;
+                    }
                 case 2:
-                    character hero = new Character
                     {
-                        name = "Stabbs",
-                        health = new EntityHealth { maxHP = 8, curHP = 8 },
-                        damDice = 8,
-                        strength = 1,
-                        finesse = -1,
-                        toughness = 0,
-                        presence = 0
-                    };
-                    break;
+                        Character hero = new Character
+                        {
+                            name = "Stabbs",
+                            health = new EntityHealth { maxHP = 8, curHP = 8 },
+                            damDice = 8,
+                            strength = 1,
+                            finesse = -1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                        break;
+                    }
                 case 3:
-                    Character hero = new Character
                     {
-                        name = "Dodgeo",
-                        health = new EntityHealth { maxHP = 10, curHP = 10 },
-                        damDice = 6,
-                        strength = 2,
-                        finesse = 1,
-                        toughness = 0,
-                        presence = 0
-                    };
-                    break;
+                        Character hero = new Character
+                        {
+                            name = "Dodgeo",
+                            health = new EntityHealth { maxHP = 10, curHP = 10 },
+                            damDice = 6,
+                            strength = 2,
+                            finesse = 1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                        break;
+                    }
                 default:
                     Console.WriteLine("Add something about an error possibly list vailid choices and what not");
+                    break;
             }
             Console.WriteLine($"Your Character is {name}");
+            Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
         }
 
