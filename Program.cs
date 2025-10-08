@@ -71,7 +71,7 @@ namespace Studio_1
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
 
-            //Basic Room Template
+            //test room
             string choice;
             bool item = false;
             do
@@ -109,6 +109,7 @@ namespace Studio_1
                         break;
                     case "HELP":
                         //Print Commands with a method
+                        Help();
                         break;
                     default:
                         Console.WriteLine("\nSorry I don't understand that command.");
@@ -138,6 +139,27 @@ namespace Studio_1
             // Reset the console text color to white
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        static void Help()
+        {
+            Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
+            Console.WriteLine("            The commands are not case sensitive");
+            Thread.Sleep(500);
+            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
+            Thread.Sleep(500);
+            Console.WriteLine("     HELP      -- This command prints the help menu");
+            Thread.Sleep(500);
+            Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
+            Thread.Sleep(500);
+            Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
+            Thread.Sleep(2000);
+            Console.Clear();
+        }
+
+
+
+
+
     }
     /// <summary>
     /// Character Data
