@@ -10,7 +10,8 @@ namespace Studio_1
             string name = " ";
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
-            Console.WriteLine("Cool intro lore stuff goes here");
+            Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
+            Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
             Console.WriteLine("Press Enter to start");
             Console.ReadLine();
