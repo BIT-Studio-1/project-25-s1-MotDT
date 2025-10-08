@@ -70,10 +70,13 @@ namespace Studio_1
             Console.WriteLine($"Your Character is {name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
+            Room1();
+        }
 
-            //test room
-            string choice;
-            bool item = false;
+        static void Room1()
+        { 
+        string choice;
+        bool item = false;
             do
             {
                 Console.Clear();
@@ -117,9 +120,10 @@ namespace Studio_1
                         break;
                 }
             }
-            while (choice != "Go South");
+            while (choice != "Go South") ;
 
         }
+
 
         // Prints the health bar of the character
         static void PrintHealthBar(Character character)
