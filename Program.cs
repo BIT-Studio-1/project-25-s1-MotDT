@@ -26,7 +26,7 @@ namespace Studio_1
                         Character hero = new Character
                         {
                             name = "Beef",
-                            health = new EntityHealth { maxHP = 12, curHP = 12 },
+                            health = EntityHealth.InitHealth(12),
                             damDice = 4,
                             strength = 0,
                             finesse = 0,
@@ -41,7 +41,7 @@ namespace Studio_1
                         Character hero = new Character
                         {
                             name = "Stabbs",
-                            health = new EntityHealth { maxHP = 8, curHP = 8 },
+                            health = EntityHealth.InitHealth(8),
                             damDice = 8,
                             strength = 1,
                             finesse = -1,
@@ -55,7 +55,7 @@ namespace Studio_1
                         Character hero = new Character
                         {
                             name = "Dodgio",
-                            health = new EntityHealth { maxHP = 10, curHP = 10 },
+                            health = EntityHealth.InitHealth(10),
                             damDice = 6,
                             strength = 2,
                             finesse = 1,
@@ -198,8 +198,8 @@ namespace Studio_1
 
         /// <summary>
         /// Constructor function that automatically sets max health.
+        /// A new EntityHealth instance where maxHP == curHP == initHP
         /// </summary>
-        // A new EntityHealth instance where maxHP == curHP == initHP
         public static EntityHealth InitHealth(int initHP)
         {
             return new EntityHealth
