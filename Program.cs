@@ -53,7 +53,7 @@ namespace Studio_1
                     {
                         Character hero = new Character
                         {
-                            name = "Dodgeo",
+                            name = "Dodgio",
                             health = new EntityHealth { maxHP = 10, curHP = 10 },
                             damDice = 6,
                             strength = 2,
@@ -159,36 +159,31 @@ namespace Studio_1
             Thread.Sleep(2000);
             Console.Clear();
         }
-
-
-
-
-
     }
     /// <summary>
     /// Character Data
     /// </summary>
     public class Character // This character is simpler; you test themself against DC10+ monster attack
     {
-        /// Character's health component
-        public EntityHealth health;
-        public string name;
+        
+        public EntityHealth health; // character's health component
+        public string name; // character's name
         public int damDice;
         public int strength; // this is used as hit mod
         public int finesse;
         public int toughness;
         public int presence;
+        bool roomItem; // item the player can have to unlock a room or to progress
     }
 
     public class Monster
     {
-        /// Monster's health component
-        public EntityHealth health;
-        public string name;
+        public EntityHealth health; // monster's health component 
+        public string name; // monster's name
         int damDice;
         int dodgeDiff;
         int hitDiff;
-        bool item1;
+        bool item1; // item the monster can have that the player can loot
     }
 
     /// <summary>
@@ -196,14 +191,14 @@ namespace Studio_1
     /// </summary>
     public class EntityHealth
     {
-        /// Max health of the entity
-        public int maxHP;
-        /// Current Health of the entity
-        public int curHP;
+        
+        public int maxHP; // Max health of the entity
+        public int curHP; // Current Health of the entity
 
         /// <summary>
         /// Constructor function that automatically sets max health.
         /// </summary>
+        // A new EntityHealth instance where maxHP == curHP == initHP
         public static EntityHealth InitHealth(int initHP)
         {
             return new EntityHealth
