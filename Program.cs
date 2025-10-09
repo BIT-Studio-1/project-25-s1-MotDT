@@ -9,9 +9,7 @@ namespace Studio_1
     {
         static void Main()
         {
-            // Main logic here
-            Console.WriteLine("Title Animation goes here very cool and epic adventure game");
-            
+            // Main logic here            
             // Change the console text color
             Console.ForegroundColor = ConsoleColor.Red; // Set text colour to Red
             // ASCII art printed line-by-line with a 200ms pause after each line
@@ -54,7 +52,7 @@ namespace Studio_1
             Console.WriteLine("░          ░  ░   ░     ░  ░                   ░ ░      ░       ░  ░   ░         ");
             Thread.Sleep(200);
             Console.WriteLine("");
-
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
