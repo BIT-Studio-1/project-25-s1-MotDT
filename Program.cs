@@ -60,7 +60,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        //Print player status with a method
+                        Status(hero);
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
@@ -112,7 +112,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        //Print player status with a method
+                        Status(hero);
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
