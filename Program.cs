@@ -101,6 +101,23 @@ namespace Studio_1
                     case "GO NORTH":
                         Room2(hero);
                         break;
+                    case "GO SOUTH":
+                        Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
+                        Console.WriteLine("Y/N");
+                        char Choice = Convert.ToChar(Console.ReadLine());
+                        Choice = Char.ToUpper(Choice);
+                        if (Choice == 'Y')
+                        {
+                            Console.WriteLine("You decide that it may not be worth risking life and limb for treausre after all");
+                            Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
+                            Console.WriteLine("GAME OVER");
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("after some deliberation you decide to continue in search of ritches in the tower");
+                        }
+                        break;
                     case "SEARCH":
                         if (item == true)
                         {
@@ -341,7 +358,7 @@ namespace Studio_1
         public int finesse;
         public int toughness;
         public int presence;
-        bool itemname = false;
+        bool F1Key = false;
         bool roomItem;
 
         public void Status()
