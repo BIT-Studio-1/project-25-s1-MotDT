@@ -68,16 +68,17 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("[3] Dodgio the EVASIVE acrobat");
             Thread.Sleep(200);
-            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
+            Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
             Character hero = Getchar(menu);
             Console.WriteLine($"Your Character is {hero.name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
-            Room1(hero);
+            Entrance(hero);
         }
 
-        static void Room1(Character hero)
+        static void Entrance(Character hero)
         { 
         string choice;
         bool item = false;
@@ -85,18 +86,19 @@ namespace Studio_1
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Console.WriteLine("You are in room 1");
+                Console.WriteLine("You find yourself in the dark enterance way of the wizzards tower");
                 Thread.Sleep(200);
-                Console.WriteLine("Chained to the wall is the corpse of your former companion");
+                Console.WriteLine("It is a small lime stone room. A single torch dully illuminates the other wise dark entrance");
                 Thread.Sleep(200);
-                Console.WriteLine("There is a rusted door to the South");
+                Console.WriteLine("There is a wooden door with a broken lock to the north");
                 Thread.Sleep(200);
+                Console.WriteLine("Slumped up against the wall just under the torch is a small skeliton");
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine();
                 choice = choice.ToUpper();
                 switch (choice)
                 {
-                    case "GO SOUTH":
+                    case "GO NORTH":
                         Room2(hero);
                         break;
                     case "SEARCH":
@@ -111,12 +113,11 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        hero.Status();
+                        hero.Status(); //Call Status method from Character class
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
-                        //Print Commands with a method
-                        Help();
+                        Help();//Call Help method
                         break;
                     default:
                         Console.WriteLine("\nSorry I don't understand that command.");
@@ -124,7 +125,7 @@ namespace Studio_1
                         break;
                 }
             }
-            while (choice != "Go South");
+            while (choice != "GO NORTH");
         }
 
         static void Room2(Character hero)
@@ -151,6 +152,12 @@ namespace Studio_1
                     case "GO NORTH":
                         Room3(hero);
                         break;
+                    case "GO SOUTH":
+                        Entrance(hero);
+                        break;
+                    case "GO EAST":
+                        Console.WriteLine("Placeholder text room to be added");
+                        break;
                     case "SEARCH":
                         if (item == true)
                         {
@@ -167,7 +174,6 @@ namespace Studio_1
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
-                        //Print Commands with a method
                         Help();
                         break;
                     default:
@@ -176,7 +182,7 @@ namespace Studio_1
                         break;
                 }
             }
-            while (choice != "Go South");
+            while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
         static void Room3(Character hero)
