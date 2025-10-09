@@ -23,10 +23,10 @@ namespace Studio_1
             Console.WriteLine($"Your Character is {hero.name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
-            Room1();
+            Room1(hero);
         }
 
-        static void Room1()
+        static void Room1(Character hero)
         { 
         string choice;
         bool item = false;
@@ -46,7 +46,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO SOUTH":
-                        Room2();
+                        Room2(hero);
                         break;
                     case "SEARCH":
                         if (item == true)
@@ -76,7 +76,7 @@ namespace Studio_1
             while (choice != "Go South") ;
         }
 
-        static void Room2()
+        static void Room2(Character hero)
         {
             string choice;
             bool item = false;
@@ -98,7 +98,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3();
+                        Room3(hero);
                         break;
                     case "SEARCH":
                         if (item == true)
@@ -128,7 +128,7 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
-        static void Room3()
+        static void Room3(Character hero)
         {
             string choice;
             bool item = false;
@@ -162,7 +162,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        //Print player status with a method
+                        Status(hero);
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
@@ -274,10 +274,16 @@ namespace Studio_1
             Console.Clear();
         }
 
-        static void Status()
+        static void Status(Character hero)
         {
             Console.WriteLine("Character Sheet");
-            Console.WriteLine();
+            Console.WriteLine(hero.name);
+            Console.WriteLine(hero.health.curHP);
+            Console.WriteLine(hero.strength);
+            Console.WriteLine(hero.finesse);
+            Console.WriteLine(hero.toughness);
+            Console.WriteLine(hero.presence);
+            Thread.Sleep(1000);
         }
     }
     /// <summary>
