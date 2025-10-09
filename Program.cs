@@ -60,7 +60,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        Status(hero);
+                        hero.Status();
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
@@ -112,7 +112,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        Status(hero);
+                        hero.Status();
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
@@ -162,7 +162,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        Status(hero);
+                        hero.Status();
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
@@ -270,17 +270,6 @@ namespace Studio_1
             Console.Clear();
         }
 
-        static void Status(Character hero)
-        {
-            Console.WriteLine("Character Sheet");
-            Console.WriteLine(hero.name);
-            Console.WriteLine(hero.health.curHP);
-            Console.WriteLine(hero.strength);
-            Console.WriteLine(hero.finesse);
-            Console.WriteLine(hero.toughness);
-            Console.WriteLine(hero.presence);
-            Thread.Sleep(1000);
-        }
     }
     /// <summary>
     /// Character Data
@@ -297,6 +286,19 @@ namespace Studio_1
         public int presence;
         bool itemname = false;
         bool roomItem;
+
+        public void Status()
+        {
+            Console.WriteLine($@"Character Sheet:
+{name}
+{health.curHP}
+{strength}
+{finesse}
+{toughness}
+{presence}
+            ");
+            Thread.Sleep(1000);
+        }
     }
 
     public class Monster
