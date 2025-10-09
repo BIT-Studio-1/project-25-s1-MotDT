@@ -27,9 +27,9 @@ namespace Studio_1
         }
 
         static void Room1()
-        { 
-        string choice;
-        bool item = false;
+        {
+            string choice;
+            bool item = false;
             do
             {
                 Console.Clear();
@@ -73,7 +73,7 @@ namespace Studio_1
                         break;
                 }
             }
-            while (choice != "Go South") ;
+            while (choice != "Go South");
         }
 
         static void Room2()
@@ -184,7 +184,7 @@ namespace Studio_1
             {
                 case 1:
                     {
-                        Character temphero = new Character
+                        return new Character
                         {
                             name = "Beef",
                             health = EntityHealth.InitHealth(12),
@@ -194,11 +194,10 @@ namespace Studio_1
                             toughness = 1,
                             presence = 1
                         };
-                        return temphero;
                     }
                 case 2:
                     {
-                        Character temphero = new Character
+                        return new Character
                         {
                             name = "Stabbs",
                             health = EntityHealth.InitHealth(8),
@@ -208,11 +207,10 @@ namespace Studio_1
                             toughness = 0,
                             presence = 0
                         };
-                        return temphero;
                     }
                 case 3:
                     {
-                        Character temphero = new Character
+                        return new Character
                         {
                             name = "Dodgio",
                             health = EntityHealth.InitHealth(10),
@@ -222,11 +220,10 @@ namespace Studio_1
                             toughness = 0,
                             presence = 0
                         };
-                        return temphero;
                     }
                 default:
                     Console.WriteLine("Error Returning default");
-                    Character hero = new Character
+                    return new Character
                     {
                         name = "Beef",
                         health = EntityHealth.InitHealth(12),
@@ -236,11 +233,10 @@ namespace Studio_1
                         toughness = 1,
                         presence = 1
                     };
-                    return hero;
             }
         }
-            // Prints the health bar of the character
-            static void PrintHealthBar(Character character)
+        // Prints the health bar of the character
+        static void PrintHealthBar(Character character)
         {
             // Set the console text color to green for the health bar display
             Console.ForegroundColor = ConsoleColor.Green;
@@ -285,7 +281,7 @@ namespace Studio_1
     /// </summary>
     public class Character // This character is simpler; you test themselves against DC10+ monster attack
     {
-        
+
         public EntityHealth health; // character's health component
         public string name; // character's name
         public int damDice;
@@ -312,7 +308,7 @@ namespace Studio_1
     /// </summary>
     public class EntityHealth
     {
-        
+
         public int maxHP; // Max health of the entity
         public int curHP; // Current Health of the entity
 
