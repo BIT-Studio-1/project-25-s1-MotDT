@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Threading;
 using System.Xml.Linq;
 
 namespace Studio_1
@@ -10,6 +11,27 @@ namespace Studio_1
         {
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
+            // ASCII art printed line-by-line with a 200ms pause after each line (no array)
+            Console.WriteLine("███▄ ▄███▓ ▄▄▄      ▒███████▒▓█████     ▒█████    █████▒   ▄▄▄█████▓ ██░ ██ ▓█████    ▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀   ▄▄▄█████▓ ▒█████   █     █░▓█████  ██▀███  ");
+            Thread.Sleep(200);
+            Console.WriteLine("▓██▒▀█▀ ██▒▒████▄    ▒ ▒ ▒ ▄▀░▓█   ▀    ▒██▒  ██▒▓██   ▒    ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀    ▒██▀ ██▌▒████▄    ▓██ ▒ ██▒");
+            Thread.Sleep(200);
+            Console.WriteLine("▓██    ▓██░▒██  ▀█▄  ░ ▒ ▄▀▒░ ▒███      ▒██░  ██▒▒████ ░    ▒ ▓██░ ▒░▒██▀▀██░▒███      ░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒");
+            Thread.Sleep(200);
+            Console.WriteLine("▒██    ▒██ ░██▄▄▄▄██   ▄▀▒   ░▒▓█  ▄    ▒██   ██░░▓█▒  ░    ░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄    ░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄    ░ ▓██▓ ░ ▒██   ██░░█░ █ ░█ ▒▓█  ▄ ▒██▀▀█▄  ");
+            Thread.Sleep(200);
+            Console.WriteLine("▒██▒   ░██▒ ▓█   ▓██▒▒███████▒░▒████▒   ░ ████▓▒░░▒█░         ▒██▒ ░ ░▓█▒░██▓░▒████▒   ░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄     ▒██▒ ░ ░ ████▓▒░░░██▒██▓ ░▒████▒░██▓ ▒██▒");
+            Thread.Sleep(200);
+            Console.WriteLine("░ ▒░   ░  ░ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░░ ▒░ ░   ░ ▒░▒░▒░  ▒ ░         ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░    ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒     ▒ ░░   ░ ▒░▒░▒░ ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒▓ ░▒▓░");
+            Thread.Sleep(200);
+            Console.WriteLine("░  ░      ░  ▒   ▒▒ ░░░▒ ▒ ░ ▒ ░ ░  ░     ░ ▒ ▒░  ░             ░     ▒ ░▒░ ░ ░ ░  ░    ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░       ░      ░ ▒ ▒░   ▒ ░ ░   ░ ░  ░  ░▒ ░ ▒░");
+            Thread.Sleep(200);
+            Console.WriteLine("░      ░     ░   ▒   ░ ░ ░ ░ ░   ░      ░ ░ ░ ▒   ░ ░         ░       ░  ░░ ░   ░       ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░      ░      ░ ░ ░ ▒    ░   ░     ░     ░░   ░ ");
+            Thread.Sleep(200);
+            Console.WriteLine("       ░         ░  ░  ░ ░       ░  ░       ░ ░                       ░  ░  ░   ░  ░      ░          ░  ░   ░     ░  ░                   ░ ░      ░       ░  ░   ░     ");
+            Thread.Sleep(200);
+            Console.WriteLine("                     ░                                                                  ░                                                                             ");
+            Thread.Sleep(200);
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
