@@ -8,10 +8,9 @@ namespace Studio_1
     internal class Program
     {
         static void Main()
-        {
-            // Main logic here            
-            // Change the console text color
-            Console.ForegroundColor = ConsoleColor.Red; // Set text colour to Red
+        {            
+            // Change the console text colour
+            Console.ForegroundColor = ConsoleColor.Red; // Set console text colour to red
             // ASCII art printed line-by-line with a 200ms pause after each line
             Console.WriteLine("███▄ ▄███▓ ▄▄▄      ▒███████▒▓█████     ▒█████    █████▒   ▄▄▄█████▓ ██░ ██ ▓█████  ");
             Thread.Sleep(200);
@@ -80,19 +79,19 @@ namespace Studio_1
 
         static void Entrance(Character hero)
         { 
-        string choice;
-        bool item = false;
+            string choice;
+            bool item = false;
             do
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Console.WriteLine("You find yourself in the dark enterance way of the wizzards tower");
+                Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
-                Console.WriteLine("It is a small lime stone room. A single torch dully illuminates the other wise dark entrance");
+                Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 Thread.Sleep(200);
                 Console.WriteLine("There is a wooden door with a broken lock to the north");
                 Thread.Sleep(200);
-                Console.WriteLine("Slumped up against the wall just under the torch is a small skeliton");
+                Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine();
                 choice = choice.ToUpper();
@@ -108,14 +107,14 @@ namespace Studio_1
                         Choice = Char.ToUpper(Choice);
                         if (Choice == 'Y')
                         {
-                            Console.WriteLine("You decide that it may not be worth risking life and limb for treausre after all");
+                            Console.WriteLine("You decide that it may not be worth risking life and limb for treasure after all");
                             Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
                             Console.WriteLine("GAME OVER");
                             Environment.Exit(0);
                         }
                         else
                         {
-                            Console.WriteLine("after some deliberation you decide to continue in search of ritches in the tower");
+                            Console.WriteLine("After some deliberation you decide to continue in search of riches in the tower");
                         }
                         break;
                     case "SEARCH":
@@ -153,13 +152,13 @@ namespace Studio_1
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Console.WriteLine("You are in Room2");
+                Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
-                Console.WriteLine("The room 2 Ghoul stands in your way");
+                Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
-                Console.WriteLine("you must vanquish it before you leave");
+                Console.WriteLine("You must vanquish it before you leave");
                 Thread.Sleep(200);
-                Console.WriteLine("to the north there is a small hole in the wall");
+                Console.WriteLine("Yo the north there is a small hole in the wall");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine();
@@ -178,7 +177,7 @@ namespace Studio_1
                     case "SEARCH":
                         if (item == true)
                         {
-                            //Stuff Goeshere
+                            //Stuff Goes here
                         }
                         else
                         {
@@ -227,7 +226,7 @@ namespace Studio_1
                     case "SEARCH":
                         if (item == true)
                         {
-                            //Stuff Goeshere
+                            //Stuff Goes here
                         }
                         else
                         {
