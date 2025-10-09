@@ -52,7 +52,7 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("");
             Thread.Sleep(200);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White; // Reset console text colour to white
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
@@ -70,11 +70,11 @@ namespace Studio_1
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
             Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
-            Character hero = Getchar(menu);
+            Character hero = GetChar(menu); 
             Console.WriteLine($"Your Character is {hero.name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
-            Entrance(hero);
+            Entrance(hero); // Call Entrance method
         }
 
         static void Entrance(Character hero)
@@ -98,7 +98,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room2(hero);
+                        Room2(hero); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -150,7 +150,7 @@ namespace Studio_1
             bool item = false;
             do
             {
-                Console.Clear();
+                Console.Clear(); // Clear the console
                 //Animations Go here!!!
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
@@ -166,10 +166,10 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3(hero);
+                        Room3(hero); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(hero);
+                        Entrance(hero); //Call Entrance method
                         break;
                     case "GO EAST":
                         Console.WriteLine("Placeholder text room to be added");
@@ -209,7 +209,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Console.WriteLine("You are in Room2");
+                Console.WriteLine("You are in Room 3");
                 Thread.Sleep(200);
                 Console.WriteLine("Stuff");
                 Thread.Sleep(200);
@@ -240,7 +240,7 @@ namespace Studio_1
                         break;
                     case "HELP":
                         //Print Commands with a method
-                        Help();
+                        Help(); //Call Help method
                         break;
                     default:
                         Console.WriteLine("\nSorry I don't understand that command.");
@@ -251,7 +251,7 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
-        public static Character Getchar(int menu)
+        public static Character GetChar(int menu)
         {
             switch (menu)
             {
@@ -340,7 +340,7 @@ namespace Studio_1
             Thread.Sleep(500);
             Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
             Thread.Sleep(2000);
-            Console.Clear();
+            Console.Clear(); // Clear the console
         }
 
     }
@@ -368,7 +368,7 @@ Current hp:         {health.curHP}
 Strength bonus:     {strength}
 Finesse Bonus:      {finesse}
 Toughness Bonus:    {toughness}
-Presance Bonus:     {presence}
+Presence Bonus:     {presence}
             ");
             Thread.Sleep(1000);
         }
