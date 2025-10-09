@@ -134,6 +134,58 @@ namespace Studio_1
                 //Animations Go here!!!
                 Console.WriteLine("You are in Room2");
                 Thread.Sleep(200);
+                Console.WriteLine("The room 2 Ghoul stands in your way");
+                Thread.Sleep(200);
+                Console.WriteLine("you must vanquish it before you leave");
+                Thread.Sleep(200);
+                Console.WriteLine("to the north there is a small hole in the wall");
+                Thread.Sleep(200);
+                Console.WriteLine("What would you like to do?");
+                choice = Console.ReadLine();
+                choice = choice.ToUpper();
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        Room3();
+                        break;
+                    case "SEARCH":
+                        if (item == true)
+                        {
+                            //Stuff Goeshere
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nYou find nothing of use");
+                            Thread.Sleep(1000);
+                        }
+                        break;
+                    case "STATUS":
+                        //Print player status with a method
+                        Thread.Sleep(2000);
+                        break;
+                    case "HELP":
+                        //Print Commands with a method
+                        Help();
+                        break;
+                    default:
+                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            }
+            while (choice != "Go South");
+        }
+
+        static void Room3()
+        {
+            string choice;
+            bool item = false;
+            do
+            {
+                Console.Clear();
+                //Animations Go here!!!
+                Console.WriteLine("You are in Room2");
+                Thread.Sleep(200);
                 Console.WriteLine("Stuff");
                 Thread.Sleep(200);
                 Console.WriteLine("Wow");
@@ -173,10 +225,8 @@ namespace Studio_1
             }
             while (choice != "Go South");
         }
-
-
-        // Prints the health bar of the character
-        static void PrintHealthBar(Character character)
+            // Prints the health bar of the character
+            static void PrintHealthBar(Character character)
         {
             // Set the console text color to green for the health bar display
             Console.ForegroundColor = ConsoleColor.Green;
