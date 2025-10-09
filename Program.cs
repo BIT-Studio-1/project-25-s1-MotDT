@@ -52,15 +52,23 @@ namespace Studio_1
             Console.WriteLine("░          ░  ░   ░     ░  ░                   ░ ░      ░       ░  ░   ░         ");
             Thread.Sleep(200);
             Console.WriteLine("");
+            Thread.Sleep(200);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
+            Thread.Sleep(200);
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
-            Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
-            Console.WriteLine("Press Enter to start");
-            Console.ReadLine();
-            Console.WriteLine("Press 1 if you want to play the tough BEEF");
-            Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
-            Console.WriteLine("Press 3 if you want to play the Dexterous Dodgio");
+            Thread.Sleep(200);
+            Console.WriteLine("Choose a character! ");
+            Thread.Sleep(200);
+            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+            Thread.Sleep(200);
+            Console.WriteLine("[1] BEEF the TANKY warrior");
+            Thread.Sleep(200);
+            Console.WriteLine("[2] Stabbs the DAMAGING rouge");
+            Thread.Sleep(200);
+            Console.WriteLine("[3] Dodgio the EVASIVE acrobat");
+            Thread.Sleep(200);
+            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             int menu = Convert.ToInt32(Console.ReadLine());
             Character hero = Getchar(menu);
             Console.WriteLine($"Your Character is {hero.name}");
