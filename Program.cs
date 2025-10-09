@@ -10,7 +10,8 @@ namespace Studio_1
             string name = " ";
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
-            Console.WriteLine("Cool intro lore stuff goes here");
+            Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
+            Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Console.WriteLine("Menu Stuff goes here E.g. Play the game and exit and what not");
             Console.WriteLine("Press Enter to start");
             Console.ReadLine();
@@ -25,7 +26,7 @@ namespace Studio_1
                         Character hero = new Character
                         {
                             name = "Beef",
-                            health = new EntityHealth { maxHP = 12, curHP = 12 },
+                            health = EntityHealth.InitHealth(12),
                             damDice = 4,
                             strength = 0,
                             finesse = 0,
@@ -40,7 +41,7 @@ namespace Studio_1
                         Character hero = new Character
                         {
                             name = "Stabbs",
-                            health = new EntityHealth { maxHP = 8, curHP = 8 },
+                            health = EntityHealth.InitHealth(8),
                             damDice = 8,
                             strength = 1,
                             finesse = -1,
@@ -53,8 +54,8 @@ namespace Studio_1
                     {
                         Character hero = new Character
                         {
-                            name = "Dodgeo",
-                            health = new EntityHealth { maxHP = 10, curHP = 10 },
+                            name = "Dodgio",
+                            health = EntityHealth.InitHealth(10),
                             damDice = 6,
                             strength = 2,
                             finesse = 1,
@@ -64,7 +65,7 @@ namespace Studio_1
                         break;
                     }
                 default:
-                    Console.WriteLine("Add something about an error possibly list vailid choices and what not");
+                    Console.WriteLine("Add something about an error possibly list valid choices and what not");
                     break;
             }
             Console.WriteLine($"Your Character is {name}");
@@ -98,7 +99,7 @@ namespace Studio_1
                     case "SEARCH":
                         if (item == true)
                         {
-                            //Stuff Goeshere
+                            //Stuff Goes here
                         }
                         else
                         {
@@ -198,47 +199,45 @@ namespace Studio_1
             Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
             Console.WriteLine("            The commands are not case sensitive");
             Thread.Sleep(500);
-            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
+            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
             Thread.Sleep(500);
             Console.WriteLine("     HELP      -- This command prints the help menu");
             Thread.Sleep(500);
             Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
             Thread.Sleep(500);
-            Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
+            Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
             Thread.Sleep(2000);
             Console.Clear();
         }
-
-
-
-
-
     }
     /// <summary>
     /// Character Data
     /// </summary>
-    public class Character // This character is simpler; you test themself against DC10+ monster attack
+    public class Character // This character is simpler; you test themselves against DC10+ monster attack
     {
-        /// Character's health component
-        public EntityHealth health;
-        public string name;
+        
+        public EntityHealth health; // character's health component
+        public string name; // character's name
         public int damDice;
         public int strength; // this is used as hit mod
         public int finesse;
         public int toughness;
         public int presence;
+<<<<<<< HEAD
         bool itemname = false;
+=======
+        bool roomItem; // item the player can have to unlock a room or to progress
+>>>>>>> b76f23539ee418af47d08d2a37ef75770a2423a3
     }
 
     public class Monster
     {
-        /// Monster's health component
-        public EntityHealth health;
-        public string name;
+        public EntityHealth health; // monster's health component 
+        public string name; // monster's name
         int damDice;
         int dodgeDiff;
         int hitDiff;
-        bool item1;
+        bool item1; // item the monster can have that the player can loot
     }
 
     /// <summary>
@@ -246,13 +245,13 @@ namespace Studio_1
     /// </summary>
     public class EntityHealth
     {
-        /// Max health of the entity
-        public int maxHP;
-        /// Current Health of the entity
-        public int curHP;
+        
+        public int maxHP; // Max health of the entity
+        public int curHP; // Current Health of the entity
 
         /// <summary>
         /// Constructor function that automatically sets max health.
+        /// A new EntityHealth instance where maxHP == curHP == initHP
         /// </summary>
         public static EntityHealth InitHealth(int initHP)
         {
