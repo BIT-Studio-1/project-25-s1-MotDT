@@ -81,7 +81,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Console.WriteLine("You awake inside a dimly lit and damp cell");
+                Console.WriteLine("You are in room 1");
                 Thread.Sleep(200);
                 Console.WriteLine("Chained to the wall is the corpse of your former companion");
                 Thread.Sleep(200);
@@ -93,7 +93,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO SOUTH":
-                        //Movement Goes here
+                        Room2();
                         break;
                     case "SEARCH":
                         if (item == true)
@@ -121,7 +121,56 @@ namespace Studio_1
                 }
             }
             while (choice != "Go South") ;
+        }
 
+        static void Room2()
+        {
+            string choice;
+            bool item = false;
+            do
+            {
+                Console.Clear();
+                //Animations Go here!!!
+                Console.WriteLine("You are in Room2");
+                Thread.Sleep(200);
+                Console.WriteLine("Stuff");
+                Thread.Sleep(200);
+                Console.WriteLine("Wow");
+                Thread.Sleep(200);
+                Console.WriteLine("What would you like to do?");
+                choice = Console.ReadLine();
+                choice = choice.ToUpper();
+                switch (choice)
+                {
+                    case "GO SOUTH":
+                        Environment.Exit(0);
+                        break;
+                    case "SEARCH":
+                        if (item == true)
+                        {
+                            //Stuff Goeshere
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nYou find nothing of use");
+                            Thread.Sleep(1000);
+                        }
+                        break;
+                    case "STATUS":
+                        //Print player status with a method
+                        Thread.Sleep(2000);
+                        break;
+                    case "HELP":
+                        //Print Commands with a method
+                        Help();
+                        break;
+                    default:
+                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            }
+            while (choice != "Go South");
         }
 
 
@@ -178,6 +227,7 @@ namespace Studio_1
         public int finesse;
         public int toughness;
         public int presence;
+        bool itemname = false;
     }
 
     public class Monster
