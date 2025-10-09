@@ -158,7 +158,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
                 Thread.Sleep(200);
-                Console.WriteLine("Yo the north there is a small hole in the wall");
+                Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine();
@@ -211,9 +211,13 @@ namespace Studio_1
                 //Animations Go here!!!
                 Console.WriteLine("You are in Room 3");
                 Thread.Sleep(200);
-                Console.WriteLine("Stuff");
+                Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
                 Thread.Sleep(200);
-                Console.WriteLine("Wow");
+                Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
+                Thread.Sleep(200);
+                Console.ReadLine("It is also clutching scraps of something that might have belonged to your companion");
+                Thread.Sleep(200);
+                Console.WriteLine("You must defeat the goblin before you can proceed");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine();
