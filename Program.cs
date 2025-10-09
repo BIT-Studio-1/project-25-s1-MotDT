@@ -223,11 +223,8 @@ namespace Studio_1
         public int finesse;
         public int toughness;
         public int presence;
-<<<<<<< HEAD
         bool itemname = false;
-=======
-        bool roomItem; // item the player can have to unlock a room or to progress
->>>>>>> b76f23539ee418af47d08d2a37ef75770a2423a3
+        bool roomItem;
     }
 
     public class Monster
