@@ -347,12 +347,12 @@ namespace Studio_1
         public void Status()
         {
             Console.WriteLine($@"Character Sheet:
-{name}
-{health.curHP}
-{strength}
-{finesse}
-{toughness}
-{presence}
+Character name:     {name}
+Current hp:         {health.curHP}
+Strength bonus:     {strength}
+Finesse Bonus:      {finesse}
+Toughness Bonus:    {toughness}
+Presance Bonus:     {presence}
             ");
             Thread.Sleep(1000);
         }
