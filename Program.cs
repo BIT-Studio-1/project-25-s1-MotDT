@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Xml.Linq;
 
 namespace Studio_1
 {
@@ -7,7 +8,6 @@ namespace Studio_1
     {
         static void Main()
         {
-            string name = " ";
             // Main logic here
             Console.WriteLine("Title Animation goes here very cool and epic adventure game");
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
@@ -19,55 +19,7 @@ namespace Studio_1
             Console.WriteLine("Press 2 if you want to play the brutal Stabbs");
             Console.WriteLine("Press 3 if you want to play the Dexterous Dodgio");
             int menu = Convert.ToInt32(Console.ReadLine());
-            switch (menu)
-            {
-                case 1:
-                    {
-                        Character hero = new Character
-                        {
-                            name = "Beef",
-                            health = EntityHealth.InitHealth(12),
-                            damDice = 4,
-                            strength = 0,
-                            finesse = 0,
-                            toughness = 1,
-                            presence = 1
-                        };
-                        name = "Beef";
-                        break;
-                    }
-                case 2:
-                    {
-                        Character hero = new Character
-                        {
-                            name = "Stabbs",
-                            health = EntityHealth.InitHealth(8),
-                            damDice = 8,
-                            strength = 1,
-                            finesse = -1,
-                            toughness = 0,
-                            presence = 0
-                        };
-                        break;
-                    }
-                case 3:
-                    {
-                        Character hero = new Character
-                        {
-                            name = "Dodgio",
-                            health = EntityHealth.InitHealth(10),
-                            damDice = 6,
-                            strength = 2,
-                            finesse = 1,
-                            toughness = 0,
-                            presence = 0
-                        };
-                        break;
-                    }
-                default:
-                    Console.WriteLine("Add something about an error possibly list valid choices and what not");
-                    break;
-            }
+            Character hero = Getchar(menu);
             Console.WriteLine($"Your Character is {name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
@@ -225,6 +177,68 @@ namespace Studio_1
             }
             while (choice != "Go South");
         }
+
+        public static Character Getchar(int menu)
+        {
+            switch (menu)
+            {
+                case 1:
+                    {
+                        Character hero = new Character
+                        {
+                            name = "Beef",
+                            health = EntityHealth.InitHealth(12),
+                            damDice = 4,
+                            strength = 0,
+                            finesse = 0,
+                            toughness = 1,
+                            presence = 1
+                        };
+                        return hero;
+                    }
+                case 2:
+                    {
+                        Character hero = new Character
+                        {
+                            name = "Stabbs",
+                            health = EntityHealth.InitHealth(8),
+                            damDice = 8,
+                            strength = 1,
+                            finesse = -1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                        return hero;
+                    }
+                case 3:
+                    {
+                        Character hero = new Character
+                        {
+                            name = "Dodgio",
+                            health = EntityHealth.InitHealth(10),
+                            damDice = 6,
+                            strength = 2,
+                            finesse = 1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                        return hero;
+                    }
+                default:
+                    Console.WriteLine("Error Returning default");
+                    Character hero = new Character
+                    {
+                        name = "Beef",
+                        health = EntityHealth.InitHealth(12),
+                        damDice = 4,
+                        strength = 0,
+                        finesse = 0,
+                        toughness = 1,
+                        presence = 1
+                    };
+                    return hero;
+            }
+        }
             // Prints the health bar of the character
             static void PrintHealthBar(Character character)
         {
@@ -258,6 +272,12 @@ namespace Studio_1
             Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
             Thread.Sleep(2000);
             Console.Clear();
+        }
+
+        static void Status()
+        {
+            Console.WriteLine("Character Sheet");
+            Console.WriteLine();
         }
     }
     /// <summary>
