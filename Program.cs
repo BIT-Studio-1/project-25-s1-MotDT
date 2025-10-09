@@ -20,7 +20,7 @@ namespace Studio_1
             Console.WriteLine("Press 3 if you want to play the Dexterous Dodgio");
             int menu = Convert.ToInt32(Console.ReadLine());
             Character hero = Getchar(menu);
-            Console.WriteLine($"Your Character is {name}");
+            Console.WriteLine($"Your Character is {hero.name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
             Room1();
@@ -184,7 +184,7 @@ namespace Studio_1
             {
                 case 1:
                     {
-                        Character hero = new Character
+                        Character temphero = new Character
                         {
                             name = "Beef",
                             health = EntityHealth.InitHealth(12),
@@ -194,11 +194,11 @@ namespace Studio_1
                             toughness = 1,
                             presence = 1
                         };
-                        return hero;
+                        return temphero;
                     }
                 case 2:
                     {
-                        Character hero = new Character
+                        Character temphero = new Character
                         {
                             name = "Stabbs",
                             health = EntityHealth.InitHealth(8),
@@ -208,11 +208,11 @@ namespace Studio_1
                             toughness = 0,
                             presence = 0
                         };
-                        return hero;
+                        return temphero;
                     }
                 case 3:
                     {
-                        Character hero = new Character
+                        Character temphero = new Character
                         {
                             name = "Dodgio",
                             health = EntityHealth.InitHealth(10),
@@ -222,7 +222,7 @@ namespace Studio_1
                             toughness = 0,
                             presence = 0
                         };
-                        return hero;
+                        return temphero;
                     }
                 default:
                     Console.WriteLine("Error Returning default");
