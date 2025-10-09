@@ -65,7 +65,7 @@ namespace Studio_1
                         break;
                     }
                 default:
-                    Console.WriteLine("Add something about an error possibly list vailid choices and what not");
+                    Console.WriteLine("Add something about an error possibly list valid choices and what not");
                     break;
             }
             Console.WriteLine($"Your Character is {name}");
@@ -99,7 +99,7 @@ namespace Studio_1
                     case "SEARCH":
                         if (item == true)
                         {
-                            //Stuff Goeshere
+                            //Stuff Goes here
                         }
                         else
                         {
@@ -150,13 +150,13 @@ namespace Studio_1
             Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
             Console.WriteLine("            The commands are not case sensitive");
             Thread.Sleep(500);
-            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
+            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
             Thread.Sleep(500);
             Console.WriteLine("     HELP      -- This command prints the help menu");
             Thread.Sleep(500);
             Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
             Thread.Sleep(500);
-            Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
+            Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
             Thread.Sleep(2000);
             Console.Clear();
         }
@@ -164,7 +164,7 @@ namespace Studio_1
     /// <summary>
     /// Character Data
     /// </summary>
-    public class Character // This character is simpler; you test themself against DC10+ monster attack
+    public class Character // This character is simpler; you test themselves against DC10+ monster attack
     {
         
         public EntityHealth health; // character's health component
