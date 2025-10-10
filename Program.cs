@@ -327,6 +327,7 @@ namespace Studio_1
                     };
             }
         }
+
         // Prints the health bar of the character
         static void PrintHealthBar(Character character)
         {
@@ -344,6 +345,29 @@ namespace Studio_1
 
             // Reset the console text color to white
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        //Art file renderer, call method with directory of text file to be printed as a string
+        static void RenderFrame(string file)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(file))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            //If file could not be found in expected directory
+            catch (Exception ex)
+            {
+                Console.WriteLine("File could not be read");
+                //Will report expected directory
+                Console.WriteLine(ex.Message);
+            }
         }
 
         static void Help()
