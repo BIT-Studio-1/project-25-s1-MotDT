@@ -8,7 +8,7 @@ namespace Studio_1
     internal class Program
     {
         static void Main()
-        {            
+        {
             // Change the console text colour
             Console.ForegroundColor = ConsoleColor.Red; // Set console text colour to red
             // ASCII art printed line-by-line with a 200ms pause after each line
@@ -70,7 +70,7 @@ namespace Studio_1
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
             Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
-            Character hero = GetChar(menu); 
+            Character hero = GetChar(menu);
             Console.WriteLine($"Your Character is {hero.name}");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
@@ -78,7 +78,7 @@ namespace Studio_1
         }
 
         static void Entrance(Character hero)
-        { 
+        {
             string choice;
             bool item = false;
             do
@@ -255,6 +255,21 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
+        /// <summary>
+        /// Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
+        /// Takes an array of (string a,int b)
+        /// No, I could not make the name shorter.
+        /// </summary>
+        static void PrintMultiDelayString((string, int)[] data)
+        {
+            // Iterate through each pair
+            foreach ((string, int) line in data)
+            {
+                Console.WriteLine(line.Item1);
+                Thread.Sleep(line.Item2);
+            }
+        }
+
         public static Character GetChar(int menu)
         {
             switch (menu)
@@ -410,4 +425,5 @@ Presence Bonus:     {presence}
             };
         }
     }
+
 }
