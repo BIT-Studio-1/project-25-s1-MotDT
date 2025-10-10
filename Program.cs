@@ -215,7 +215,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
                 Thread.Sleep(200);
-                Console.ReadLine("It is also clutching scraps of something that might have belonged to your companion");
+                Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
                 Thread.Sleep(200);
                 Console.WriteLine("You must defeat the goblin before you can proceed");
                 Thread.Sleep(200);
