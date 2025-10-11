@@ -10,7 +10,6 @@ namespace Studio_1
         static void Main()
         {
             RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
-            Console.ForegroundColor = ConsoleColor.White; // Reset console text colour to white
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
@@ -91,7 +90,7 @@ namespace Studio_1
                         Thread.Sleep(2000);
                         break;
                     case "HELP":
-                        Help();//Call Help method
+                        Help(); //Call Help method
                         break;
                     default:
                         Console.WriteLine("\nSorry I don't understand that command.");
@@ -213,11 +212,9 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
-        /// <summary>
-        /// Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
-        /// Takes an array of (string a,int b)
-        /// No, I could not make the name shorter.
-        /// </summary>
+        // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
+        // Takes an array of (string a,int b)
+        // No, I could not make the name shorter.
         static void PrintMultiDelayString((string, int)[] data)
         {
             // Iterate through each pair
@@ -302,7 +299,7 @@ namespace Studio_1
             Console.WriteLine($"{character.name} HP: {remainingHealthBar}{totalHealthBar} ({character.health.curHP}/{character.health.maxHP})");
 
             // Reset the console text color to white
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
         }
 
         //Art file renderer, call method with: directory of text file as a string, print delay between lines, console coulour int value 
@@ -349,9 +346,8 @@ namespace Studio_1
         }
 
     }
-    /// <summary>
-    /// Character Data
-    /// </summary>
+
+    // Character Data
     public class Character // This character is simpler; you test themselves against DC10+ monster attack
     {
 
@@ -389,9 +385,7 @@ Presence Bonus:     {presence}
         bool item1; // item the monster can have that the player can loot
     }
 
-    /// <summary>
-    /// Generic Health class used by both players and monsters
-    /// </summary>
+    // Generic Health class used by both players and monsters
     public class EntityHealth
     {
 
