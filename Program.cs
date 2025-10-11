@@ -84,7 +84,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                //Animations Go here!!!
+                RenderFrame("../../../Art Files/Room1.txt"); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
@@ -348,6 +348,7 @@ namespace Studio_1
         }
 
         //Art file renderer, call method with directory of text file to be printed as a string
+        //Use directory "../../../Art Files/{file}.txt/"
         static void RenderFrame(string file)
         {
             try
