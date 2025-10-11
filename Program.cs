@@ -9,49 +9,7 @@ namespace Studio_1
     {
         static void Main()
         {
-            // Change the console text colour
-            Console.ForegroundColor = ConsoleColor.Red; // Set console text colour to red
-            // ASCII art printed line-by-line with a 200ms pause after each line
-            Console.WriteLine("███▄ ▄███▓ ▄▄▄      ▒███████▒▓█████     ▒█████    █████▒   ▄▄▄█████▓ ██░ ██ ▓█████  ");
-            Thread.Sleep(200);
-            Console.WriteLine("▓██▒▀█▀ ██▒▒████▄    ▒ ▒ ▒ ▄▀░▓█   ▀    ▒██▒  ██▒▓██   ▒    ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀ ");
-            Thread.Sleep(200);
-            Console.WriteLine("▓██    ▓██░▒██  ▀█▄  ░ ▒ ▄▀▒░ ▒███      ▒██░  ██▒▒████ ░    ▒ ▓██░ ▒░▒██▀▀██░▒███   ");
-            Thread.Sleep(200);
-            Console.WriteLine("▒██    ▒██ ░██▄▄▄▄██   ▄▀▒   ░▒▓█  ▄    ▒██   ██░░▓█▒  ░    ░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄ ");
-            Thread.Sleep(200);
-            Console.WriteLine("▒██▒   ░██▒ ▓█   ▓██▒▒███████▒░▒████▒   ░ ████▓▒░░▒█░         ▒██▒ ░ ░▓█▒░██▓░▒████▒");
-            Thread.Sleep(200);
-            Console.WriteLine("░ ▒░   ░  ░ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░░ ▒░ ░   ░ ▒░▒░▒░  ▒ ░         ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░");
-            Thread.Sleep(200);
-            Console.WriteLine("░  ░      ░  ▒   ▒▒ ░░░▒ ▒ ░ ▒ ░ ░  ░     ░ ▒ ▒░  ░                                 ");
-            Thread.Sleep(200);
-            Console.WriteLine("░  ░      ░  ▒   ▒▒ ░░░▒ ▒ ░ ▒ ░ ░  ░     ░ ▒ ▒░  ░             ░     ▒ ░▒░ ░ ░ ░  ░");
-            Thread.Sleep(200);
-            Console.WriteLine("░         ░  ░  ░ ░       ░  ░       ░ ░                       ░  ░  ░   ░  ░");
-            Thread.Sleep(200);
-            Console.WriteLine("");
-            Thread.Sleep(200);
-            Console.WriteLine("▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀   ▄▄▄█████▓ ▒█████   █     █░▓█████  ██▀███      ");
-            Thread.Sleep(200);
-            Console.WriteLine("▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒    ▓  ██▒ ▓▒▒██▒  ██▒▓█░ █ ░█░▓█   ▀ ▓██ ▒ ██▒ ");
-            Thread.Sleep(200);
-            Console.WriteLine("░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░    ▒ ▓██░ ▒░▒██░  ██▒▒█░ █ ░█ ▒███   ▓██ ░▄█ ▒    ");
-            Thread.Sleep(200);
-            Console.WriteLine("░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄    ░ ▓██▓ ░ ▒██   ██░░█░ █ ░█ ▒▓█  ▄ ▒██▀▀█▄      ");
-            Thread.Sleep(200);
-            Console.WriteLine("░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄     ▒██▒ ░ ░ ████▓▒░░░██▒██▓ ░▒████▒░██▓ ▒██▒    ");
-            Thread.Sleep(200);
-            Console.WriteLine(" ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒     ▒ ░░   ░ ▒░▒░▒░ ░ ▓░▒ ▒  ░░ ▒░ ░░ ▒▓ ░▒▓░    ");
-            Thread.Sleep(200);
-            Console.WriteLine(" ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░       ░      ░ ▒ ▒░   ▒ ░ ░   ░ ░  ░  ░▒ ░ ▒░    ");
-            Thread.Sleep(200);
-            Console.WriteLine(" ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░      ░      ░ ░ ░ ▒    ░   ░     ░     ░░   ░     ");
-            Thread.Sleep(200);
-            Console.WriteLine("░          ░  ░   ░     ░  ░                   ░ ░      ░       ░  ░   ░         ");
-            Thread.Sleep(200);
-            Console.WriteLine("");
-            Thread.Sleep(200);
+            RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
             Console.ForegroundColor = ConsoleColor.White; // Reset console text colour to white
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
