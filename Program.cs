@@ -84,7 +84,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame("../../../Art Files/Room1.txt", 25); //Background 
+                RenderFrame("../../../Art Files/Room1.txt", 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
@@ -347,10 +347,11 @@ namespace Studio_1
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        //Art file renderer, call method with directory of text file as a string and print delay between lines 
+        //Art file renderer, call method with: directory of text file as a string, print delay between lines, console coulour int value 
         //Use directory "../../../Art Files/{file}.txt/"
-        static void RenderFrame(string file, int printDelay)
+        static void RenderFrame(string file, int printDelay, int colour)
         {
+            Console.ForegroundColor = (ConsoleColor)colour;
             try
             {
                 using (StreamReader sr = new StreamReader(file))
@@ -370,6 +371,7 @@ namespace Studio_1
                 //Will report expected directory
                 Console.WriteLine(ex.Message);
             }
+            Console.ResetColor();
         }
 
         static void Help()
