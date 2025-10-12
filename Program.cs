@@ -175,8 +175,7 @@ namespace Studio_1
                 Console.WriteLine("You must defeat the goblin before you can proceed");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
-                choice = Console.ReadLine();
-                choice = choice.ToUpper();
+                choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -309,7 +308,7 @@ namespace Studio_1
             {
                 using (StreamReader sr = new StreamReader(file))
                 {
-                    string line;
+                    string? line;
                     while ((line = sr.ReadLine()) != null)
                     {
                         Console.WriteLine(line);
@@ -320,9 +319,8 @@ namespace Studio_1
             //If file could not be found in expected directory
             catch (Exception ex)
             {
-                Console.WriteLine($"File \"{file}\"  could not be read");
                 //Will report expected directory
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"File could not be read : {ex.Message}");
             }
             Console.ResetColor();
         }
