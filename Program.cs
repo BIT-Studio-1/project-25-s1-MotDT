@@ -27,14 +27,14 @@ namespace Studio_1
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
             Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
-            Character hero = GetChar(menu);
+            Entity.Character hero = GetChar(menu);
             Console.WriteLine($"Your Character is {hero.name}\n");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
             Entrance(hero); // Call Entrance method
         }
 
-        static void Entrance(Character hero)
+        static void Entrance(Entity.Character hero)
         {
             string choice;
             bool item = false;
@@ -59,9 +59,9 @@ namespace Studio_1
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
                         Console.WriteLine("Y/N");
-                        char Choice = Convert.ToChar(Console.ReadLine());
-                        Choice = Char.ToUpper(Choice);
-                        if (Choice == 'Y')
+                        char leave = Convert.ToChar(Console.ReadLine());
+                        leave = char.ToUpper(leave);
+                        if (leave == 'Y')
                         {
                             Console.WriteLine("You decide that it may not be worth risking life and limb for treasure after all");
                             Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
@@ -99,7 +99,7 @@ namespace Studio_1
             while (choice != "GO NORTH");
         }
 
-        static void Room2(Character hero)
+        static void Room2(Entity.Character hero)
         {
             string choice;
             bool item = false;
@@ -107,9 +107,9 @@ namespace Studio_1
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Monster goblin = new Monster
+                Entity.Monster goblin = new Entity.Monster
                 {
-                        health = EntityHealth.InitHealth(6),
+                        health = Entity.EntityHealth.InitHealth(6),
                         name = "Goblin",
                         damDice = 4, 
                         dodgeDiff = 14,
@@ -163,7 +163,7 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
-        static void Room3(Character hero)
+        static void Room3(Entity.Character hero)
         {
             string choice;
             bool item = false;
@@ -227,16 +227,16 @@ namespace Studio_1
             }
         }
 
-        public static Character GetChar(int menu)
+        public static Entity.Character GetChar(int menu)
         {
             switch (menu)
             {
                 case 1:
                     {
-                        return new Character
+                        return new Entity.Character
                         {
                             name = "Beef",
-                            health = EntityHealth.InitHealth(12),
+                            health = Entity.EntityHealth.InitHealth(12),
                             damDice = 4,
                             strength = 0,
                             finesse = 0,
@@ -246,10 +246,10 @@ namespace Studio_1
                     }
                 case 2:
                     {
-                        return new Character
+                        return new Entity.Character
                         {
                             name = "Stabbs",
-                            health = EntityHealth.InitHealth(8),
+                            health = Entity.EntityHealth.InitHealth(8),
                             damDice = 8,
                             strength = 1,
                             finesse = -1,
@@ -259,10 +259,10 @@ namespace Studio_1
                     }
                 case 3:
                     {
-                        return new Character
+                        return new Entity.Character
                         {
                             name = "Dodgio",
-                            health = EntityHealth.InitHealth(10),
+                            health = Entity.EntityHealth.InitHealth(10),
                             damDice = 6,
                             strength = 2,
                             finesse = 1,
@@ -272,10 +272,10 @@ namespace Studio_1
                     }
                 default:
                     Console.WriteLine("Error Returning default");
-                    return new Character
+                    return new Entity.Character
                     {
                         name = "Beef",
-                        health = EntityHealth.InitHealth(12),
+                        health = Entity.EntityHealth.InitHealth(12),
                         damDice = 4,
                         strength = 0,
                         finesse = 0,
@@ -286,7 +286,7 @@ namespace Studio_1
         }
 
         // Prints the health bar of the character
-        static void PrintHealthBar(Character character)
+        static void PrintHealthBar(Entity.Character character)
         {
             // Set the console text color to green for the health bar display
             Console.ForegroundColor = ConsoleColor.Green;
@@ -347,67 +347,5 @@ namespace Studio_1
             Console.ReadLine();
             Console.Clear(); 
         }
-
     }
-
-    // Character Data
-    public class Character // This character is simpler; you test themselves against DC10+ monster attack
-    {
-
-        public EntityHealth health; // character's health component
-        public string name; // character's name
-        public int damDice;
-        public int strength; // this is used as hit mod
-        public int finesse;
-        public int toughness;
-        public int presence;
-        bool F1Key = false;
-        bool roomItem;
-
-        public void Status()
-        {
-            Console.WriteLine($@"Character Sheet:
-Character name:     {name}
-Current hp:         {health.curHP}
-Strength bonus:     {strength}
-Finesse Bonus:      {finesse}
-Toughness Bonus:    {toughness}
-Presence Bonus:     {presence}
-            ");
-            Console.WriteLine("Press Enter to close");
-            Console.ReadLine();
-        }
-    }
-
-    public class Monster
-    {
-        public EntityHealth health; // monster's health component 
-        public string name; // monster's name
-        public int damDice;
-        public int dodgeDiff;
-        public int hitDiff;
-        public bool item1; // item the monster can have that the player can loot
-    }
-
-    // Generic Health class used by both players and monsters
-    public class EntityHealth
-    {
-
-        public int maxHP; // Max health of the entity
-        public int curHP; // Current Health of the entity
-
-        /// <summary>
-        /// Constructor function that automatically sets max health.
-        /// A new EntityHealth instance where maxHP == curHP == initHP
-        /// </summary>
-        public static EntityHealth InitHealth(int initHP)
-        {
-            return new EntityHealth
-            {
-                maxHP = initHP,
-                curHP = initHP
-            };
-        }
-    }
-
 }
