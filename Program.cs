@@ -50,8 +50,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
                 Console.WriteLine("What would you like to do?");
-                choice = Console.ReadLine();
-                choice = choice.ToUpper();
+                choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -93,7 +92,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
                         Thread.Sleep(2000);
                         break;
                 }
@@ -118,8 +117,7 @@ namespace Studio_1
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
-                choice = Console.ReadLine();
-                choice = choice.ToUpper();
+                choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -150,7 +148,7 @@ namespace Studio_1
                         Help();
                         break;
                     default:
-                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
                         Thread.Sleep(2000);
                         break;
                 }
@@ -204,7 +202,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine("\nSorry I don't understand that command.");
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
                         Thread.Sleep(2000);
                         break;
                 }
@@ -322,7 +320,7 @@ namespace Studio_1
             //If file could not be found in expected directory
             catch (Exception ex)
             {
-                Console.WriteLine("File could not be read");
+                Console.WriteLine($"File \"{file}\"  could not be read");
                 //Will report expected directory
                 Console.WriteLine(ex.Message);
             }
