@@ -9,7 +9,7 @@ namespace Studio_1
     {
         static void Main()
         {
-            RenderFrame("Art Files/Title.txt", 200, 12); //Titlecard
+            RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
