@@ -15,21 +15,24 @@ namespace Studio_1
             public string name; // character's name
             public int damDice;
             public int strength; // this is used as hit mod
-            public int finesse;
-            public int toughness;
-            public int presence;
-            bool F1Key = false;
-            bool roomItem;
+            public int finesse;  // Used for dodging attacks
+            public int toughness; // Can be used for room Events and such
+            public int presence;  // Can be used for room Events and such
+            public bool F1Key = false; // Exit conditon for the demo
+            public bool roomItem;   // Placeholder item
+            public Random rng = new Random();   //Initiates the random calss in the object so we can make a dice rolling function for attacking , dodging and skill checks
+
+            public bool IsAlive => curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
 
             public void Status()
             {
                 Console.WriteLine($@"Character Sheet:
-Character name:     {name}
-Current hp:         {health.curHP}
-Strength bonus:     {strength}
-Finesse Bonus:      {finesse}
-Toughness Bonus:    {toughness}
-Presence Bonus:     {presence}
+                    Character name:     {name}
+                    Current hp:         {health.curHP}
+                    Strength bonus:     {strength}
+                    Finesse Bonus:      {finesse}
+                    Toughness Bonus:    {toughness}
+                    Presence Bonus:     {presence}
             ");
                 Console.WriteLine("Press Enter to close");
                 Console.ReadLine();
