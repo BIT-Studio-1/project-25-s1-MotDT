@@ -86,7 +86,6 @@ namespace Studio_1
                         break;
                     case "STATUS":
                         hero.Status(); //Call Status method from Character class
-                        Thread.Sleep(2000);
                         break;
                     case "HELP":
                         Help(); //Call Help method
@@ -142,7 +141,6 @@ namespace Studio_1
                         break;
                     case "STATUS":
                         hero.Status();
-                        Thread.Sleep(2000);
                         break;
                     case "HELP":
                         Help();
@@ -194,10 +192,8 @@ namespace Studio_1
                         break;
                     case "STATUS":
                         hero.Status();
-                        Thread.Sleep(2000);
                         break;
                     case "HELP":
-                        //Print Commands with a method
                         Help(); //Call Help method
                         break;
                     default:
@@ -325,20 +321,22 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void Help()
+        static void Help() //Help function to display commonly used commands in game
         {
             Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
             Console.WriteLine("            The commands are not case sensitive");
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             Console.WriteLine("     HELP      -- This command prints the help menu");
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
-            Thread.Sleep(2000);
-            Console.Clear(); // Clear the console
+            Thread.Sleep(200);
+            Console.WriteLine("Press Enter to close");
+            Console.ReadLine();
+            Console.Clear(); 
         }
 
     }
@@ -367,7 +365,8 @@ Finesse Bonus:      {finesse}
 Toughness Bonus:    {toughness}
 Presence Bonus:     {presence}
             ");
-            Thread.Sleep(1000);
+            Console.WriteLine("Press Enter to close");
+            Console.ReadLine();
         }
     }
 
