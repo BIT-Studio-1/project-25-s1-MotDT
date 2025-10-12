@@ -28,7 +28,7 @@ namespace Studio_1
             Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
             Character hero = GetChar(menu);
-            Console.WriteLine($"Your Character is {hero.name}");
+            Console.WriteLine($"Your Character is {hero.name}\n");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
             Entrance(hero); // Call Entrance method
@@ -105,8 +105,17 @@ namespace Studio_1
             bool item = false;
             do
             {
-                Console.Clear(); // Clear the console
+                Console.Clear();
                 //Animations Go here!!!
+                Monster goblin = new Monster
+                {
+                        health = EntityHealth.InitHealth(6),
+                        name = "Goblin",
+                        damDice = 4, 
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = true
+                };
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
                 Console.WriteLine("A Ghoul stands in your way");
@@ -374,10 +383,10 @@ Presence Bonus:     {presence}
     {
         public EntityHealth health; // monster's health component 
         public string name; // monster's name
-        int damDice;
-        int dodgeDiff;
-        int hitDiff;
-        bool item1; // item the monster can have that the player can loot
+        public int damDice;
+        public int dodgeDiff;
+        public int hitDiff;
+        public bool item1; // item the monster can have that the player can loot
     }
 
     // Generic Health class used by both players and monsters
