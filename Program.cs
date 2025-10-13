@@ -13,6 +13,7 @@ namespace Studio_1
             }
             else
             {
+                Console.WriteLine("DEBUG: Not running in Visual Studio.");
                 RenderFrame("Art Files/Title.txt", 200, 12); //Titlecard
             }
             Console.WriteLine();
