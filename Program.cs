@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Numerics;
+using static Studio_1.Entity;
 
 namespace Studio_1
 {
@@ -364,6 +366,35 @@ namespace Studio_1
             Random rnd = new Random();
             int result = rnd.Next(1, 21) + hitMod;
             return result;
+        }
+
+        public static void Combat(Character hero, Monster monster)
+        {
+            Random random = new Random();
+            int player_roll = Roll(hero.strength);
+            if (player_roll >= monster.hitDiff)
+            {
+                int dam = random.Next(1,hero.damDice+1);
+                monster.health.curHP -= dam;
+                Console.WriteLine($"You strike the {monster.name} for {dam}");
+            }
+            else
+            {
+                Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
+            }
+
+            //Monster 'attacks'
+            player_roll = Roll(hero.finesse);
+            if (player_roll <= monster.dodgeDiff)
+            {
+                int dam = random.Next(1,monster.damDice+1);
+                hero.health.curHP -= dam;
+                Console.WriteLine($"{monster.name} strikes you for {dam}");
+            }
+            else
+            {
+                Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
+            }
         }
 
     }
