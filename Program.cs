@@ -408,6 +408,7 @@ namespace Studio_1
                 Console.Clear();
             } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
             Console.WriteLine($"Combat over");
+            Console.WriteLine($"{hero.health.curHP} hero \n {monster.health.curHP}");
         }
 
     }
