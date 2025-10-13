@@ -110,7 +110,7 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Room2(Entity.Character hero, ref Monster[] monsterlist)
+        static void Room2(Entity.Character hero, ref Monster[] monsters)
         {
             string choice;
             do
@@ -122,7 +122,7 @@ namespace Studio_1
                 Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
-                Combat(ref hero, ref monsterlist[0]);
+                Combat(ref hero, ref monsters[0]);
                 RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
@@ -132,10 +132,10 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3(hero); //Call Room3 method
+                        Room3(hero, ref monsters); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(hero, ref monsterlist); //Call Entrance method
+                        Entrance(hero, ref monsters); //Call Entrance method
                         break;
                     case "GO EAST":
                         Console.WriteLine("Placeholder text room to be added");
@@ -157,7 +157,7 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
-        static void Room3(Entity.Character hero)
+        static void Room3(Entity.Character hero, ref Monster[] monsters)
         {
             Entity.Monster goblin = new Entity.Monster
             {
