@@ -44,7 +44,6 @@ namespace Studio_1
         static void Entrance(Entity.Character hero)
         {
             string choice;
-            bool item = false;
             do
             {
                 Console.Clear();
@@ -81,15 +80,8 @@ namespace Studio_1
                         }
                         break;
                     case "SEARCH":
-                        if (item == true)
-                        {
-                            //Stuff Goes here
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nYou find nothing of use");
+                            Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
                             Thread.Sleep(1000);
-                        }
                         break;
                     case "STATUS":
                         hero.Status(); //Call Status method from Character class
@@ -103,7 +95,7 @@ namespace Studio_1
                         break;
                 }
             }
-            while (choice != "GO NORTH");
+            while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
         static void Room2(Entity.Character hero)
@@ -357,7 +349,7 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
             Thread.Sleep(200);
-            Console.WriteLine("    STATUS     -- This command shows an abridged version of the players character sheet");
+            Console.WriteLine("    STATUS     -- This command shows the players character sheet");
             Thread.Sleep(200);
             Console.WriteLine("Press Enter to close");
             Console.ReadLine();
