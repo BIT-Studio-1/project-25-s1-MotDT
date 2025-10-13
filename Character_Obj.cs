@@ -22,8 +22,6 @@ namespace Studio_1
             public bool roomItem;   // Placeholder item
             public Random rng = new Random();   //Initiates the random calss in the object so we can make a dice rolling function for attacking , dodging and skill checks
 
-            public bool IsAlive => health.curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
-
             public void Status()
             {
                 Console.WriteLine($@"Character Sheet:
@@ -68,6 +66,7 @@ namespace Studio_1
                     curHP = initHP
                 };
             }
+            public bool IsAlive => curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
         }
 
     }

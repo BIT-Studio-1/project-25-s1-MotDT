@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using System.Numerics;
-using static Studio_1.Entity;
+﻿using static Studio_1.Entity;
+using System.Runtime.CompilerServices;
 
 namespace Studio_1
 {
@@ -8,16 +7,9 @@ namespace Studio_1
     {
         static void Main()
         {
-            // Are we running in VS?
-            if (System.IO.File.Exists("../../../Art Files/Title.txt"))
-            {
-                RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
-            }
-            else
-            {
-                Console.WriteLine("Fallback address bruh");
-                RenderFrame("Art Files/Title.txt", 200, 12); //Titlecard
-            }
+            // Title Card
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
+
             Console.WriteLine();
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
@@ -362,12 +354,17 @@ namespace Studio_1
         }
 
         //For skill checks and combat so you pass it the skill you want to test and it simulates a dice roll and then returns the result 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int Roll(int hitMod)
         {
             Random rnd = new Random();
             return rnd.Next(1, 21) + hitMod;
         }
 
+
+        /// <summary>
+        /// Singular function for a single round of combat
+        /// </summary>
         public static void Combat(ref Character hero, ref Monster monster)
         {
             do
@@ -409,6 +406,24 @@ namespace Studio_1
             } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
             Console.WriteLine($"Combat over");
             Console.WriteLine($"{hero.health.curHP} hero \n {monster.health.curHP}");
+        }
+
+        /// <summary>
+        /// Function that scans through a list of paths and returns the first valid one. Returns null if none found.
+        /// <summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string? FindWorkingPath(string[] paths)
+        {
+            // Look through all possible paths
+            foreach (string? path in paths)
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    return path;
+                }
+            }
+            // We found nothing and all paths are exhausted
+            return null;
         }
 
     }
