@@ -8,7 +8,7 @@ namespace Game_build_tool_kit
         // {
         // }
 
-        Character Player = new Character //this is the current character structure it will probibly be changed latter but currently all characters including monsters use this structure
+        Character Player = new Character //this is the current character structure it will probably be changed later but currently all characters including monsters use this structure
         {
             string name = "Bob";
             int maxHP = ;
@@ -24,7 +24,7 @@ namespace Game_build_tool_kit
         /// This is the generic skeleton for a room it can be edited down 
         static void INSERTROOM(Character Player) //This is the same as defining a function in python at the top we pass the player object into the room so that it can be effected
         {
-            string choice; //This is the variable that will store the players input
+            string choice; //This is the variable that will store the player's input
             do
             {
                 Console.Clear(); //This clears the console so that it is not cluttered
@@ -44,8 +44,8 @@ namespace Game_build_tool_kit
                 Console.WriteLine("ROOM TEXT");
                 Thread.Sleep(500);
                 Console.WriteLine("What will you do?");
-                choice = Console.ReadLine(); //This gets the players input and stores it in the choice variable
-                choice = choice.ToUpper(); //This converts the players input to uppercase so that it is easier to compare
+                choice = Console.ReadLine(); //This gets the player's input and stores it in the choice variable
+                choice = choice.ToUpper(); //This converts the player's input to uppercase so that it is easier to compare
 
                 // PLACEHOLDER: This is to prevent errors due to var "MUSH" not existing.
                 bool Mush = false;
@@ -88,12 +88,12 @@ namespace Game_build_tool_kit
                         break;
 
                     default:
-                        Console.WriteLine("Sorry I don't understand that command.");
+                        Console.WriteLine("Sorry, I don't understand that command.");
                         Thread.Sleep(2000);
                         break;
                 }
             } while ((choice != "GO SOUTH EAST") || (choice != "GO NORTH EAST") || (choice != "GO NORTH WEST") || (choice != "GO SOUTH EAST") || (choice != "GO EXIT"));
-            // basicly you just make the stuff that breaks out of the loop possible exits from the room
+            // basically you just make the stuff that breaks out of the loop possible exits from the room
         }
 
         static void PrintHealthBar(Character character) // This function prints a health bar for the character
@@ -108,21 +108,21 @@ namespace Game_build_tool_kit
         static void Help() // This is the help function that prints the help menu
         {
             MultiPrintDelay(new (string, int)[]{
-            ("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room",500),
+            ("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room",500),
             ("     HELP      -- This command prints the help menu",500),
             ("    SEARCH     -- This command searches the room the player is currently in",500),
-            ("    STATUS     -- This command shows an abridjed version of the players character sheet",2000)});
+            ("    STATUS     -- This command shows an abridged version of the players character sheet",2000)});
 
             // Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
             // Console.WriteLine("            The commands are not case sensitive");
             // Thread.Sleep(500);
-            // Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relitive position to the current room");
+            // Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
             // Thread.Sleep(500);
             // Console.WriteLine("     HELP      -- This command prints the help menu");
             // Thread.Sleep(500);
             // Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
             // Thread.Sleep(500);
-            // Console.WriteLine("    STATUS     -- This command shows an abridjed version of the players character sheet");
+            // Console.WriteLine("    STATUS     -- This command shows an abridged version of the player's character sheet");
             // Thread.Sleep(2000);
             // Console.Clear();
         }
