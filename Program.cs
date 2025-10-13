@@ -9,13 +9,13 @@ namespace Studio_1
         static void Main()
         {
             // Are we running in VS?
-            if (Debugger.IsAttached)
+            if (System.IO.File.Exists("../../../Art Files/Title.txt"))
             {
                 RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
             }
             else
             {
-                Console.WriteLine("DEBUG: Not running in Visual Studio.");
+                Console.WriteLine("Fallback address bruh");
                 RenderFrame("Art Files/Title.txt", 200, 12); //Titlecard
             }
             Console.WriteLine();
