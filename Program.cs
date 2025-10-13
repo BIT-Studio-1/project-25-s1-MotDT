@@ -113,7 +113,6 @@ namespace Studio_1
                 item1 = false
             };
             string choice;
-            bool item = false;
             do
             {
                 Console.Clear();
@@ -140,9 +139,9 @@ namespace Studio_1
                         Console.WriteLine("Placeholder text room to be added");
                         break;
                     case "SEARCH":
-                        if (item == true)
+                        if (ghoul.item1 == true)
                         {
-                            //Stuff Goes here
+                            //Stuff Goes here (now we can check based on monster item drops)
                         }
                         else
                         {
