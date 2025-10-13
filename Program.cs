@@ -1,7 +1,4 @@
-﻿using System;
-using System.Numerics;
-using System.Threading;
-using System.Xml.Linq;
+﻿using System.Diagnostics;
 
 namespace Studio_1
 {
@@ -9,7 +6,16 @@ namespace Studio_1
     {
         static void Main()
         {
-            RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
+            // Are we running in VS?
+            if (Debugger.IsAttached)
+            {
+                RenderFrame("../../../Art Files/Title.txt", 200, 12); //Titlecard
+            }
+            else
+            {
+                RenderFrame("Art Files/Title.txt", 200, 12); //Titlecard
+            }
+            Console.WriteLine();
             Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
@@ -109,12 +115,12 @@ namespace Studio_1
                 //Animations Go here!!!
                 Entity.Monster goblin = new Entity.Monster
                 {
-                        health = Entity.EntityHealth.InitHealth(6),
-                        name = "Goblin",
-                        damDice = 4, 
-                        dodgeDiff = 14,
-                        hitDiff = 14,
-                        item1 = true
+                    health = Entity.EntityHealth.InitHealth(6),
+                    name = "Goblin",
+                    damDice = 4,
+                    dodgeDiff = 14,
+                    hitDiff = 14,
+                    item1 = true
                 };
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
@@ -345,7 +351,7 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("Press Enter to close");
             Console.ReadLine();
-            Console.Clear(); 
+            Console.Clear();
         }
     }
 }
