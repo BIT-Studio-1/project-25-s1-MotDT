@@ -136,5 +136,35 @@ namespace Game_build_tool_kit
                 Console.WriteLine(entry.Item1);
             }
         }
+
+
+        public static void Combat(Character.hero , Monster.MONSTERNAME)
+        {
+            //player attacks 
+            int player_roll = Roll(hero.strength)
+            if player roll >= MONSTERNAME.hitdiff 
+            {
+                int dam = Random.Next(hero.damDice)
+                MONSTERNAME.CurrentHP -= dam
+                Console.WriteLine($"You strike the {MONSTERNAME} for {dam}")
+            }
+            else
+            {
+                Console.WriteLine($"{hero.name} Strikes the {MONSTERNAME} and misses")
+            }
+
+            //Monster 'attacks'
+            player_roll = Roll(hero.fineese)
+            if player roll <= MONSTERNAME.dodgediff 
+            {
+                int dam = Random.Next(MONSTER.damDice)
+                hero.CurrentHP -= dam
+                Console.WriteLine($"{MONSTERNAME} strikes you for {dam}")
+            }
+            else
+            {
+                Console.WriteLine($"{hero.name} dodges the {MONSTERNAME}'s attack just in time")
+            }
+        }
     }
 }
