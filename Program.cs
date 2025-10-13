@@ -107,10 +107,12 @@ namespace Studio_1
                 item1 = false
             };
             string choice;
+            Combat(ref hero, ref ghoul);
+            Console.WriteLine("Combat over");
             do
             {
                 Console.Clear();
-                //Animations Go here!!!
+                RenderFrame("../../../Art Files/Room2Ghoul.txt", 25, 10); //Background with enemy
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
                 Console.WriteLine("A Ghoul stands in your way");
@@ -366,31 +368,43 @@ namespace Studio_1
         /// </summary>
         public static void Combat(ref Character hero, ref Monster monster)
         {
-            Random random = new Random();
-            int player_roll = Roll(hero.strength);
-            if (player_roll >= monster.hitDiff)
+            do
             {
-                int dam = random.Next(1, hero.damDice + 1);
-                monster.health.curHP -= dam;
-                Console.WriteLine($"You strike the {monster.name} for {dam}");
-            }
-            else
-            {
-                Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
-            }
-
-            //Monster 'attacks'
-            player_roll = Roll(hero.finesse);
-            if (player_roll <= monster.dodgeDiff)
-            {
-                int dam = random.Next(1, monster.damDice + 1);
-                hero.health.curHP -= dam;
-                Console.WriteLine($"{monster.name} strikes you for {dam}");
-            }
-            else
-            {
-                Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
-            }
+                Random random = new Random();
+                int player_roll = Roll(hero.strength);
+                if (player_roll >= monster.hitDiff)
+                {
+                    int dam = random.Next(1, hero.damDice + 1);
+                    monster.health.curHP -= dam;
+                    Console.WriteLine($"You strike the {monster.name} for {dam}");
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
+                    Thread.Sleep(1000);
+                }
+                
+                if (monster.health.curHP > 0)
+                {
+                    //Monster 'attacks'
+                    player_roll = Roll(hero.finesse);
+                    if (player_roll <= monster.dodgeDiff)
+                    {
+                        int dam = random.Next(1, monster.damDice + 1);
+                        hero.health.curHP -= dam;
+                        Console.WriteLine($"{monster.name} strikes you for {dam}");
+                        Thread.Sleep( 1000 );
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
+                        Thread.Sleep(1000);
+                    }
+                }
+                Thread.Sleep(1000);
+                Console.Clear();
+            } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
         }
 
         /// <summary>
