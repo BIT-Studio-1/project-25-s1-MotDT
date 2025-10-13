@@ -32,10 +32,25 @@ namespace Studio_1
             Console.WriteLine($"Your Character is {hero.name}\n");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
-            Entrance(hero); // Call Entrance method
+
+            Monster[] MonsterList = new Monster[]
+            {
+                new Entity.Monster
+                {
+                    health = Entity.EntityHealth.InitHealth(6),
+                    name = "Ghoul",
+                    damDice = 4,
+                    dodgeDiff = 14,
+                    hitDiff = 14,
+                    item1 = false
+                }
+        };
+
+
+        Entrance(hero,ref MonsterList); // Call Entrance method
         }
 
-        static void Entrance(Entity.Character hero)
+        static void Entrance(Entity.Character hero,ref Monster[] monsters)
         {
             string choice;
             do
@@ -54,7 +69,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room2(hero); //Call Room2 method
+                        Room2(hero, ref monsters); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -95,17 +110,8 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Room2(Entity.Character hero)
+        static void Room2(Entity.Character hero, ref Monster[] monsterlist)
         {
-            Entity.Monster ghoul = new Entity.Monster
-            {
-                health = Entity.EntityHealth.InitHealth(6),
-                name = "Ghoul",
-                damDice = 4,
-                dodgeDiff = 14,
-                hitDiff = 14,
-                item1 = false
-            };
             string choice;
             do
             {
@@ -116,7 +122,7 @@ namespace Studio_1
                 Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
-                Combat(ref hero, ref ghoul);
+                Combat(ref hero, ref monsterlist[0]);
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(200);
@@ -128,21 +134,12 @@ namespace Studio_1
                         Room3(hero); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(hero); //Call Entrance method
+                        Entrance(hero, ref monsterlist); //Call Entrance method
                         break;
                     case "GO EAST":
                         Console.WriteLine("Placeholder text room to be added");
                         break;
                     case "SEARCH":
-                        if (ghoul.item1 == true)
-                        {
-                            //Stuff Goes here (now we can check based on monster item drops)
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nYou find nothing of use");
-                            Thread.Sleep(1000);
-                        }
                         break;
                     case "STATUS":
                         hero.Status();
@@ -383,7 +380,7 @@ namespace Studio_1
                     Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
                     Thread.Sleep(1000);
                 }
-                
+
                 if (monster.health.curHP > 0)
                 {
                     //Monster 'attacks'
@@ -393,7 +390,7 @@ namespace Studio_1
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
                         Console.WriteLine($"{monster.name} strikes you for {dam}");
-                        Thread.Sleep( 1000 );
+                        Thread.Sleep(1000);
                     }
                     else
                     {
@@ -403,9 +400,8 @@ namespace Studio_1
                 }
                 Thread.Sleep(1000);
                 Console.Clear();
-            } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
+            } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
             Console.WriteLine($"Combat over");
-            Console.WriteLine($"{hero.health.curHP} hero \n {monster.health.curHP}");
         }
 
         /// <summary>
