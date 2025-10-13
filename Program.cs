@@ -70,9 +70,12 @@ namespace Studio_1
                         if (leave == 'Y')
                         {
                             Console.WriteLine("You decide that it may not be worth risking life and limb for treasure after all");
+                            Thread.Sleep(200);
                             Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
+                            Thread.Sleep(200);
                             Console.WriteLine("GAME OVER");
-                            Environment.Exit(0);
+                            Thread.Sleep(200);
+                            Environment.Exit(1000);
                         }
                         else
                         {
