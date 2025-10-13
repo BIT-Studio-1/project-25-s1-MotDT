@@ -108,21 +108,21 @@ namespace Studio_1
 
         static void Room2(Entity.Character hero)
         {
+            Entity.Monster ghoul = new Entity.Monster
+            {
+                health = Entity.EntityHealth.InitHealth(6),
+                name = "Ghoul",
+                damDice = 4,
+                dodgeDiff = 14,
+                hitDiff = 14,
+                item1 = false
+            };
             string choice;
             bool item = false;
             do
             {
                 Console.Clear();
                 //Animations Go here!!!
-                Entity.Monster goblin = new Entity.Monster
-                {
-                    health = Entity.EntityHealth.InitHealth(6),
-                    name = "Goblin",
-                    damDice = 4,
-                    dodgeDiff = 14,
-                    hitDiff = 14,
-                    item1 = true
-                };
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
                 Console.WriteLine("A Ghoul stands in your way");
@@ -172,6 +172,15 @@ namespace Studio_1
 
         static void Room3(Entity.Character hero)
         {
+            Entity.Monster goblin = new Entity.Monster
+            {
+                health = Entity.EntityHealth.InitHealth(6),
+                name = "Goblin",
+                damDice = 4,
+                dodgeDiff = 14,
+                hitDiff = 14,
+                item1 = true
+            };
             string choice;
             bool item = false;
             do
