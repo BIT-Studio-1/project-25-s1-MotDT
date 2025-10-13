@@ -363,5 +363,14 @@ namespace Studio_1
             Console.ReadLine();
             Console.Clear();
         }
+
+        //For skill checks and combat so you pass it the skill you want to test and it simulates a dice roll and then returns the result 
+        public static int Roll(int hitMod)
+        {
+            Random rnd = new Random();
+            int result = rnd.Next(1, 21) + hitMod;
+            return result;
+        }
+
     }
 }
