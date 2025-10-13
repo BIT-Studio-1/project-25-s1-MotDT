@@ -5,6 +5,14 @@ namespace Studio_1
 {
     internal class Program
     {
+        /// <summary>
+        /// A struct that contains the data for  game state.
+        /// </summary>
+        struct GameState
+        {
+            public Entity.Character hero;
+            public Monster[] monsters;
+        }
         static void Main()
         {
             // Title Card
@@ -33,24 +41,36 @@ namespace Studio_1
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
 
-            Monster[] MonsterList = new Monster[]
+            GameState initial_state = new GameState
             {
-                new Entity.Monster
-                {
-                    health = Entity.EntityHealth.InitHealth(6),
-                    name = "Ghoul",
-                    damDice = 4,
-                    dodgeDiff = 14,
-                    hitDiff = 14,
-                    item1 = false
+                hero = hero,
+                monsters = new Monster[] {
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(6),
+                        name = "Ghoul",
+                        damDice = 4,
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = false
+                    },
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(6),
+                        name = "Goblin",
+                        damDice = 4,
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = true
+                    }
                 }
-        };
+            };
 
 
-        Entrance(hero,ref MonsterList); // Call Entrance method
+            Entrance(initial_state); // Call Entrance method
         }
 
-        static void Entrance(Entity.Character hero,ref Monster[] monsters)
+        static void Entrance(GameState state)
         {
             string choice;
             do
@@ -69,7 +89,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room2(hero, ref monsters); //Call Room2 method
+                        Room2(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -96,7 +116,7 @@ namespace Studio_1
                         Thread.Sleep(1000);
                         break;
                     case "STATUS":
-                        hero.Status(); //Call Status method from Character class
+                        state.hero.Status(); //Call Status method from Character class
                         break;
                     case "HELP":
                         Help(); //Call Help method
@@ -110,7 +130,7 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Room2(Entity.Character hero, ref Monster[] monsters)
+        static void Room2(GameState state)
         {
             string choice;
             do
@@ -122,7 +142,7 @@ namespace Studio_1
                 Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
-                Combat(ref hero, ref monsters[0]);
+                Combat(ref state.hero, ref state.monsters[0]);
                 RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
@@ -132,10 +152,10 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3(hero, ref monsters); //Call Room3 method
+                        Room3(state); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(hero, ref monsters); //Call Entrance method
+                        Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
                         Console.WriteLine("Placeholder text room to be added");
@@ -143,7 +163,7 @@ namespace Studio_1
                     case "SEARCH":
                         break;
                     case "STATUS":
-                        hero.Status();
+                        state.hero.Status();
                         break;
                     case "HELP":
                         Help();
@@ -157,17 +177,8 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
-        static void Room3(Entity.Character hero, ref Monster[] monsters)
+        static void Room3(GameState state)
         {
-            Entity.Monster goblin = new Entity.Monster
-            {
-                health = Entity.EntityHealth.InitHealth(6),
-                name = "Goblin",
-                damDice = 4,
-                dodgeDiff = 14,
-                hitDiff = 14,
-                item1 = true
-            };
             string choice;
             bool item = false;
             do
@@ -203,7 +214,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        hero.Status();
+                        state.hero.Status();
                         break;
                     case "HELP":
                         Help(); //Call Help method
@@ -407,7 +418,7 @@ namespace Studio_1
 
         /// <summary>
         /// Function that scans through a list of paths and returns the first valid one. Returns null if none found.
-        /// <summary>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string? FindWorkingPath(string[] paths)
         {
