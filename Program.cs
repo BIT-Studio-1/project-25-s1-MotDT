@@ -120,7 +120,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                //Animations Go here!!!
+                RenderFrame("../../../Art Files/Room2Ghoul.txt", 25, 10); //Background with enemy
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
                 Console.WriteLine("A Ghoul stands in your way");
