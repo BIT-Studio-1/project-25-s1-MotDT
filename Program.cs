@@ -123,6 +123,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
                 Combat(ref hero, ref monsters[0]);
+                RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(200);
@@ -306,7 +307,7 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        //Art file renderer, call method with: directory of text file as a string, print delay between lines, console coulour int value 
+        //Art file renderer, call method with: directory of text file as a string, print delay between lines, console colour int value 
         //Use directory "../../../Art Files/{file}.txt/"
         static void RenderFrame(string file, int printDelay, int colour)
         {
