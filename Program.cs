@@ -12,6 +12,7 @@ namespace Studio_1
         {
             public Entity.Character hero;
             public Monster[] monsters;
+            public Random random_gen;
         }
         static void Main()
         {
@@ -63,7 +64,8 @@ namespace Studio_1
                         hitDiff = 14,
                         item1 = true
                     }
-                }
+                },
+                random_gen = new Random()
             };
 
 
@@ -142,7 +144,7 @@ namespace Studio_1
                 Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
-                Combat(ref state.hero, ref state.monsters[0]);
+                Combat(ref state.hero, ref state.monsters[0],ref state.random_gen);
                 RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
@@ -374,11 +376,10 @@ namespace Studio_1
         /// <summary>
         /// Singular function for a single round of combat
         /// </summary>
-        public static void Combat(ref Character hero, ref Monster monster)
+        public static void Combat(ref Character hero, ref Monster monster,ref Random random)
         {
             do
             {
-                Random random = new Random();
                 int player_roll = Roll(hero.strength);
                 if (player_roll >= monster.hitDiff)
                 {
