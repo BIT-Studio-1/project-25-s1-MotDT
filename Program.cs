@@ -85,8 +85,8 @@ namespace Studio_1
                         }
                         break;
                     case "SEARCH":
-                            Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
-                            Thread.Sleep(1000);
+                        Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
+                        Thread.Sleep(1000);
                         break;
                     case "STATUS":
                         hero.Status(); //Call Status method from Character class
@@ -364,17 +364,16 @@ namespace Studio_1
         public static int Roll(int hitMod)
         {
             Random rnd = new Random();
-            int result = rnd.Next(1, 21) + hitMod;
-            return result;
+            return rnd.Next(1, 21) + hitMod;
         }
 
-        public static void Combat(Character hero, Monster monster)
+        public static void Combat(ref Character hero, ref Monster monster)
         {
             Random random = new Random();
             int player_roll = Roll(hero.strength);
             if (player_roll >= monster.hitDiff)
             {
-                int dam = random.Next(1,hero.damDice+1);
+                int dam = random.Next(1, hero.damDice + 1);
                 monster.health.curHP -= dam;
                 Console.WriteLine($"You strike the {monster.name} for {dam}");
             }
@@ -387,7 +386,7 @@ namespace Studio_1
             player_roll = Roll(hero.finesse);
             if (player_roll <= monster.dodgeDiff)
             {
-                int dam = random.Next(1,monster.damDice+1);
+                int dam = random.Next(1, monster.damDice + 1);
                 hero.health.curHP -= dam;
                 Console.WriteLine($"{monster.name} strikes you for {dam}");
             }
