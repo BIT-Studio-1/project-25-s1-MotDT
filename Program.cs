@@ -107,8 +107,6 @@ namespace Studio_1
                 item1 = false
             };
             string choice;
-            Combat(ref hero, ref ghoul);
-            Console.WriteLine("Combat over");
             do
             {
                 Console.Clear();
@@ -118,6 +116,7 @@ namespace Studio_1
                 Console.WriteLine("A Ghoul stands in your way");
                 Thread.Sleep(200);
                 Console.WriteLine("You must vanquish it before you leave");
+                Combat(ref hero, ref ghoul);
                 Thread.Sleep(200);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(200);
@@ -405,6 +404,7 @@ namespace Studio_1
                 Thread.Sleep(1000);
                 Console.Clear();
             } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
+            Console.WriteLine($"Combat over");
         }
 
         /// <summary>
