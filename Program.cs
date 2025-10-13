@@ -115,6 +115,8 @@ namespace Studio_1
                 item1 = false
             };
             string choice;
+            Combat(ref hero, ref ghoul);
+            Console.WriteLine("Combat over");
             do
             {
                 Console.Clear();
@@ -378,12 +380,14 @@ namespace Studio_1
                     int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
                     Console.WriteLine($"You strike the {monster.name} for {dam}");
+                    Thread.Sleep(1000);
                 }
                 else
                 {
                     Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
+                    Thread.Sleep(1000);
                 }
-
+                
                 if (monster.health.curHP > 0)
                 {
                     //Monster 'attacks'
@@ -393,13 +397,17 @@ namespace Studio_1
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
                         Console.WriteLine($"{monster.name} strikes you for {dam}");
+                        Thread.Sleep( 1000 );
                     }
                     else
                     {
                         Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
+                        Thread.Sleep(1000);
                     }
                 }
-            } while (monster.health.curHP > 0 || monster.health.curHP > 0);
+                Thread.Sleep(1000);
+                Console.Clear();
+            } while (monster.health.curHP !> 0 || monster.health.curHP !> 0);
         }
 
     }
