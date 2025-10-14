@@ -87,6 +87,22 @@ namespace Studio_1
             string choice;
             do
             {
+                //Console.Clear();
+                ////Animations Go here!!
+                //Thread.Sleep(200);
+                //Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
+                //Thread.Sleep(200);
+                //Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
+                //Thread.Sleep(200);
+                //Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
+                //Thread.Sleep(200);
+                //Console.WriteLine("You must defeat the goblin before you can proceed");
+                //Thread.Sleep(200);
+                //Console.WriteLine("To the north lies the way up");
+                //Thread.Sleep(200);
+                //Console.WriteLine("What would you like to do?");
+                //choice = Console.ReadLine().ToUpper();
+                
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room1.txt","Art Files/Room1.txt"}), 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
@@ -152,24 +168,19 @@ namespace Studio_1
             {
                 Console.Clear();
                 Console.WriteLine("You find yourself in a small damp room");
-                if (state.monsters[0].health.IsAlive == true)
-                {
-                    RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt","Art Files/Room2Ghoul.txt"})  , 25, 10); //Background with enemy
-                    Thread.Sleep(200);
-                    Console.WriteLine("Before you can act a Ghoul ambushes you");
-                    Thread.Sleep(200);
-                    Console.WriteLine("You must vanquish it before you can act freely");
-                    Thread.Sleep(2000);
-                }
-                if (state.monsters[0].health.IsAlive == true)
-                {
-                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
-                }
-                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
-                Thread.Sleep(100);
-                Console.WriteLine("To the north there is a small hole in the wall");
-                Thread.Sleep(100);
-                Console.WriteLine("To your south is the door back to the entrance of the tower");
+                Console.Clear();
+                //Animations Go here!!!
+                Console.WriteLine("You are in Room 2");
+                Thread.Sleep(200);
+                Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
+                Thread.Sleep(200);
+                Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
+                Thread.Sleep(200);
+                Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
+                Thread.Sleep(200);
+                Console.WriteLine("You must defeat the goblin before you can proceed");
+                Thread.Sleep(200);
+                Console.WriteLine("To the north lies the way up");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -209,21 +220,28 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                //Animations Go here!!!
-                Console.WriteLine("You are in Room 3");
-                Thread.Sleep(200);
-                Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
-                Thread.Sleep(200);
-                Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
-                Thread.Sleep(200);
-                Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
-                Thread.Sleep(200);
-                Console.WriteLine("You must defeat the goblin before you can proceed");
-                Thread.Sleep(200);
-                Console.WriteLine("To the north lies the way up");
+                if (state.monsters[0].health.IsAlive == true)
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2Ghoul.txt", "Art Files/Room2Ghoul.txt" }), 25, 10); //Background with enemy
+                    Thread.Sleep(200);
+                    Console.WriteLine("Before you can act a Ghoul ambushes you");
+                    Thread.Sleep(200);
+                    Console.WriteLine("You must vanquish it before you can act freely");
+                    Thread.Sleep(2000);
+                }
+                if (state.monsters[0].health.IsAlive == true)
+                {
+                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
+                }
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2Ghoul.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                Thread.Sleep(100);
+                Console.WriteLine("To the north there is a small hole in the wall");
+                Thread.Sleep(100);
+                Console.WriteLine("To your south is the door back to the entrance of the tower");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
+                
                 switch (choice)
                 {
                     case "GO SOUTH":
