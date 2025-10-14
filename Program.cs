@@ -390,7 +390,7 @@ namespace Studio_1
                 {
                     int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
-                    Console.WriteLine($"You strike the {monster.name} for {dam}");
+                    Console.WriteLine($"You strike the {monster.name} for {dam} damage");
                     Thread.Sleep(1000);
                 }
                 else
@@ -398,16 +398,23 @@ namespace Studio_1
                     Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
                     Thread.Sleep(1000);
                 }
-
+                if (monster.health.curHP > 0)
+                {
+                    monster.PrintHealthBar();
+                }
+                else
+                {
+                    Console.WriteLine($"{monster.name} has been defeated");
+                }
                 if (monster.health.curHP > 0)
                 {
                     //Monster 'attacks'
-                    player_roll = Roll(hero.finesse,ref random);
+                    player_roll = Roll(hero.finesse, ref random);
                     if (player_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
-                        Console.WriteLine($"{monster.name} strikes you for {dam}");
+                        Console.WriteLine($"{monster.name} strikes you for {dam} damage");
                         Thread.Sleep(1000);
                     }
                     else
@@ -416,12 +423,16 @@ namespace Studio_1
                         Thread.Sleep(1000);
                     }
                 }
-                Thread.Sleep(1000);
+                if (hero.health.curHP >= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    hero.PrintHealthBar();
+                    Thread.Sleep(1000);
+                }
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
-            if (hero.health.curHP >= 0)
-            {
-                GameOver();
-            }
             Console.WriteLine($"Combat over");
         }
 
