@@ -37,6 +37,7 @@ namespace Studio_1
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
             Console.Write("Enter your choice ");
             int menu = Convert.ToInt32(Console.ReadLine());
+            
             Entity.Character hero = GetChar(menu);
             Console.WriteLine($"Your Character is {hero.name}\n");
             Console.WriteLine("Press ENTER to begin");
@@ -432,7 +433,7 @@ namespace Studio_1
                         Thread.Sleep(1000);
                     }
                 }
-                if (hero.health.curHP >= 0)
+                if (hero.health.curHP <= 0)
                 {
                     GameOver();
                 }
