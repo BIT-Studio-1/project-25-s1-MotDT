@@ -5,6 +5,15 @@ namespace Studio_1
 {
     internal class Program
     {
+        /// <summary>
+        /// A struct that contains the data for  game state.
+        /// </summary>
+        struct GameState
+        {
+            public Entity.Character hero;
+            public Monster[] monsters;
+            public Random random_gen;
+        }
         static void Main()
         {
             // Title Card
@@ -33,43 +42,59 @@ namespace Studio_1
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
 
-            Monster[] MonsterList = new Monster[]
+            // Initialize the game's state.
+            GameState initial_state = new GameState
             {
-                new Entity.Monster
-                {
-                    health = Entity.EntityHealth.InitHealth(6),
-                    name = "Ghoul",
-                    damDice = 4,
-                    dodgeDiff = 14,
-                    hitDiff = 14,
-                    item1 = false
-                }
-        };
-
-
-        Entrance(hero,ref MonsterList); // Call Entrance method
+                hero = hero,
+                monsters = new Monster[] {
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(6),
+                        name = "Ghoul",
+                        damDice = 4,
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = false
+                    },
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(6),
+                        name = "Goblin",
+                        damDice = 4,
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = true
+                    }
+                },
+                random_gen = new Random()
+            };
+            
+            Entrance(initial_state); // Call Entrance method
         }
 
-        static void Entrance(Entity.Character hero,ref Monster[] monsters)
+        static void Entrance(GameState state)
         {
             string choice;
             do
             {
                 Console.Clear();
-                RenderFrame("../../../Art Files/Room1.txt", 25, 10); //Background 
+                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room1.txt","Art Files/Room1.txt"}), 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 Thread.Sleep(200);
-                Console.WriteLine("There is a wooden door with a broken lock to the north");
+                Console.WriteLine("There is a wooden door with a broken lock to the NORTH");
+                Thread.Sleep(200);
+                Console.WriteLine("To your SOUTH lies the door back to civilisation perhaps you should abandon your quest?");
                 Thread.Sleep(200);
                 Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
+                Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room2(hero, ref monsters); //Call Room2 method
+                        Room2(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -82,7 +107,7 @@ namespace Studio_1
                             Thread.Sleep(200);
                             Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
                             Thread.Sleep(200);
-                            Console.WriteLine("GAME OVER");
+                            GameOver();
                             Thread.Sleep(200);
                             Environment.Exit(1000);
                         }
@@ -96,7 +121,7 @@ namespace Studio_1
                         Thread.Sleep(1000);
                         break;
                     case "STATUS":
-                        hero.Status(); //Call Status method from Character class
+                        state.hero.Status(); //Call Status method from Character class
                         break;
                     case "HELP":
                         Help(); //Call Help method
@@ -110,40 +135,50 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Room2(Entity.Character hero, ref Monster[] monsters)
+        static void Room2(GameState state)
         {
             string choice;
             do
             {
                 Console.Clear();
-                RenderFrame("../../../Art Files/Room2Ghoul.txt", 25, 10); //Background with enemy
-                Console.WriteLine("You are in Room 2");
-                Thread.Sleep(200);
-                Console.WriteLine("A Ghoul stands in your way");
-                Thread.Sleep(200);
-                Console.WriteLine("You must vanquish it before you leave");
-                Combat(ref hero, ref monsters[0]);
-                RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
-                Thread.Sleep(200);
+                Console.WriteLine("You find yourself in a small damp room");
+                if (state.monsters[0].health.IsAlive == true)
+                {
+                    RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt","Art Files/Room2Ghoul.txt"})  , 25, 10); //Background with enemy
+                    Thread.Sleep(200);
+                    Console.WriteLine("Before you can act a Ghoul ambushes you");
+                    Thread.Sleep(200);
+                    Console.WriteLine("You must vanquish it before you can act freely");
+                    Thread.Sleep(400);
+                }
+                if (state.monsters[0].health.IsAlive == true)
+                {
+                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
+                }
+                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt","Art Files/Room2Ghoul.txt"}), 25, 10); //Background with dead enemy
+                Thread.Sleep(100);
                 Console.WriteLine("To the north there is a small hole in the wall");
+                Thread.Sleep(100);
+                Console.WriteLine("To your south is the door back to the entrance of the tower");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3(hero, ref monsters); //Call Room3 method
+                        Room3(state); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(hero, ref monsters); //Call Entrance method
+                        Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
-                        Console.WriteLine("Placeholder text room to be added");
+                        Console.WriteLine("Placeholder text room to be added currently goes to entrance");
+                        Entrance(state); //Call Entrance method
                         break;
                     case "SEARCH":
                         break;
                     case "STATUS":
-                        hero.Status();
+                        state.hero.Status();
                         break;
                     case "HELP":
                         Help();
@@ -157,17 +192,8 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
-        static void Room3(Entity.Character hero, ref Monster[] monsters)
+        static void Room3(GameState state)
         {
-            Entity.Monster goblin = new Entity.Monster
-            {
-                health = Entity.EntityHealth.InitHealth(6),
-                name = "Goblin",
-                damDice = 4,
-                dodgeDiff = 14,
-                hitDiff = 14,
-                item1 = true
-            };
             string choice;
             bool item = false;
             do
@@ -184,12 +210,14 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("You must defeat the goblin before you can proceed");
                 Thread.Sleep(200);
+                Console.WriteLine("To the north lies the way up");
+                Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO SOUTH":
-                        Environment.Exit(0);
+                        Room2(state);
                         break;
                     case "SEARCH":
                         if (item == true)
@@ -203,7 +231,7 @@ namespace Studio_1
                         }
                         break;
                     case "STATUS":
-                        hero.Status();
+                        state.hero.Status();
                         break;
                     case "HELP":
                         Help(); //Call Help method
@@ -288,24 +316,6 @@ namespace Studio_1
             }
         }
 
-        // Prints the health bar of the character
-        static void PrintHealthBar(Entity.Character character)
-        {
-            // Set the console text color to green for the health bar display
-            Console.ForegroundColor = ConsoleColor.Green;
-
-            // Create a string of '█' characters representing the character's current health
-            string remainingHealthBar = new string('█', character.health.curHP);
-
-            // Create a string of '_' characters representing missing health (maxHP - curHP)
-            string totalHealthBar = new string('_', character.health.maxHP - character.health.curHP);
-
-            // Print the character's name, the visual health bar, and the numeric HP values (current/max)
-            Console.WriteLine($"{character.name} HP: {remainingHealthBar}{totalHealthBar} ({character.health.curHP}/{character.health.maxHP})");
-
-            // Reset the console text color to white
-            Console.ResetColor();
-        }
 
         //Art file renderer, call method with: directory of text file as a string, print delay between lines, console colour int value 
         //Use directory "../../../Art Files/{file}.txt/"
@@ -353,27 +363,34 @@ namespace Studio_1
 
         //For skill checks and combat so you pass it the skill you want to test and it simulates a dice roll and then returns the result 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Roll(int hitMod)
+        public static int Roll(int hitMod, ref Random rnd)
         {
-            Random rnd = new Random();
             return rnd.Next(1, 21) + hitMod;
         }
 
+        public static void GameOver() //placeholder function for an animation and possible conditonal like what killed you 
+        {
+            Console.WriteLine("You loose");
+            Thread.Sleep(200);
+            Console.WriteLine("GAME OVER");
+            Thread.Sleep(200);
+            Environment.Exit(2000);
+        }
 
         /// <summary>
         /// Singular function for a single round of combat
         /// </summary>
-        public static void Combat(ref Character hero, ref Monster monster)
+        public static void Combat(ref Character hero, ref Monster monster,ref Random random)
         {
             do
             {
-                Random random = new Random();
-                int player_roll = Roll(hero.strength);
+                Console.Clear();
+                int player_roll = Roll(hero.strength,ref random);
                 if (player_roll >= monster.hitDiff)
                 {
                     int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
-                    Console.WriteLine($"You strike the {monster.name} for {dam}");
+                    Console.WriteLine($"You strike the {monster.name} for {dam} damage");
                     Thread.Sleep(1000);
                 }
                 else
@@ -381,16 +398,23 @@ namespace Studio_1
                     Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
                     Thread.Sleep(1000);
                 }
-
+                if (monster.health.curHP > 0)
+                {
+                    monster.PrintHealthBar();
+                }
+                else
+                {
+                    Console.WriteLine($"{monster.name} has been defeated");
+                }
                 if (monster.health.curHP > 0)
                 {
                     //Monster 'attacks'
-                    player_roll = Roll(hero.finesse);
+                    player_roll = Roll(hero.finesse, ref random);
                     if (player_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
-                        Console.WriteLine($"{monster.name} strikes you for {dam}");
+                        Console.WriteLine($"{monster.name} strikes you for {dam} damage");
                         Thread.Sleep(1000);
                     }
                     else
@@ -399,15 +423,22 @@ namespace Studio_1
                         Thread.Sleep(1000);
                     }
                 }
-                Thread.Sleep(1000);
-                Console.Clear();
+                if (hero.health.curHP >= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    hero.PrintHealthBar();
+                    Thread.Sleep(1000);
+                }
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
             Console.WriteLine($"Combat over");
         }
 
         /// <summary>
         /// Function that scans through a list of paths and returns the first valid one. Returns null if none found.
-        /// <summary>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string? FindWorkingPath(string[] paths)
         {
