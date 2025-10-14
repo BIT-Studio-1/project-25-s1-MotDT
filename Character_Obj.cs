@@ -34,6 +34,13 @@ namespace Studio_1
                 Console.WriteLine("Press Enter to close");
                 Console.ReadLine();
             }
+            /// <summary>
+            /// Prints the Hero's health bar.
+            /// Wrapper method for EntityHealth.PrintHealthBar().
+            /// </summary>
+            public void PrintHealthBar() {
+                health.PrintHealthBar(name,ConsoleColor.Green);
+            }
         }
 
         public class Monster
@@ -44,6 +51,14 @@ namespace Studio_1
             public int dodgeDiff;
             public int hitDiff;
             public bool item1; // item the monster can have that the player can loot
+
+            /// <summary>
+            /// Prints the Monster's health bar.
+            /// Wrapper method for EntityHealth.PrintHealthBar().
+            /// </summary>
+            public void PrintHealthBar() {
+                health.PrintHealthBar(name,ConsoleColor.Red);
+            }
         }
 
         // Generic Health class used by both players and monsters
@@ -66,6 +81,28 @@ namespace Studio_1
                 };
             }
             public bool IsAlive => curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
+
+            
+            /// <summary>
+            /// Prints the health bar for a generic EntityHealth component.
+            /// </summary>
+            public void PrintHealthBar(string name, ConsoleColor barColour)
+            {
+                // Set the console text color to green for the health bar display
+                Console.ForegroundColor = barColour;
+
+                // Create a string of '█' characters representing the character's current health
+                string remainingHealthBar = new string('█', curHP);
+
+                // Create a string of '_' characters representing missing health (maxHP - curHP)
+                string totalHealthBar = new string('_', maxHP - curHP);
+
+                // Print the character's name, the visual health bar, and the numeric HP values (current/max)
+                Console.WriteLine($"{name.PadRight(6)}HP: {remainingHealthBar}{totalHealthBar} ({curHP}/{maxHP})");
+
+                // Reset the console text color to white
+                Console.ResetColor();
+            }
         }
 
     }

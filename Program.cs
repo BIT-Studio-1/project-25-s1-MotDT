@@ -42,6 +42,7 @@ namespace Studio_1
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
 
+            // Initialize the game's state.
             GameState initial_state = new GameState
             {
                 hero = hero,
@@ -67,8 +68,7 @@ namespace Studio_1
                 },
                 random_gen = new Random()
             };
-
-
+            
             Entrance(initial_state); // Call Entrance method
         }
 
@@ -316,24 +316,6 @@ namespace Studio_1
             }
         }
 
-        // Prints the health bar of the character
-        static void PrintHealthBar(Entity.Character character)
-        {
-            // Set the console text color to green for the health bar display
-            Console.ForegroundColor = ConsoleColor.Green;
-
-            // Create a string of '█' characters representing the character's current health
-            string remainingHealthBar = new string('█', character.health.curHP);
-
-            // Create a string of '_' characters representing missing health (maxHP - curHP)
-            string totalHealthBar = new string('_', character.health.maxHP - character.health.curHP);
-
-            // Print the character's name, the visual health bar, and the numeric HP values (current/max)
-            Console.WriteLine($"{character.name} HP: {remainingHealthBar}{totalHealthBar} ({character.health.curHP}/{character.health.maxHP})");
-
-            // Reset the console text color to white
-            Console.ResetColor();
-        }
 
         //Art file renderer, call method with: directory of text file as a string, print delay between lines, console colour int value 
         //Use directory "../../../Art Files/{file}.txt/"
