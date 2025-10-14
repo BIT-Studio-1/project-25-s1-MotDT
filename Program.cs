@@ -51,8 +51,8 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(6),
                         name = "Ghoul",
-                        damDice = 4,
-                        dodgeDiff = 14,
+                        damDice = 6,
+                        dodgeDiff = 12,
                         hitDiff = 14,
                         item1 = false
                     },
@@ -61,17 +61,17 @@ namespace Studio_1
                         health = Entity.EntityHealth.InitHealth(6),
                         name = "Goblin",
                         damDice = 4,
-                        dodgeDiff = 14,
-                        hitDiff = 14,
+                        dodgeDiff = 15,
+                        hitDiff = 12,
                         item1 = true
                     },
                     new Entity.Monster
                     {
                         health = Entity.EntityHealth.InitHealth(6),
-                        name = "Placeholder name",
-                        damDice = 4,
-                        dodgeDiff = 14,
-                        hitDiff = 14,
+                        name = "Dire Hound",
+                        damDice = 6,
+                        dodgeDiff = 13,
+                        hitDiff = 15,
                         item1 = true
                     }
                 },
