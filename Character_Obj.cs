@@ -20,7 +20,6 @@ namespace Studio_1
             public int presence;  // Can be used for room Events and such
             public bool F1Key = false; // Exit condition for the demo
             public bool roomItem;   // Placeholder item
-            public Random rng = new Random();   //Initiates the random class in the object so we can make a dice rolling function for attacking , dodging and skill checks
 
             public void Status()
             {

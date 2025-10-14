@@ -78,7 +78,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame("../../../Art Files/Room1.txt", 25, 10); //Background 
+                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room1.txt","Art Files/Room1.txt"}), 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
@@ -144,7 +144,7 @@ namespace Studio_1
                 Console.WriteLine("You find yourself in a small damp room");
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame("../../../Art Files/Room2Ghoul.txt", 25, 10); //Background with enemy
+                    RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt","Art Files/Room2Ghoul.txt"})  , 25, 10); //Background with enemy
                     Thread.Sleep(200);
                     Console.WriteLine("Before you can act a Ghoul ambushes you");
                     Thread.Sleep(200);
@@ -155,7 +155,7 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame("../../../Art Files/Room2GhoulDead.txt", 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room2Ghoul.txt","Art Files/Room2Ghoul.txt"}), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(100);
@@ -381,9 +381,8 @@ namespace Studio_1
 
         //For skill checks and combat so you pass it the skill you want to test and it simulates a dice roll and then returns the result 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Roll(int hitMod)
+        public static int Roll(int hitMod, ref Random rnd)
         {
-            Random rnd = new Random();
             return rnd.Next(1, 21) + hitMod;
         }
 
@@ -404,7 +403,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                int player_roll = Roll(hero.strength);
+                int player_roll = Roll(hero.strength,ref random);
                 if (player_roll >= monster.hitDiff)
                 {
                     int dam = random.Next(1, hero.damDice + 1);
@@ -421,7 +420,7 @@ namespace Studio_1
                 if (monster.health.curHP > 0)
                 {
                     //Monster 'attacks'
-                    player_roll = Roll(hero.finesse);
+                    player_roll = Roll(hero.finesse,ref random);
                     if (player_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
