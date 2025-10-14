@@ -64,6 +64,15 @@ namespace Studio_1
                         dodgeDiff = 14,
                         hitDiff = 14,
                         item1 = true
+                    },
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(6),
+                        name = "Placeholder name",
+                        damDice = 4,
+                        dodgeDiff = 14,
+                        hitDiff = 14,
+                        item1 = true
                     }
                 },
                 random_gen = new Random()
