@@ -1,5 +1,6 @@
 ﻿using static Studio_1.Entity;
 using System.Runtime.CompilerServices;
+using System.ComponentModel.Design;
 
 namespace Studio_1
 {
@@ -32,12 +33,32 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("[3] Dodgio the EVASIVE acrobat");
             Thread.Sleep(200);
-            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
-            Console.Write("Enter your choice ");
-            int menu = Convert.ToInt32(Console.ReadLine());
-            
+            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+            string confirm;
+            int menu;
+            do
+            {
+                bool parse;
+                do
+                {
+                    string tmp;
+                    Console.Write("\nEnter your choice: ");
+                    tmp = Console.ReadLine();
+                    parse = int.TryParse(tmp, out menu);
+                } while (menu < 1 || menu > 3 || parse == false);
+                Entity.Character display = GetChar(menu);
+                Console.WriteLine();
+                Console.WriteLine($"Your are {display.name}");
+                Console.WriteLine($"Health = {display.health.maxHP}");
+                Console.WriteLine($"Damage Dice = {display.damDice}");
+                Console.WriteLine($"Strength = {display.strength}");
+                Console.WriteLine($"Finesse = {display.finesse}");
+                Console.WriteLine($"Toughness = {display.toughness}");
+                Console.WriteLine($"Presence = {display.presence}");
+                Console.Write("Is this you? [y/n]: ");
+                confirm = Console.ReadLine();
+            } while (confirm.ToLower() != "y");
             Entity.Character hero = GetChar(menu);
-            Console.WriteLine($"Your Character is {hero.name}\n");
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
 
