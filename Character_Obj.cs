@@ -34,10 +34,7 @@ namespace Studio_1
                 Console.WriteLine("Press Enter to close");
                 Console.ReadLine();
             }
-            /// <summary>
-            /// Prints the Hero's health bar.
-            /// Wrapper method for EntityHealth.PrintHealthBar().
-            /// </summary>
+            // Prints the Hero's health bar.
             public void PrintHealthBar() {
                 health.PrintHealthBar(name,ConsoleColor.Green);
             }
@@ -52,10 +49,7 @@ namespace Studio_1
             public int hitDiff;
             public bool item1; // item the monster can have that the player can loot
 
-            /// <summary>
-            /// Prints the Monster's health bar.
-            /// Wrapper method for EntityHealth.PrintHealthBar().
-            /// </summary>
+            // Prints the Monster's health bar.
             public void PrintHealthBar() {
                 health.PrintHealthBar(name,ConsoleColor.Red);
             }
@@ -68,10 +62,8 @@ namespace Studio_1
             public int maxHP; // Max health of the entity
             public int curHP; // Current Health of the entity
 
-            /// <summary>
-            /// Constructor function that automatically sets max health.
-            /// A new EntityHealth instance where maxHP == curHP == initHP
-            /// </summary>
+            // Constructor function that automatically sets max health.
+            // A new EntityHealth instance where maxHP == curHP == initHP
             public static EntityHealth InitHealth(int initHP)
             {
                 return new EntityHealth
@@ -83,9 +75,7 @@ namespace Studio_1
             public bool IsAlive => curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
 
             
-            /// <summary>
-            /// Prints the health bar for a generic EntityHealth component.
-            /// </summary>
+            // Prints the health bar for a generic EntityHealth component.
             public void PrintHealthBar(string name, ConsoleColor barColour)
             {
                 // Set the console text color to green for the health bar display

@@ -5,9 +5,7 @@ namespace Studio_1
 {
     internal class Program
     {
-        /// <summary>
-        /// A struct that contains the data for  game state.
-        /// </summary>
+        // A struct that contains the data for  game state.
         struct GameState
         {
             public Entity.Character hero;
@@ -238,7 +236,7 @@ namespace Studio_1
                         {
                             Console.WriteLine("\nYou find a key on the body of the ghoul");
                             Thread.Sleep(200);
-                            Console.WriteLine("You think this may be the key to the stair case to asend the towner");
+                            Console.WriteLine("You think this may be the key to the stair case to ascend the tower");
                             Thread.Sleep(800);
                             state.monsters[0].item1 = false;
                             state.hero.F1Key = true;
@@ -396,9 +394,7 @@ namespace Studio_1
             Environment.Exit(2000);
         }
 
-        /// <summary>
-        /// Singular function for a single round of combat
-        /// </summary>
+        // Singular function for a single round of combat
         public static void Combat(ref Character hero, ref Monster monster,ref Random random)
         {
             do
@@ -456,9 +452,7 @@ namespace Studio_1
             Console.Clear();
         }
 
-        /// <summary>
-        /// Function that scans through a list of paths and returns the first valid one. Returns null if none found.
-        /// </summary>
+        // Function that scans through a list of paths and returns the first valid one. Returns null if none found.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string? FindWorkingPath(string[] paths)
         {
