@@ -20,11 +20,11 @@ namespace Studio_1
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
 
             Console.WriteLine();
-            Console.WriteLine("Cold stone and stale air greet you; the corpse of your companion hangs chained to the wall."); // intro paragraph
+            Console.WriteLine("Cold stone and stale air greet you."); // intro paragraph
             Thread.Sleep(200);
-            Console.WriteLine("A rusted door to the south promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
+            Console.WriteLine("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Thread.Sleep(200);
-            Console.WriteLine("Choose a character! ");
+            Console.WriteLine("Choose a character! \n");
             Thread.Sleep(200);
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             Thread.Sleep(200);
@@ -104,7 +104,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room2(state); //Call Room2 method
+                        Hall(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -145,25 +145,20 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Room2(GameState state)
+        static void Hall(GameState state)
         {
             string choice;
             do
             {
                 Console.Clear();
-                Console.WriteLine("You find yourself in a small damp room");
-                Console.Clear();
-                Console.WriteLine("You are in Room 2");
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/RoomP.txt", "Art Files/RoomP.txt" }), 25, 10);
+                Console.WriteLine("You find yourself in a large damp Hallway");
                 Thread.Sleep(200);
-                Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
+                Console.WriteLine("To the north lies a creaking wooden door. You hear shuffling behind it");
                 Thread.Sleep(200);
-                Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
+                Console.WriteLine("To the east is a set of iron bars with a smal lock blocking the way to the stairs");
                 Thread.Sleep(200);
-                Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
-                Thread.Sleep(200);
-                Console.WriteLine("You must defeat the goblin before you can proceed");
-                Thread.Sleep(200);
-                Console.WriteLine("To the north lies the way up");
+                Console.WriteLine("behind you to the SOUTH lies the path back to the entrance");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -176,8 +171,17 @@ namespace Studio_1
                         Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
-                        Console.WriteLine("Placeholder text room to be added currently goes to entrance");
-                        Entrance(state); //Call Entrance method
+                        if (state.hero.F1Key == true)
+                        {
+                            Console.WriteLine("Placeholder text room to be added currently goes to entrance");
+                            Thread.Sleep(200);
+                            Entrance(state); //Call Entrance method
+                        }
+                        else
+                        {
+                            Console.WriteLine("You must find they key to the gate lock before progressing");
+                            Thread.Sleep(1000);
+                        }
                         break;
                     case "SEARCH":
                         break;
@@ -199,7 +203,6 @@ namespace Studio_1
         static void Room3(GameState state)
         {
             string choice;
-            bool item = false;
             do
             {
                 Console.Clear();
@@ -216,11 +219,11 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2Ghoul.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(100);
-                Console.WriteLine("To your south is the door back to the entrance of the tower");
+                Console.WriteLine("To your south is the door back to the hallway");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -228,12 +231,17 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO SOUTH":
-                        Room2(state);
+                        Hall(state);
                         break;
                     case "SEARCH":
-                        if (item == true)
+                        if (state.monsters[0].item1 == true)
                         {
-                            //Stuff Goes here
+                            Console.WriteLine("\nYou find a key on the body of the ghoul");
+                            Thread.Sleep(200);
+                            Console.WriteLine("You think this may be the key to the stair case to asend the towner");
+                            Thread.Sleep(800);
+                            state.monsters[0].item1 = false;
+                            state.hero.F1Key = true;
                         }
                         else
                         {
@@ -402,7 +410,7 @@ namespace Studio_1
                     int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
                     Console.WriteLine($"You strike the {monster.name} for {dam} damage");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(200);
                 }
                 else
                 {
@@ -426,7 +434,7 @@ namespace Studio_1
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
                         Console.WriteLine($"{monster.name} strikes you for {dam} damage");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(200);
                     }
                     else
                     {
@@ -443,6 +451,7 @@ namespace Studio_1
                     hero.PrintHealthBar();
                     Thread.Sleep(1000);
                 }
+                Thread.Sleep(1000);
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
             Console.Clear();
         }
