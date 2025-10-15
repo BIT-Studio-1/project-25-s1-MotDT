@@ -52,10 +52,10 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(6),
                         name = "Ghoul",
-                        damDice = 6,
-                        dodgeDiff = 12,
-                        hitDiff = 14,
-                        item1 = false
+                        damDice = 4,
+                        dodgeDiff = 10,
+                        hitDiff = 10,
+                        item1 = true
                     },
                     new Entity.Monster
                     {
@@ -64,7 +64,7 @@ namespace Studio_1
                         damDice = 4,
                         dodgeDiff = 15,
                         hitDiff = 12,
-                        item1 = true
+                        item1 = false
                     },
                     new Entity.Monster
                     {
@@ -73,7 +73,7 @@ namespace Studio_1
                         damDice = 6,
                         dodgeDiff = 13,
                         hitDiff = 15,
-                        item1 = true
+                        item1 = false
                     }
                 },
                 random_gen = new Random()
@@ -444,7 +444,7 @@ namespace Studio_1
                     Thread.Sleep(1000);
                 }
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
-            Console.WriteLine($"Combat over");
+            Console.Clear();
         }
 
         /// <summary>
