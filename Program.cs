@@ -87,22 +87,6 @@ namespace Studio_1
             string choice;
             do
             {
-                //Console.Clear();
-                ////Animations Go here!!
-                //Thread.Sleep(200);
-                //Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
-                //Thread.Sleep(200);
-                //Console.WriteLine("It brandishes a rusty dagger and hisses, clearly ready to fight");
-                //Thread.Sleep(200);
-                //Console.WriteLine("It is also clutching scraps of something that might have belonged to your companion");
-                //Thread.Sleep(200);
-                //Console.WriteLine("You must defeat the goblin before you can proceed");
-                //Thread.Sleep(200);
-                //Console.WriteLine("To the north lies the way up");
-                //Thread.Sleep(200);
-                //Console.WriteLine("What would you like to do?");
-                //choice = Console.ReadLine().ToUpper();
-                
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room1.txt","Art Files/Room1.txt"}), 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
@@ -169,7 +153,6 @@ namespace Studio_1
                 Console.Clear();
                 Console.WriteLine("You find yourself in a small damp room");
                 Console.Clear();
-                //Animations Go here!!!
                 Console.WriteLine("You are in Room 2");
                 Thread.Sleep(200);
                 Console.WriteLine("A lone goblin crouches in the far corner, its eyes glinting in the torchlight");
@@ -424,7 +407,7 @@ namespace Studio_1
                 else
                 {
                     Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(200);
                 }
                 if (monster.health.curHP > 0)
                 {
@@ -448,7 +431,7 @@ namespace Studio_1
                     else
                     {
                         Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(200);
                     }
                 }
                 if (hero.health.curHP <= 0)
