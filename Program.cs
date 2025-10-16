@@ -1,6 +1,7 @@
-﻿using static Studio_1.Entity;
+﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
-using System.ComponentModel.Design;
+using static Studio_1.Entity;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Studio_1
 {
@@ -38,8 +39,7 @@ namespace Studio_1
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
 
             Console.WriteLine();
-            Console.WriteLine("Cold stone and stale air greet you."); // intro paragraph
-            Thread.Sleep(200);
+            PrintMultiDelayString("Cold stone and stale air greet you.");
             Console.WriteLine("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("Choose a character! \n");
