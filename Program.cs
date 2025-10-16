@@ -104,7 +104,7 @@ namespace Studio_1
                 },
                 random_gen = new Random()
             };
-            
+
             F1Entrance(initial_state); // Call Entrance method
         }
 
@@ -116,7 +116,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] {"../../../Art Files/Room1.txt","Art Files/Room1.txt"}), 25, 10); //Background 
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room1.txt", "Art Files/Room1.txt" }), 25, 10); //Background 
                 Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
@@ -260,7 +260,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
-                
+
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -514,15 +514,15 @@ namespace Studio_1
             }
             while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
         }
+        /// <summary>
+        /// Print mereged with sleep(200)
+        /// </summary>
 
-        // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
-        // Takes an array of (string a,int b)
-        // No, I could not make the name shorter.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static void PrintDelayed(string text)
         {
-
-                Console.WriteLine(text);
-                Thread.Sleep(200);
+            Console.WriteLine(text);
+            Thread.Sleep(200);
         }
 
         public static Entity.Character GetChar(int menu)
@@ -645,12 +645,12 @@ namespace Studio_1
         }
 
         // Singular function for a single round of combat
-        public static void Combat(ref Character hero, ref Monster monster,ref Random random)
+        public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
             do
             {
                 Console.Clear();
-                int player_roll = Roll(hero.strength,ref random);
+                int player_roll = Roll(hero.strength, ref random);
                 if (player_roll >= monster.hitDiff)
                 {
                     int dam = random.Next(1, hero.damDice + 1);
