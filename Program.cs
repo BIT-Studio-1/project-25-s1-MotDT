@@ -296,14 +296,19 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
+                        choice = "";
+                        Console.WriteLine("WIP");
                         break;
                     case "GO EAST":
+                        F2EastHall1(state);
                         break;
                     case "GO SOUTH":
+                        F2SouthHall1(state);
                         break;
                     case "GO WEST":
+                        F1Hall(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -336,10 +341,12 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO EAST":
+                        F2EastHall2(state);
                         break;
                     case "GO WEST":
+                        F2Main(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -372,8 +379,9 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO WEST":
+                        F2EastHall1(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -406,10 +414,12 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
+                        F2Main(state);
                         break;
                     case "GO SOUTH":
+                        F2SouthHall2(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -442,8 +452,9 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
+                        F2SouthHall1(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -481,7 +492,7 @@ namespace Studio_1
                         break;
                     case "GO WEST":
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         Console.ReadKey();
                         break;
                     case "STATUS":
