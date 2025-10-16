@@ -340,14 +340,11 @@ namespace Studio_1
         // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
         // Takes an array of (string a,int b)
         // No, I could not make the name shorter.
-        static void PrintMultiDelayString((string, int)[] data)
+        static void PrintMultiDelayString(string text)
         {
-            // Iterate through each pair
-            foreach ((string, int) line in data)
-            {
-                Console.WriteLine(line.Item1);
-                Thread.Sleep(line.Item2);
-            }
+
+                Console.WriteLine(text);
+                Thread.Sleep(200);
         }
 
         public static Entity.Character GetChar(int menu)
