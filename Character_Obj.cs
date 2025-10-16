@@ -1,7 +1,4 @@
-﻿using System;
-using System.Numerics;
-using System.Threading;
-using System.Xml.Linq;
+﻿using System.Runtime.CompilerServices;
 
 namespace Studio_1
 {
@@ -24,12 +21,16 @@ namespace Studio_1
             public bool F2Key1; //Exit condition for the demo
             public bool F2Key2; // Exit condition for the demo
 
+            /// <summary>
+            /// Prints he big beautfilu table of player stats
+            /// </summary>
             public void Status()
             {
                 Console.WriteLine($@"Character Sheet:
-┌─────────────────┬────────┐
-│ Character name  │ {name.PadRight(6)} │
-│ Current hp      │ {health.curHP.ToString().PadRight(6)} │
+┌──────────────────────────┐
+│ {name.PadRight(17)}        │
+├─────────────────┬────────┤
+│ Maximum Health  │ {health.curHP.ToString().PadRight(6)} │
 │ Strength bonus  │ {strength.ToString().PadRight(6)} │
 │ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
 │ Toughness Bonus │ {toughness.ToString().PadRight(6)} │
@@ -40,6 +41,7 @@ namespace Studio_1
                 Console.ReadLine();
             }
             // Prints the Hero's health bar.
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void PrintHealthBar() {
                 health.PrintHealthBar(name,ConsoleColor.Green);
             }
@@ -55,6 +57,7 @@ namespace Studio_1
             public bool item1; // item the monster can have that the player can loot
 
             // Prints the Monster's health bar.
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void PrintHealthBar() {
                 health.PrintHealthBar(name,ConsoleColor.Red);
             }
@@ -87,13 +90,9 @@ namespace Studio_1
                 Console.ForegroundColor = barColour;
 
                 // Create a string of '█' characters representing the character's current health
-                string remainingHealthBar = new string('█', curHP);
-
                 // Create a string of '_' characters representing missing health (maxHP - curHP)
-                string totalHealthBar = new string('_', maxHP - curHP);
-
                 // Print the character's name, the visual health bar, and the numeric HP values (current/max)
-                Console.WriteLine($"{name.PadRight(6)}HP: {remainingHealthBar}{totalHealthBar} ({curHP}/{maxHP})");
+                Console.WriteLine($"{name.PadRight(6)}HP: {new string('█', curHP)}{new string('_', maxHP - curHP)} ({curHP}/{maxHP})");
 
                 // Reset the console text color to white
                 Console.ResetColor();
