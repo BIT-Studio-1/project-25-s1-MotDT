@@ -303,6 +303,40 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
+        static void Testroom(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room1.txt", "Art Files/Room1.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        break;
+                    case "GO SOUTH":
+                        break;
+                    case "SEARCH":
+                        Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
+                        Thread.Sleep(2000);
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            }
+            while (choice != "GO NORTH" || choice != "GO SOUTH");
+        }
+
         // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
         // Takes an array of (string a,int b)
         // No, I could not make the name shorter.
