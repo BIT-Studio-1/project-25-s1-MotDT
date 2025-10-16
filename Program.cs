@@ -117,10 +117,10 @@ namespace Studio_1
                 random_gen = new Random()
             };
             
-            Entrance(initial_state); // Call Entrance method
+            F1Entrance(initial_state); // Call Entrance method
         }
 
-        static void Entrance(GameState state)
+        static void F1Entrance(GameState state)
         {
             string choice;
             do
@@ -143,7 +143,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Hall(state); //Call Room2 method
+                        F1Hall(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
                         Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
@@ -184,7 +184,7 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
-        static void Hall(GameState state)
+        static void F1Hall(GameState state)
         {
             string choice;
             do
@@ -204,17 +204,17 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        Room3(state); //Call Room3 method
+                        F1Room3(state); //Call Room3 method
                         break;
                     case "GO SOUTH":
-                        Entrance(state); //Call Entrance method
+                        F1Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
                         if (state.hero.F1Key == true)
                         {
                             Console.WriteLine("Placeholder text room to be added currently goes to entrance");
                             Thread.Sleep(200);
-                            Entrance(state); //Call Entrance method
+                            F1Entrance(state); //Call Entrance method
                         }
                         else
                         {
@@ -239,7 +239,7 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
-        static void Room3(GameState state)
+        static void F1Room3(GameState state)
         {
             string choice;
             do
@@ -270,7 +270,7 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO SOUTH":
-                        Hall(state);
+                        F1Hall(state);
                         break;
                     case "SEARCH":
                         if (state.monsters[0].item1 == true)
@@ -303,24 +303,27 @@ namespace Studio_1
             while (choice != "Go South");
         }
 
-        static void Testroom(GameState state)
+        static void RoomBlueprint(GameState state)
         {
             string choice;
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room1.txt", "Art Files/Room1.txt" }), 25, 10); //Background 
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
                 //Text goes here
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO NORTH":
                         break;
+                    case "GO EAST":
+                        break;
                     case "GO SOUTH":
                         break;
+                    case "GO WEST":
+                        break;
                     case "SEARCH":
-                        Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
-                        Thread.Sleep(2000);
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -330,11 +333,11 @@ namespace Studio_1
                         break;
                     default:
                         Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
-                        Thread.Sleep(2000);
+                        Console.ReadKey();
                         break;
                 }
             }
-            while (choice != "GO NORTH" || choice != "GO SOUTH");
+            while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
         }
 
         // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
