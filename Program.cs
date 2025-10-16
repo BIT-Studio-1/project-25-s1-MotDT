@@ -256,6 +256,8 @@ namespace Studio_1
                 Thread.Sleep(100);
                 Console.WriteLine($"There is a small {BLUE}HOLE{RESET} in the wall");
                 Thread.Sleep(100);
+                Console.WriteLine($"The {BLUE}GHOUL{RESET} lays dead on the ground");
+                Thread.Sleep(100);
                 Console.WriteLine($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
