@@ -305,6 +305,7 @@ namespace Studio_1
 
         //Floor 2 Main
         //-> West F1Hall, North End, West F2EastHall1, South F2SouthHall1
+        //Candle on an interactable somewhere
         static void F2Main(GameState state)
         {
             string choice;
@@ -344,6 +345,7 @@ namespace Studio_1
 
         //Floor 2 East Hall 1
         //-> West F2Main, East F2EastHall2
+        //Room has candle on an interactable somewhere
         static void F2EastHall1(GameState state)
         {
             string choice;
@@ -379,6 +381,7 @@ namespace Studio_1
 
         //Floor 2 East Hall 2
         //-> West F2EastHall 1
+        //Room with elite monster that drops key
         static void F2EastHall2(GameState state)
         {
             string choice;
@@ -412,6 +415,7 @@ namespace Studio_1
 
         //Floor 2 South Hall 1
         //-> North F2Main, South F2SouthHall2
+        //Room with candelabra that needs 3 candles for code for the locked chest
         static void F2SouthHall1(GameState state)
         {
             string choice;
@@ -446,6 +450,8 @@ namespace Studio_1
         }
         //Floor 2 South Hall 2
         //-> North F2SouthHall1
+        //Room with locked chest containing key that needs a code
+        //Enemy in room you have to approach, has candle on body
         static void F2SouthHall2(GameState state)
         {
             string choice;
