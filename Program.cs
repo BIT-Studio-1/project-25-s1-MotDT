@@ -40,19 +40,13 @@ namespace Studio_1
 
             Console.WriteLine();
             PrintMultiDelayString("Cold stone and stale air greet you.");
-            Console.WriteLine("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
-            Thread.Sleep(200);
-            Console.WriteLine("Choose a character! \n");
-            Thread.Sleep(200);
-            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-            Thread.Sleep(200);
-            Console.WriteLine($"[1] BEEF the {GREEN}TANKY{RESET} warrior");
-            Thread.Sleep(200);
-            Console.WriteLine($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
-            Thread.Sleep(200);
-            Console.WriteLine($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
-            Thread.Sleep(200);
-            Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+            PrintMultiDelayString("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph)
+            PrintMultiDelayString("Choose a character! \n");
+            PrintMultiDelayString("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+            PrintMultiDelayString($"[1] BEEF the {GREEN}TANKY{RESET} warrior");
+            PrintMultiDelayString($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
+            PrintMultiDelayString($"(3) Dodgio the {BLUE}EVASIVE{RESET} acrobat");
+            PrintMultiDelayString("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             string confirm;
             int menu;
             do
