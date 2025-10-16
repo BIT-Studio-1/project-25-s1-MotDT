@@ -27,12 +27,14 @@ namespace Studio_1
             public void Status()
             {
                 Console.WriteLine($@"Character Sheet:
-                    Character name:     {name}
-                    Current hp:         {health.curHP}
-                    Strength bonus:     {strength}
-                    Finesse Bonus:      {finesse}
-                    Toughness Bonus:    {toughness}
-                    Presence Bonus:     {presence}
+┌─────────────────┬────────┐
+│ Character name  │ {name.PadRight(6)} │
+│ Current hp      │ {health.curHP.ToString().PadRight(6)} │
+│ Strength bonus  │ {strength.ToString().PadRight(6)} │
+│ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
+│ Toughness Bonus │ {toughness.ToString().PadRight(6)} │
+│ Presence Bonus  │ {presence.ToString().PadRight(6)} │
+└─────────────────┴────────┘
             ");
                 Console.WriteLine("Press Enter to close");
                 Console.ReadLine();

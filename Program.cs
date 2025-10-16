@@ -1,6 +1,7 @@
-﻿using static Studio_1.Entity;
+﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
-using System.ComponentModel.Design;
+using static Studio_1.Entity;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Studio_1
 {
@@ -38,8 +39,7 @@ namespace Studio_1
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
 
             Console.WriteLine();
-            Console.WriteLine("Cold stone and stale air greet you."); // intro paragraph
-            Thread.Sleep(200);
+            PrintMultiDelayString("Cold stone and stale air greet you.");
             Console.WriteLine("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph
             Thread.Sleep(200);
             Console.WriteLine("Choose a character! \n");
@@ -67,13 +67,7 @@ namespace Studio_1
                 } while (menu < 1 || menu > 3 || parse == false);
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
-                Console.WriteLine($"Your are {display.name}");
-                Console.WriteLine($"Health = {display.health.maxHP}");
-                Console.WriteLine($"Damage Dice = {display.damDice}");
-                Console.WriteLine($"Strength = {display.strength}");
-                Console.WriteLine($"Finesse = {display.finesse}");
-                Console.WriteLine($"Toughness = {display.toughness}");
-                Console.WriteLine($"Presence = {display.presence}");
+                display.Status();
                 Console.Write("Is this you? [y/n]: ");
                 confirm = Console.ReadLine();
             } while (confirm.ToLower() != "y");
@@ -253,7 +247,7 @@ namespace Studio_1
                 Console.Clear();
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room3Ghoul.txt" }), 25, 10); //Background with enemy
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room2Ghoul.txt" }), 25, 10); //Background with enemy
                     Thread.Sleep(200);
                     Console.WriteLine("Before you can act a Ghoul ambushes you");
                     Thread.Sleep(200);
@@ -264,7 +258,7 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(100);
@@ -524,14 +518,11 @@ namespace Studio_1
         // Potential helper function for repeated uses of Console.WriteLine(a) and Thread.Sleep(b)
         // Takes an array of (string a,int b)
         // No, I could not make the name shorter.
-        static void PrintMultiDelayString((string, int)[] data)
+        static void PrintMultiDelayString(string text)
         {
-            // Iterate through each pair
-            foreach ((string, int) line in data)
-            {
-                Console.WriteLine(line.Item1);
-                Thread.Sleep(line.Item2);
-            }
+
+                Console.WriteLine(text);
+                Thread.Sleep(200);
         }
 
         public static Entity.Character GetChar(int menu)
