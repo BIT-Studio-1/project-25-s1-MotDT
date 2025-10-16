@@ -15,11 +15,11 @@ namespace Studio_1
 
         //Global constants for changing colour of text, remember to always RESET!
         public const string RESET = "\x1b[0m";
-        public const string RED = "\x1b[91m";
+        public const string RED = "\x1b[91m"; //Monster names
         public const string GREEN = "\x1b[92m";
-        public const string YELLOW = "\x1b[93m";
-        public const string BLUE = "\x1b[94m";
-        public const string MAGENTA = "\x1b[95m";
+        public const string YELLOW = "\x1b[93m"; //Navigation directions
+        public const string BLUE = "\x1b[94m"; //Interactable objects
+        public const string MAGENTA = "\x1b[95m"; //Collectable items
         public const string CYAN = "\x1b[96m";
         public const string GREY = "\x1b[97m";
 
@@ -178,7 +178,7 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/RoomP.txt", "Art Files/RoomP.txt" }), 25, 10);
                 PrintDelayed("You find yourself in a large damp Hallway");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
-                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a set of iron bars with a small lock blocking the way to the stairs");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
                 PrintDelayed("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -193,12 +193,13 @@ namespace Studio_1
                     case "GO EAST":
                         if (state.hero.F1Key == true)
                         {
-                            PrintDelayed("Placeholder text room to be added currently goes to entrance");
+                            PrintDelayed("You unlock the gate and proceed up the stairs");
+                            Console.ReadKey();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
-                            Console.WriteLine("You must find they key to the gate lock before progressing");
+                            PrintDelayed("You fiddle with the lock but it refuses to budge");
                             Console.ReadKey();
                         }
                         break;
@@ -230,7 +231,6 @@ namespace Studio_1
                 if (state.monsters[0].health.IsAlive == true)
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room3Ghoul.txt" }), 25, 10); //Background with enemy
-                    Thread.Sleep(200);
                     PrintDelayed("Before you can act a Ghoul ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     Console.ReadKey();
@@ -262,9 +262,13 @@ namespace Studio_1
                         }
                         else
                         {
-                            Console.WriteLine("\nYou find nothing of use");
+                            PrintDelayed("\nYou find nothing of use");
                             Console.ReadKey();
                         }
+                        break;
+                    case "INSPECT HOLE":
+                        PrintDelayed("\nThe hole is pitch black");
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -610,6 +614,7 @@ namespace Studio_1
 │ GO {YELLOW}{UNDERLINE}[DIRECTION]{RESET}{NOUNDERLINE} │ Takes you to a different room based on its relative position to the current room │
 │      HELP      │ Prints the help menu                                                             │
 │INSPECT {BLUE}[OBJECT]{RESET}│ Inspect an object in the current room                                            │
+│   USE {MAGENTA}[ITEM]{RESET}   │ Use an item in your inventory                                                    │
 │     STATUS     │ Shows the players character sheet                                                │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
             PrintDelayed($"Note: Commands are not case sensitive.");
