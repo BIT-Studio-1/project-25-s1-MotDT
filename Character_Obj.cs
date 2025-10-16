@@ -18,8 +18,11 @@ namespace Studio_1
             public int finesse;  // Used for dodging attacks
             public int toughness; // Can be used for room Events and such
             public int presence;  // Can be used for room Events and such
-            public bool F1Key = false; // Exit condition for the demo
-            public bool roomItem;   // Placeholder item
+            public bool F1Key;  // Key to stairway door
+            public bool HealthPotion;   // Checks to see if player has the health potion
+            public bool bomb;   // Checks to see if player has the bomb
+            public bool F2Key1; //Exit condition for the demo
+            public bool F2Key2; // Exit condition for the demo
 
             public void Status()
             {

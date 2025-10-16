@@ -137,6 +137,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
                 Thread.Sleep(200);
+                Console.WriteLine();
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
@@ -166,7 +167,7 @@ namespace Studio_1
                         break;
                     case "SEARCH":
                         Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -402,7 +403,7 @@ namespace Studio_1
 
         static void Help() //Help function to display commonly used commands in game
         {
-            Console.WriteLine("\nThe game commands are GO [DIRECTION], HELP, SEARCH and STATUS");
+            Console.WriteLine("\nThe game commands are GO [COMPASS DIRECTION], HELP, SEARCH and STATUS");
             Console.WriteLine("            The commands are not case sensitive");
             Thread.Sleep(200);
             Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
