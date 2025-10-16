@@ -595,16 +595,15 @@ namespace Studio_1
         /// <summary>Help function to display commonly used commands in game</summary>
         static void Help()
         {
-            Console.WriteLine(@"┌────────────────┬──────────────────────────────────────────────────────────────────────────────────┐
-│ GO [DIRECTION] │ Takes you to a different room based on its relative position to the current room │
+            Console.WriteLine(@$"┌────────────────┬──────────────────────────────────────────────────────────────────────────────────┐
+│ GO {YELLOW}{UNDERLINE}[DIRECTION]{RESET}{NOUNDERLINE} │ Takes you to a different room based on its relative position to the current room │
 │      HELP      │ Prints the help menu                                                             │
-│     SEARCH     │ Searches the room the player is currently in                                     │
+│INSPECT {BLUE}[OBJECT]{RESET}│ Inspect an object in the current room                                            │
 │     STATUS     │ Shows the players character sheet                                                │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
-            Console.WriteLine($"Note: Commands are not case sensitive. {RESET}");
-            Thread.Sleep(200);
-            Console.WriteLine("Press Enter to close");
-            Console.ReadLine();
+            PrintDelayed($"Note: Commands are not case sensitive.");
+            PrintDelayed("Press any key to continue");
+            Console.ReadKey();
             Console.Clear();
         }
 
