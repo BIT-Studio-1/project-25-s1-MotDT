@@ -121,9 +121,9 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 Thread.Sleep(200);
-                Console.WriteLine("There is a wooden door with a broken lock to the NORTH");
+                Console.WriteLine($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
                 Thread.Sleep(200);
-                Console.WriteLine("To your SOUTH lies the door back to civilisation perhaps you should abandon your quest?");
+                Console.WriteLine($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the door back to civilisation perhaps you should abandon your quest?");
                 Thread.Sleep(200);
                 Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
                 Thread.Sleep(200);
@@ -185,11 +185,11 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/RoomP.txt", "Art Files/RoomP.txt" }), 25, 10);
                 Console.WriteLine("You find yourself in a large damp Hallway");
                 Thread.Sleep(200);
-                Console.WriteLine("To the north lies a creaking wooden door. You hear shuffling behind it");
+                Console.WriteLine($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 Thread.Sleep(200);
-                Console.WriteLine("To the east is a set of iron bars with a small lock blocking the way to the stairs");
+                Console.WriteLine($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a set of iron bars with a small lock blocking the way to the stairs");
                 Thread.Sleep(200);
-                Console.WriteLine("behind you to the SOUTH lies the path back to the entrance");
+                Console.WriteLine($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -254,9 +254,9 @@ namespace Studio_1
                 }
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
-                Console.WriteLine("To the north there is a small hole in the wall");
+                Console.WriteLine($"There is a small {BLUE}HOLE{RESET} in the wall");
                 Thread.Sleep(100);
-                Console.WriteLine("To your south is the door back to the hallway");
+                Console.WriteLine($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Thread.Sleep(200);
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -477,7 +477,7 @@ namespace Studio_1
             while (choice != "GO NORTH");
         }
 
-
+        //Blueprint for making new rooms. Do not call this method!
         static void RoomBlueprint(GameState state)
         {
             string choice;
