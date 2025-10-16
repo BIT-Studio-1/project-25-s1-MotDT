@@ -241,7 +241,7 @@ namespace Studio_1
                 Console.Clear();
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room2Ghoul.txt" }), 25, 10); //Background with enemy
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     Thread.Sleep(200);
                     Console.WriteLine("Before you can act a Ghoul ambushes you");
                     Thread.Sleep(200);
@@ -252,7 +252,7 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
                 Console.WriteLine($"There is a small {BLUE}HOLE{RESET} in the wall");
                 Thread.Sleep(100);
@@ -479,7 +479,9 @@ namespace Studio_1
             while (choice != "GO NORTH");
         }
 
-        //Blueprint for making new rooms. Do not call this method!
+        /// <summary>
+        /// Blueprint for making new rooms. Do not call this method!
+        /// </summary>
         static void RoomBlueprint(GameState state)
         {
             string choice;
@@ -612,18 +614,18 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void Help() //Help function to display commonly used commands in game
+        /// <summary>
+        /// Help function to display commonly used commands in game
+        /// </summary>
+        static void Help()
         {
-            Console.WriteLine("\nThe game commands are GO [COMPASS DIRECTION], HELP, SEARCH and STATUS");
-            Console.WriteLine("            The commands are not case sensitive");
-            Thread.Sleep(200);
-            Console.WriteLine("GO [DIRECTION] -- This command takes you to a different room based on its relative position to the current room");
-            Thread.Sleep(200);
-            Console.WriteLine("     HELP      -- This command prints the help menu");
-            Thread.Sleep(200);
-            Console.WriteLine("    SEARCH     -- This command searches the room the player is currently in");
-            Thread.Sleep(200);
-            Console.WriteLine("    STATUS     -- This command shows the players character sheet");
+            Console.WriteLine(@"┌────────────────┬──────────────────────────────────────────────────────────────────────────────────┐
+│ GO [DIRECTION] │ Takes you to a different room based on its relative position to the current room │
+│      HELP      │ Prints the help menu                                                             │
+│     SEARCH     │ Searches the room the player is currently in                                     │
+│     STATUS     │ Shows the players character sheet                                                │
+└────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
+            Console.WriteLine($"Note: Commands are not case sensitive. {RESET}");
             Thread.Sleep(200);
             Console.WriteLine("Press Enter to close");
             Console.ReadLine();
