@@ -123,7 +123,7 @@ namespace Studio_1
                 PrintDelayed("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 PrintDelayed($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the door back to civilisation perhaps you should abandon your quest?");
-                PrintDelayed("Slumped up against the wall just under the torch is a small skeleton");
+                PrintDelayed($"Slumped up against the wall just under the torch is a small {BLUE}SKELETON{RESET}");
                 Console.WriteLine();
                 PrintDelayed("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
@@ -148,9 +148,9 @@ namespace Studio_1
                             PrintDelayed("After some deliberation you decide to continue in search of riches in the tower");
                         }
                         break;
-                    case "SEARCH":
+                    case "INSPECT SKELETON":
                         PrintDelayed("You find nothing of use on the crumpled remains of the skeleton");
-                        Thread.Sleep(1000);
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -159,8 +159,8 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
-                        Thread.Sleep(2000);
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.ReadKey();
                         break;
                 }
             }
@@ -194,12 +194,12 @@ namespace Studio_1
                         if (state.hero.F1Key == true)
                         {
                             PrintDelayed("Placeholder text room to be added currently goes to entrance");
-                            F1Entrance(state); //Call Entrance method
+                            F2Main(state); //Call F2Main
                         }
                         else
                         {
                             Console.WriteLine("You must find they key to the gate lock before progressing");
-                            Thread.Sleep(1000);
+                            Console.ReadKey();
                         }
                         break;
                     case "SEARCH":
@@ -211,12 +211,12 @@ namespace Studio_1
                         Help();
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
-                        Thread.Sleep(2000);
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.ReadKey();
                         break;
                 }
             }
-            while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
+            while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO EAST"));
         }
 
         //Floor 1 Room 3
@@ -233,7 +233,7 @@ namespace Studio_1
                     Thread.Sleep(200);
                     PrintDelayed("Before you can act a Ghoul ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
-                    Thread.Sleep(2000);
+                    Console.ReadKey();
                 }
                 if (state.monsters[0].health.IsAlive == true)
                 {
@@ -251,19 +251,19 @@ namespace Studio_1
                     case "GO SOUTH":
                         F1Hall(state);
                         break;
-                    case "SEARCH":
+                    case "INSPECT GHOUL":
                         if (state.monsters[0].item1 == true)
                         {
                             PrintDelayed("\nYou find a key on the body of the ghoul");
                             PrintDelayed("You think this may be the key to the stair case to ascend the tower");
-                            Thread.Sleep(800);
+                            Console.ReadKey();
                             state.monsters[0].item1 = false;
                             state.hero.F1Key = true;
                         }
                         else
                         {
                             Console.WriteLine("\nYou find nothing of use");
-                            Thread.Sleep(1000);
+                            Console.ReadKey();
                         }
                         break;
                     case "STATUS":
@@ -273,8 +273,8 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
-                        Thread.Sleep(2000);
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.ReadKey();
                         break;
                 }
             }
@@ -313,7 +313,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -349,7 +349,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -383,7 +383,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -419,7 +419,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -453,7 +453,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -491,7 +491,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
