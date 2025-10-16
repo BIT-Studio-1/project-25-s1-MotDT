@@ -13,6 +13,13 @@ namespace Studio_1
             public Monster[] monsters;
             public Random random_gen;
         }
+
+        //Global constants for changing colour of text
+        public const string RESET = "\x1b[0m";
+        public const string RED = "\x1b[91m";
+        public const string GREEN = "\x1b[92m";
+        public const string BLUE = "\x1b[94m";
+
         static void Main()
         {
             // Title Card
@@ -27,11 +34,11 @@ namespace Studio_1
             Thread.Sleep(200);
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             Thread.Sleep(200);
-            Console.WriteLine("[1] BEEF the TANKY warrior");
+            Console.WriteLine($"[1] BEEF the {GREEN}TANKY{RESET} warrior");
             Thread.Sleep(200);
-            Console.WriteLine("[2] Stabbs the DAMAGING rouge");
+            Console.WriteLine($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
             Thread.Sleep(200);
-            Console.WriteLine("[3] Dodgio the EVASIVE acrobat");
+            Console.WriteLine($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
             Thread.Sleep(200);
             Console.WriteLine("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             string confirm;
