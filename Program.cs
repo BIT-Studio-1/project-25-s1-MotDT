@@ -35,10 +35,12 @@ namespace Studio_1
         {
             // Title Card
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
-
+            
+            //intro paragraph
             Console.WriteLine();
             PrintDelayed("Cold stone and stale air greet you.");
-            PrintDelayed("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph)
+            PrintDelayed("To the south a rusted door that promises danger and a chance at freedom."); 
+            Console.WriteLine("Choose Beef, Stabbs, or Dodgio and prove your fate.\n");
 
             // Character Selection dialog
             PrintDelayed("Choose a character! \n");
@@ -101,8 +103,17 @@ namespace Studio_1
                         dodgeDiff = 13,
                         hitDiff = 15,
                         item1 = false
-                    }
-                },
+                    },
+                    new Entity.Monster
+                    {
+                        health = Entity.EntityHealth.InitHealth(20), // tougher HP
+                        name = "Elite Wraith",                      // elite boss name
+                        damDice = 10,                               // stronger damage
+                        dodgeDiff = 18,                             // harder to hit
+                        hitDiff = 14,                               // harder to dodge
+                        item1 = true                                // drops the special key
+    }
+                    },
                 random_gen = new Random()
             };
 
@@ -632,7 +643,7 @@ namespace Studio_1
 
         public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
-            PrintDelayed("You loose");
+            PrintDelayed("You lose");
             PrintDelayed("GAME OVER");
             Environment.Exit(2000);
         }
