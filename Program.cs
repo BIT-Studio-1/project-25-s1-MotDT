@@ -241,7 +241,7 @@ namespace Studio_1
                 Console.Clear();
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2Ghoul.txt", "Art Files/Room2Ghoul.txt" }), 25, 10); //Background with enemy
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room2Ghoul.txt" }), 25, 10); //Background with enemy
                     Thread.Sleep(200);
                     Console.WriteLine("Before you can act a Ghoul ambushes you");
                     Thread.Sleep(200);
@@ -252,7 +252,7 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room2GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room2GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
                 Console.WriteLine("To the north there is a small hole in the wall");
                 Thread.Sleep(100);
