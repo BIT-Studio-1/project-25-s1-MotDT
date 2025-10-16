@@ -119,18 +119,13 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room1.txt", "Art Files/Room1.txt" }), 25, 10); //Background 
-                Console.WriteLine("You find yourself in the dark entrance way of the wizard's tower");
-                Thread.Sleep(200);
-                Console.WriteLine("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
-                Thread.Sleep(200);
-                Console.WriteLine($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
-                Thread.Sleep(200);
-                Console.WriteLine($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the door back to civilisation perhaps you should abandon your quest?");
-                Thread.Sleep(200);
-                Console.WriteLine("Slumped up against the wall just under the torch is a small skeleton");
-                Thread.Sleep(200);
+                PrintDelayed("You find yourself in the dark entrance way of the wizard's tower");
+                PrintDelayed("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
+                PrintDelayed($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
+                PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the door back to civilisation perhaps you should abandon your quest?");
+                PrintDelayed("Slumped up against the wall just under the torch is a small skeleton");
                 Console.WriteLine();
-                Console.WriteLine("What would you like to do?");
+                PrintDelayed("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
@@ -138,28 +133,24 @@ namespace Studio_1
                         F1Hall(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
-                        Console.WriteLine("Do you wish to run in fear of THE TOWER!!!");
+                        PrintDelayed("Do you wish to run in fear of THE TOWER!!!");
                         Console.WriteLine("Y/N");
                         char leave = Convert.ToChar(Console.ReadLine());
                         leave = char.ToUpper(leave);
                         if (leave == 'Y')
                         {
-                            Console.WriteLine("You decide that it may not be worth risking life and limb for treasure after all");
-                            Thread.Sleep(200);
-                            Console.WriteLine("You run back to your horse hitched outside and return to your life back home");
-                            Thread.Sleep(200);
+                            PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
+                            PrintDelayed("You run back to your horse hitched outside and return to your life back home");
                             GameOver();
-                            Thread.Sleep(200);
-                            Environment.Exit(1000);
                         }
                         else
                         {
-                            Console.WriteLine("After some deliberation you decide to continue in search of riches in the tower");
+                            PrintDelayed("After some deliberation you decide to continue in search of riches in the tower");
                         }
                         break;
                     case "SEARCH":
-                        Console.WriteLine("\nYou find nothing of use on the crumpled remains of the skeleton");
-                        Thread.Sleep(2000);
+                        PrintDelayed("You find nothing of use on the crumpled remains of the skeleton");
+                        Thread.Sleep(1000);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -185,15 +176,11 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/RoomP.txt", "Art Files/RoomP.txt" }), 25, 10);
-                Console.WriteLine("You find yourself in a large damp Hallway");
-                Thread.Sleep(200);
-                Console.WriteLine($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
-                Thread.Sleep(200);
-                Console.WriteLine($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a set of iron bars with a small lock blocking the way to the stairs");
-                Thread.Sleep(200);
-                Console.WriteLine($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
-                Thread.Sleep(200);
-                Console.WriteLine("What would you like to do?");
+                PrintDelayed("You find yourself in a large damp Hallway");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a set of iron bars with a small lock blocking the way to the stairs");
+                PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
+                PrintDelayed("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
@@ -206,8 +193,7 @@ namespace Studio_1
                     case "GO EAST":
                         if (state.hero.F1Key == true)
                         {
-                            Console.WriteLine("Placeholder text room to be added currently goes to entrance");
-                            Thread.Sleep(200);
+                            PrintDelayed("Placeholder text room to be added currently goes to entrance");
                             F1Entrance(state); //Call Entrance method
                         }
                         else
@@ -245,9 +231,8 @@ namespace Studio_1
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     Thread.Sleep(200);
-                    Console.WriteLine("Before you can act a Ghoul ambushes you");
-                    Thread.Sleep(200);
-                    Console.WriteLine("You must vanquish it before you can act freely");
+                    PrintDelayed("Before you can act a Ghoul ambushes you");
+                    PrintDelayed("You must vanquish it before you can act freely");
                     Thread.Sleep(2000);
                 }
                 if (state.monsters[0].health.IsAlive == true)
@@ -256,15 +241,11 @@ namespace Studio_1
                 }
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 Thread.Sleep(100);
-                Console.WriteLine($"There is a small {BLUE}HOLE{RESET} in the wall");
-                Thread.Sleep(100);
-                Console.WriteLine($"The {BLUE}GHOUL{RESET} lays dead on the ground");
-                Thread.Sleep(100);
-                Console.WriteLine($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
-                Thread.Sleep(200);
+                PrintDelayed($"There is a small {BLUE}HOLE{RESET} in the wall");
+                PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
+                PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Console.WriteLine("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
-
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -273,9 +254,8 @@ namespace Studio_1
                     case "SEARCH":
                         if (state.monsters[0].item1 == true)
                         {
-                            Console.WriteLine("\nYou find a key on the body of the ghoul");
-                            Thread.Sleep(200);
-                            Console.WriteLine("You think this may be the key to the stair case to ascend the tower");
+                            PrintDelayed("\nYou find a key on the body of the ghoul");
+                            PrintDelayed("You think this may be the key to the stair case to ascend the tower");
                             Thread.Sleep(800);
                             state.monsters[0].item1 = false;
                             state.hero.F1Key = true;
@@ -637,10 +617,8 @@ namespace Studio_1
 
         public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
-            Console.WriteLine("You loose");
-            Thread.Sleep(200);
-            Console.WriteLine("GAME OVER");
-            Thread.Sleep(200);
+            PrintDelayed("You loose");
+            PrintDelayed("GAME OVER");
             Environment.Exit(2000);
         }
 
@@ -655,13 +633,11 @@ namespace Studio_1
                 {
                     int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
-                    Console.WriteLine($"You strike the {monster.name} for {dam} damage");
-                    Thread.Sleep(200);
+                    PrintDelayed($"You strike the {monster.name} for {dam} damage");
                 }
                 else
                 {
-                    Console.WriteLine($"{hero.name} Strikes the {monster.name} and misses");
-                    Thread.Sleep(200);
+                    PrintDelayed($"{hero.name} Strikes the {monster.name} and misses");
                 }
                 if (monster.health.curHP > 0)
                 {
@@ -669,7 +645,7 @@ namespace Studio_1
                 }
                 else
                 {
-                    Console.WriteLine($"{monster.name} has been defeated");
+                    PrintDelayed($"{monster.name} has been defeated");
                 }
                 if (monster.health.curHP > 0)
                 {
@@ -679,13 +655,11 @@ namespace Studio_1
                     {
                         int dam = random.Next(1, monster.damDice + 1);
                         hero.health.curHP -= dam;
-                        Console.WriteLine($"{monster.name} strikes you for {dam} damage");
-                        Thread.Sleep(200);
+                        PrintDelayed($"{monster.name} strikes you for {dam} damage");
                     }
                     else
                     {
-                        Console.WriteLine($"{hero.name} dodges the {monster.name}'s attack just in time");
-                        Thread.Sleep(200);
+                        PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
                     }
                 }
                 if (hero.health.curHP <= 0)
