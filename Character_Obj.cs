@@ -26,9 +26,8 @@ namespace Studio_1
             /// </summary>
             public void Status()
             {
-                Console.WriteLine($@"Character Sheet:
-┌──────────────────────────┐
-│ {name.PadRight(17)}        │
+                Console.WriteLine($@"┌──────────────────────────┐
+│ {Program.BOLD}{name.PadRight(17)}{Program.NOBOLD}  Stats │
 ├─────────────────┬────────┤
 │ Maximum Health  │ {health.curHP.ToString().PadRight(6)} │
 │ Strength bonus  │ {strength.ToString().PadRight(6)} │
