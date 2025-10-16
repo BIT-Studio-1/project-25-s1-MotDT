@@ -8,8 +8,8 @@ namespace Studio_1
         public class Character // This character is simpler; you test themselves against DC10+ monster attack
         {
 
-            public EntityHealth health; // character's health component
-            public string name; // character's name
+            public required EntityHealth health; // character's health component
+            public required string name; // character's name
             public int damDice;
             public int strength; // this is used as hit mod
             public int finesse;  // Used for dodging attacks
@@ -21,9 +21,7 @@ namespace Studio_1
             public bool F2Key1; //Exit condition for the demo
             public bool F2Key2; // Exit condition for the demo
 
-            /// <summary>
-            /// Prints he big beautfilu table of player stats
-            /// </summary>
+            /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
             {
                 Console.WriteLine($@"┌──────────────────────────┐
@@ -48,8 +46,8 @@ namespace Studio_1
 
         public class Monster
         {
-            public EntityHealth health; // monster's health component 
-            public string name; // monster's name
+            public required EntityHealth health; // monster's health component 
+            public required string name; // monster's name
             public int damDice;
             public int dodgeDiff;
             public int hitDiff;
@@ -82,7 +80,7 @@ namespace Studio_1
             public bool IsAlive => curHP > 0; // checks to see if the player is alive i think this works with the entity health class thing????
 
             
-            // Prints the health bar for a generic EntityHealth component.
+            ///<summary> Prints the health bar for a generic EntityHealth component.i </summary>
             public void PrintHealthBar(string name, ConsoleColor barColour)
             {
                 // Set the console text color to green for the health bar display

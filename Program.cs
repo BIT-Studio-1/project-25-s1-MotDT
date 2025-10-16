@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using static Studio_1.Entity;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Studio_1
 {
     internal class Program
     {
-        // A struct that contains the data for  game state.
+        /// <summary> A struct that contains the data for game state. </summary>
         struct GameState
         {
             public Entity.Character hero;
@@ -41,9 +39,11 @@ namespace Studio_1
             Console.WriteLine();
             PrintDelayed("Cold stone and stale air greet you.");
             PrintDelayed("To the south a rusted door that promises danger and a chance at freedom — choose Beef, Stabbs, or Dodgio and prove your fate."); // intro paragraph)
+
+            // Character Selection dialog
             PrintDelayed("Choose a character! \n");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-            PrintDelayed($"[1] BEEF the {GREEN}TANKY{RESET} warrior");
+            PrintDelayed($"[1] BEEF   the {GREEN}TANKY{RESET} warrior");
             PrintDelayed($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
             PrintDelayed($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
@@ -65,6 +65,7 @@ namespace Studio_1
                 Console.Write("Is this you? [y/n]: ");
                 confirm = Console.ReadLine();
             } while (confirm.ToLower() != "y");
+            
             Entity.Character hero = GetChar(menu);
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
@@ -105,6 +106,7 @@ namespace Studio_1
                 random_gen = new Random()
             };
 
+            GC.Collect();
             F1Entrance(initial_state); // Call Entrance method
         }
 
@@ -479,9 +481,7 @@ namespace Studio_1
             while (choice != "GO NORTH");
         }
 
-        /// <summary>
-        /// Blueprint for making new rooms. Do not call this method!
-        /// </summary>
+        /// <summary> Blueprint for making new rooms. Do not call this method!</summary>
         static void RoomBlueprint(GameState state)
         {
             string choice;
@@ -518,10 +518,8 @@ namespace Studio_1
             }
             while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
         }
-        /// <summary>
-        /// Print mereged with sleep(200)
-        /// </summary>
-
+        
+        /// <summary>Print merged with sleep(200)</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static void PrintDelayed(string text)
         {
@@ -590,7 +588,7 @@ namespace Studio_1
 
         //Art file renderer, call method with: directory of text file as a string, print delay between lines, console colour int value 
         //Use directory "../../../Art Files/{file}.txt/"
-        static void RenderFrame(string file, int printDelay, int colour)
+        static void RenderFrame(string? file, int printDelay, int colour)
         {
             Console.ForegroundColor = (ConsoleColor)colour;
             try
@@ -614,9 +612,7 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        /// <summary>
-        /// Help function to display commonly used commands in game
-        /// </summary>
+        /// <summary>Help function to display commonly used commands in game</summary>
         static void Help()
         {
             Console.WriteLine(@"┌────────────────┬──────────────────────────────────────────────────────────────────────────────────┐
