@@ -120,6 +120,8 @@ namespace Studio_1
             F1Entrance(initial_state); // Call Entrance method
         }
 
+        //Floor 1 entrance
+        //-> North F1Hall
         static void F1Entrance(GameState state)
         {
             string choice;
@@ -184,6 +186,8 @@ namespace Studio_1
             while (choice != "GO NORTH" || choice != "GO SOUTH");
         }
 
+        //Floor 1 Hall
+        //-> South F1Entrance, North F1Room3, East F2Main
         static void F1Hall(GameState state)
         {
             string choice;
@@ -195,7 +199,7 @@ namespace Studio_1
                 Thread.Sleep(200);
                 Console.WriteLine("To the north lies a creaking wooden door. You hear shuffling behind it");
                 Thread.Sleep(200);
-                Console.WriteLine("To the east is a set of iron bars with a smal lock blocking the way to the stairs");
+                Console.WriteLine("To the east is a set of iron bars with a small lock blocking the way to the stairs");
                 Thread.Sleep(200);
                 Console.WriteLine("behind you to the SOUTH lies the path back to the entrance");
                 Thread.Sleep(200);
@@ -239,6 +243,8 @@ namespace Studio_1
             while ((choice != "GO SOUTH") || (choice != "GO NORTH") || (choice != "GO East"));
         }
 
+        //Floor 1 Room 3
+        //-> South F1Hall
         static void F1Room3(GameState state)
         {
             string choice;
@@ -302,6 +308,181 @@ namespace Studio_1
             }
             while (choice != "Go South");
         }
+
+        //Floor 2 Main
+        //-> West F1Hall, North End, West F2EastHall1, South F2SouthHall1
+        static void F2Main(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2Main.txt", "Art Files/F2Main.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        break;
+                    case "GO EAST":
+                        break;
+                    case "GO SOUTH":
+                        break;
+                    case "GO WEST":
+                        break;
+                    case "SEARCH":
+                        Console.ReadKey();
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
+        }
+
+        //Floor 2 East Hall 1
+        //-> West F2Main, East F2EastHall2
+        static void F2EastHall1(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO EAST":
+                        break;
+                    case "GO WEST":
+                        break;
+                    case "SEARCH":
+                        Console.ReadKey();
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO EAST" || choice != "GO WEST");
+        }
+
+        //Floor 2 East Hall 2
+        //-> West F2EastHall 1
+        static void F2EastHall2(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO WEST":
+                        break;
+                    case "SEARCH":
+                        Console.ReadKey();
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO WEST");
+        }
+
+        //Floor 2 South Hall 1
+        //-> North F2Main, South F2SouthHall2
+        static void F2SouthHall1(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        break;
+                    case "GO SOUTH":
+                        break;
+                    case "SEARCH":
+                        Console.ReadKey();
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO NORTH" || choice != "GO SOUTH");
+        }
+        //Floor 2 South Hall 2
+        //-> North F2SouthHall1
+        static void F2SouthHall2(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
+                //Text goes here
+                choice = Console.ReadLine().ToUpper();
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        break;
+                    case "SEARCH":
+                        Console.ReadKey();
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand that command.\"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO NORTH");
+        }
+
 
         static void RoomBlueprint(GameState state)
         {
@@ -463,7 +644,7 @@ namespace Studio_1
             return rnd.Next(1, 21) + hitMod;
         }
 
-        public static void GameOver() //placeholder function for an animation and possible conditonal like what killed you 
+        public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
             Console.WriteLine("You loose");
             Thread.Sleep(200);
