@@ -45,7 +45,7 @@ namespace Studio_1
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             PrintDelayed($"[1] BEEF the {GREEN}TANKY{RESET} warrior");
             PrintDelayed($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
-            PrintDelayed($"(3) Dodgio the {BLUE}EVASIVE{RESET} acrobat");
+            PrintDelayed($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             string confirm;
             int menu;
