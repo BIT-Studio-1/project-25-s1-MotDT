@@ -349,10 +349,10 @@ namespace Studio_1
             string choice;
             do
             {
-                Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
-                //Text goes here
-                choice = Console.ReadLine().ToUpper();
+                 Console.Clear();
+                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
+                 //Text goes here
+                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO EAST":
@@ -386,18 +386,50 @@ namespace Studio_1
         {
             string choice;
             do
-            {
+            {   
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10); //Background 
-                //Text goes here
+                // if the elite wraith is still alive, initiate combat
+                if (state.monsters[3].health.IsAlive == true)
+                {
+                    
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10); //Background 
+                   
+                    // art file for the monster needed
+
+                    //text for the room before combat
+                    PrintDelayed("A chilling presence fills the hall...");
+                    PrintDelayed("The Elite Wraith emerges from the shadows!");
+                    choice = Console.ReadLine().ToUpper();
+
+                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                }
+                
+                // After combat, show the cleared room
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10);
+                PrintDelayed("The room is eerily quiet now.");
+                PrintDelayed("The Elite Wraith lies defeated, its essence fading.");
+                PrintDelayed("To the WEST is the way back.");
                 choice = Console.ReadLine().ToUpper();
+
                 switch (choice)
                 {
                     case "GO WEST":
                         F2EastHall1(state);
                         break;
-                    case "INSPECT":
-                        Console.ReadKey();
+                    case "INSPECT WRAITH":
+                        if (state.monsters[3].item1 == true)
+                        {
+                            PrintDelayed("\nYou find a strange glowing key among the Wraith’s remains.");
+                            PrintDelayed("This must unlock something deeper in the tower...");
+                            Console.ReadKey();
+                            state.monsters[3].item1 = false;
+                            state.hero.F2Key1 = true;
+                        }
+                        else
+                        {
+                            PrintDelayed("\nThere is nothing of use.");
+                            Console.ReadKey();
+                        }
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -524,7 +556,9 @@ namespace Studio_1
             }
             while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
         }
-        
+
+
+
         /// <summary>Print merged with sleep(200)</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static void PrintDelayed(string text)
