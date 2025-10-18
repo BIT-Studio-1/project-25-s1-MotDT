@@ -688,10 +688,11 @@ namespace Studio_1
             do
             {
                 Console.Clear();
+                int dam; ;
                 int player_roll = Roll(hero.strength, ref random);
                 if (player_roll >= monster.hitDiff)
                 {
-                    int dam = random.Next(1, hero.damDice + 1);
+                    dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
                     PrintDelayed($"You strike the {monster.name} for {dam} damage");
                 }
@@ -707,33 +708,69 @@ namespace Studio_1
                 {
                     PrintDelayed($"{monster.name} has been defeated");
                 }
-                if (monster.health.curHP > 0)
+                if (hero.bomb || hero.HealthPotion)
                 {
-                    //Monster 'attacks'
-                    player_roll = Roll(hero.finesse, ref random);
-                    if (player_roll <= monster.dodgeDiff)
+                    PrintDelayed("Would you like to use an item Y/N ");
+                    string item = Console.ReadLine().ToUpper();
+                    if (item == "Y")
                     {
-                        int dam = random.Next(1, monster.damDice + 1);
-                        hero.health.curHP -= dam;
-                        PrintDelayed($"{monster.name} strikes you for {dam} damage");
+                        PrintDelayed("Do you want to use a BOMB or a POTION");
+                        item = Console.ReadLine();
+                        switch (item)
+                        {
+                            case "BOMB":
+                                if (hero.bomb == true)
+                                {
+                                    dam = random.Next(1, 9);
+                                    PrintDelayed($"You throw your bomb at the monster and it explodes dealing {dam}");
+                                    monster.health.curHP -= dam;
+                                }
+                                else
+                                {
+                                    PrintDelayed($"You do not currently have a BOMB");
+                                }
+                                break;
+                            case "POTION":
+                                if (hero.HealthPotion == true)
+                                {
+                                    int heal = random.Next(1, 9);
+                                    PrintDelayed($"You drink your health potion and heal yourself for {heal}");
+                                    hero.health.curHP += heal;
+                                }
+                                else
+                                {
+                                    PrintDelayed($"You do not currently have a POTION");
+                                }
+                                break;
+                        }
+                    }
+                    if (monster.health.curHP > 0)
+                    {
+                        //Monster 'attacks'
+                        player_roll = Roll(hero.finesse, ref random);
+                        if (player_roll <= monster.dodgeDiff)
+                        {
+                            dam = random.Next(1, monster.damDice + 1);
+                            hero.health.curHP -= dam;
+                            PrintDelayed($"{monster.name} strikes you for {dam} damage");
+                        }
+                        else
+                        {
+                            PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
+                        }
+                    }
+                    if (hero.health.curHP <= 0)
+                    {
+                        GameOver();
                     }
                     else
                     {
-                        PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
+                        hero.PrintHealthBar();
+                        Thread.Sleep(1000);
                     }
-                }
-                if (hero.health.curHP <= 0)
-                {
-                    GameOver();
-                }
-                else
-                {
-                    hero.PrintHealthBar();
                     Thread.Sleep(1000);
                 }
-                Thread.Sleep(1000);
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
-            Console.Clear();
         }
 
         // Function that scans through a list of paths and returns the first valid one. Returns null if none found.
