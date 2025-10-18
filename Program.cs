@@ -160,8 +160,39 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT SKELETON":
-                        PrintDelayed("You find nothing of use on the crumpled remains of the skeleton");
-                        Console.ReadKey();
+                        if (state.hero.bomb == false)
+                        {
+                            PrintDelayed($"\nYou see something inside the Skeletons rib cage would you like to grab it Y/N");
+                            string search = Console.ReadLine().ToUpper();
+                            if (search == "Y")
+                            {
+                                int check = Roll(state.hero.toughness, ref state.random_gen);
+                                if (check >12)
+                                {
+                                    PrintDelayed("\nYou push past a giant rat as it claws at your arm");
+                                    PrintDelayed("and Find a small bomb hidden inside the skeletons ribs and decide to take it");
+                                    state.hero.bomb = true;
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    PrintDelayed("\nYou recoil as you are bitten by a giant rat hiding inside the skeleton and take 1 damgae");
+                                    state.hero.health.curHP -= 1;
+                                    if (state.hero.health.curHP <= 0)
+                                    {
+                                        PrintDelayed("You fall to the ground in agony as another rat bites your ancle");
+                                        PrintDelayed("Soon you are overwelmed by vermin and sucm to the swarm");
+                                        GameOver();
+                                    }
+                                    Console.ReadKey();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            PrintDelayed("You find nothing of use on the crumpled remains of the skeleton");
+                            Console.ReadKey();
+                        }
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -214,7 +245,7 @@ namespace Studio_1
                             Console.ReadKey();
                         }
                         break;
-                    case "SEARCH":
+                    case "INSPECT":
                         break;
                     case "STATUS":
                         state.hero.Status();
