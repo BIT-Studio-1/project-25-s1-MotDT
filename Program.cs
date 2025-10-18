@@ -249,13 +249,13 @@ namespace Studio_1
                     case "INSPECT TORCH":
                         if (!state.hero.torch)
                         {
-                            PrintDelayed($"You decide to take the extra torch with you\nnever know when it might come in handy");
+                            PrintDelayed($"\nYou decide to take the extra torch with you\nnever know when it might come in handy");
                             state.hero.torch = true;
                             Console.ReadKey();
                         }
                         else
                         {
-                            PrintDelayed("You have allready taken the spare torch");
+                            PrintDelayed("\nYou have allready taken the spare torch");
                             Console.ReadKey();
                         }
                         break;
@@ -321,8 +321,31 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT HOLE":
-                        PrintDelayed("\nThe hole is pitch black");
-                        Console.ReadKey();
+                        if (state.hero.torch)
+                        {
+                            PrintDelayed("\nYou shine the torch inside the hole");
+                            PrintDelayed("on the floor there is a large stone pressure palte and \nin the far corner of the room a bright red vile lies on the floor");
+                            PrintDelayed("tankfuly with the help of the torch avoivding the pressure palte is easy and you pick up the health potion");
+                            state.hero.HealthPotion = true;
+                        }
+                        else
+                        {
+                            PrintDelayed("\nThe hole is pitch black");
+                            PrintDelayed("Would you like to go through anyway Y/N");
+                            choice = Console.ReadLine().ToUpper();
+                            if (choice == "Y")
+                            {
+                                PrintDelayed("\nYou stumble foward into the darkness");
+                                PrintDelayed("you feel shifting ground under your feet");
+                                PrintDelayed("the last thing you hear is the sound of stone scraping on stone");
+                                GameOver();
+                            }
+                            else
+                            {
+                                PrintDelayed("\nYou decide its best to come back with some light");
+                            }
+                        }
+                         Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status();
