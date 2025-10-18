@@ -372,7 +372,12 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2Main.txt", "Art Files/F2Main.txt" }), 25, 10); //Background 
-                //Text goes here
+                PrintDelayed("You exit the stair case to find a large stone room");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is a large door flanked by two stone statues with keyholes in them");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is an open archway that seems to lead into a large room");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} is the stairs back down to the first floor");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a stone door with symbols carved into the frame");
+                PrintDelayed($"On the floor under one of the statues is a {BLUE}CANDLE{RESET}");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
@@ -389,7 +394,7 @@ namespace Studio_1
                     case "GO WEST":
                         F1Hall(state);
                         break;
-                    case "INSPECT":
+                    case "INSPECT CANDLE":
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -415,10 +420,11 @@ namespace Studio_1
             string choice;
             do
             {
-                 Console.Clear();
-                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
-                 //Text goes here
-                 choice = Console.ReadLine().ToUpper();
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall wich eminates a ominus presance");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
+                choice = Console.ReadLine().ToUpper();
                 switch (choice)
                 {
                     case "GO EAST":
