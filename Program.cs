@@ -160,7 +160,7 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT SKELETON":
-                        if (state.hero.bomb == false)
+                        if (!state.hero.bomb)
                         {
                             PrintDelayed($"\nYou see something inside the Skeletons rib cage would you like to grab it Y/N");
                             string search = Console.ReadLine().ToUpper();
@@ -222,6 +222,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
+                PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
                 PrintDelayed("What would you like to do?");
                 choice = Console.ReadLine().ToUpper();
                 switch (choice)
@@ -245,7 +246,18 @@ namespace Studio_1
                             Console.ReadKey();
                         }
                         break;
-                    case "INSPECT":
+                    case "INSPECT TORCH":
+                        if (!state.hero.torch)
+                        {
+                            PrintDelayed($"You decide to take the extra torch with you\nnever know when it might come in handy");
+                            state.hero.torch = true;
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            PrintDelayed("You have allready taken the spare torch");
+                            Console.ReadKey();
+                        }
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -731,30 +743,23 @@ namespace Studio_1
                 {
                     PrintDelayed($"{hero.name} Strikes the {monster.name} and misses");
                 }
-                if (monster.health.curHP > 0)
-                {
-                    monster.PrintHealthBar();
-                }
-                else
-                {
-                    PrintDelayed($"{monster.name} has been defeated");
-                }
                 if (hero.bomb || hero.HealthPotion)
                 {
-                    PrintDelayed("Would you like to use an item Y/N ");
+                    PrintDelayed("\nWould you like to use an item Y/N ");
                     string item = Console.ReadLine().ToUpper();
                     if (item == "Y")
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
-                        item = Console.ReadLine();
+                        item = Console.ReadLine().ToUpper();
                         switch (item)
                         {
                             case "BOMB":
                                 if (hero.bomb == true)
                                 {
                                     dam = random.Next(1, 9);
-                                    PrintDelayed($"You throw your bomb at the monster and it explodes dealing {dam}");
+                                    PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {dam} damage");
                                     monster.health.curHP -= dam;
+                                    hero.bomb = false;
                                 }
                                 else
                                 {
@@ -767,6 +772,7 @@ namespace Studio_1
                                     int heal = random.Next(1, 9);
                                     PrintDelayed($"You drink your health potion and heal yourself for {heal}");
                                     hero.health.curHP += heal;
+                                    hero.HealthPotion = false;
                                 }
                                 else
                                 {
@@ -774,6 +780,14 @@ namespace Studio_1
                                 }
                                 break;
                         }
+                    }
+                    if (monster.health.curHP > 0)
+                    {
+                        monster.PrintHealthBar();
+                    }
+                    else
+                    {
+                        PrintDelayed($"{monster.name} has been defeated");
                     }
                     if (monster.health.curHP > 0)
                     {
