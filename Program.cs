@@ -639,6 +639,14 @@ namespace Studio_1
             Thread.Sleep(200);
         }
 
+        /// <summary>Print merged with sleep(), with custom time</summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static void PrintDelayed(string text,int duration)
+        {
+            Console.WriteLine(text);
+            Thread.Sleep(duration);
+        }
+        
         public static Entity.Character GetChar(int menu)
         {
             switch (menu)
@@ -847,7 +855,7 @@ namespace Studio_1
             } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
         }
 
-        // Function that scans through a list of paths and returns the first valid one. Returns null if none found.
+        /// <summary>Function that scans through a list of paths and returns the first valid one. Returns null if none found.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string? FindWorkingPath(string[] paths)
         {
