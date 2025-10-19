@@ -137,7 +137,8 @@ namespace Studio_1
                 PrintDelayed($"Slumped up against the wall just under the torch is a small {BLUE}SKELETON{RESET}");
                 Console.WriteLine();
                 PrintDelayed("What would you like to do?");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT SKELETON","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -223,7 +224,8 @@ namespace Studio_1
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
                 PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
                 PrintDelayed("What would you like to do?");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","GO EAST","INSPECT TORCH","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -298,7 +300,8 @@ namespace Studio_1
                 PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Console.WriteLine("What would you like to do?");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO SOUTH","INSPECT GHOUL","INSPECT HOLE","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -377,7 +380,8 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} is the stairs back down to the first floor");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a stone door with symbols carved into the frame");
                 PrintDelayed($"On the floor under one of the statues is a {BLUE}CANDLE{RESET}");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","GO EAST","GO WEST","INSPECT CANDLE","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -423,7 +427,8 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall wich eminates a ominus presance");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO EAST","GO WEST","INSPECT","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO EAST":
@@ -480,7 +485,8 @@ namespace Studio_1
                 PrintDelayed("The room is eerily quiet now.");
                 PrintDelayed("The Elite Wraith lies defeated, its essence fading.");
                 PrintDelayed("To the WEST is the way back.");
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO WEST","INSPECT WRAITH","STATUS","HELP"],"");
 
                 switch (choice)
                 {
@@ -528,7 +534,8 @@ namespace Studio_1
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background 
                 //Text goes here
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -566,7 +573,8 @@ namespace Studio_1
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
                 //Text goes here
-                choice = Console.ReadLine().ToUpper();
+                // choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["GO NORTH","INSPECT","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -600,6 +608,7 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
                 //Text goes here
                 choice = Console.ReadLine().ToUpper();
+                // choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -784,7 +793,8 @@ namespace Studio_1
                     if (userResponse == "Y")
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
-                        string item = Console.ReadLine().ToUpper();
+                        // string item = Console.ReadLine().ToUpper();
+                        string item = Selector.DefaultSelectorMenu(["BOMB","POTION","CANCEL"],"");
                         switch (item)
                         {
                             case "BOMB":
@@ -812,6 +822,8 @@ namespace Studio_1
                                 {
                                     PrintDelayed($"You do not currently have a POTION");
                                 }
+                                break;
+                            case "CANCEL":
                                 break;
                         }
                     }
