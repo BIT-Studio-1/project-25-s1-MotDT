@@ -35,11 +35,11 @@ namespace Studio_1
         {
             // Title Card
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
-            
+
             //intro paragraph
             Console.WriteLine();
             PrintDelayed("Cold stone and stale air greet you.");
-            PrintDelayed("To the south a rusted door that promises danger and a chance at freedom."); 
+            PrintDelayed("To the south a rusted door that promises danger and a chance at freedom.");
             Console.WriteLine("Choose Beef, Stabbs, or Dodgio and prove your fate.\n");
 
             // Character Selection dialog
@@ -67,7 +67,7 @@ namespace Studio_1
                 Console.Write("Is this you? [y/n]: ");
                 confirm = Console.ReadLine();
             } while (confirm.ToLower() != "y");
-            
+
             Entity.Character hero = GetChar(menu);
             Console.WriteLine("Press ENTER to begin");
             Console.ReadLine();
@@ -146,8 +146,7 @@ namespace Studio_1
                     case "GO SOUTH":
                         PrintDelayed("Do you wish to run in fear of THE TOWER!!!");
                         Console.WriteLine("Y/N");
-                        char leave = Convert.ToChar(Console.ReadLine());
-                        leave = char.ToUpper(leave);
+                        char leave = char.ToUpper(Convert.ToChar(Console.ReadLine()));
                         if (leave == 'Y')
                         {
                             PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
@@ -167,7 +166,7 @@ namespace Studio_1
                             if (search == "Y")
                             {
                                 int check = Roll(state.hero.toughness, ref state.random_gen);
-                                if (check >12)
+                                if (check > 12)
                                 {
                                     PrintDelayed("\nYou push past a giant rat as it claws at your arm");
                                     PrintDelayed("and Find a small bomb hidden inside the skeletons ribs and decide to take it");
@@ -255,7 +254,7 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("\nYou have allready taken the spare torch");
+                            PrintDelayed("\nYou have already taken the spare torch");
                             Console.ReadKey();
                         }
                         break;
@@ -324,8 +323,8 @@ namespace Studio_1
                         if (state.hero.torch)
                         {
                             PrintDelayed("\nYou shine the torch inside the hole");
-                            PrintDelayed("on the floor there is a large stone pressure palte and \nin the far corner of the room a bright red vile lies on the floor");
-                            PrintDelayed("tankfuly with the help of the torch avoivding the pressure palte is easy and you pick up the health potion");
+                            PrintDelayed("on the floor there is a large stone pressure plate and \nin the far corner of the room a bright red vial lies on the floor");
+                            PrintDelayed("thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the health potion");
                             state.hero.HealthPotion = true;
                         }
                         else
@@ -345,7 +344,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide its best to come back with some light");
                             }
                         }
-                         Console.ReadKey();
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -458,14 +457,14 @@ namespace Studio_1
         {
             string choice;
             do
-            {   
+            {
                 Console.Clear();
                 // if the elite wraith is still alive, initiate combat
                 if (state.monsters[3].health.IsAlive == true)
                 {
-                    
+
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10); //Background 
-                   
+
                     // art file for the monster needed
 
                     //text for the room before combat
@@ -475,7 +474,7 @@ namespace Studio_1
 
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
                 }
-                
+
                 // After combat, show the cleared room
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10);
                 PrintDelayed("The room is eerily quiet now.");
@@ -641,12 +640,12 @@ namespace Studio_1
 
         /// <summary>Print merged with sleep(), with custom time</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PrintDelayed(string text,int duration)
+        static void PrintDelayed(string text, int duration)
         {
             Console.WriteLine(text);
             Thread.Sleep(duration);
         }
-        
+
         public static Entity.Character GetChar(int menu)
         {
             switch (menu)
@@ -718,8 +717,7 @@ namespace Studio_1
                     string? line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        Console.WriteLine(line);
-                        Thread.Sleep(printDelay);
+                        PrintDelayed(line, printDelay);
                     }
                 }
             }
@@ -768,11 +766,10 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                int dam; ;
                 int player_roll = Roll(hero.strength, ref random);
                 if (player_roll >= monster.hitDiff)
                 {
-                    dam = random.Next(1, hero.damDice + 1);
+                    int dam = random.Next(1, hero.damDice + 1);
                     monster.health.curHP -= dam;
                     PrintDelayed($"You strike the {monster.name} for {dam} damage");
                 }
@@ -783,17 +780,17 @@ namespace Studio_1
                 if (hero.bomb || hero.HealthPotion)
                 {
                     PrintDelayed("\nWould you like to use an item Y/N ");
-                    string item = Console.ReadLine().ToUpper();
-                    if (item == "Y")
+                    string userResponse = Console.ReadLine().ToUpper();
+                    if (userResponse == "Y")
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
-                        item = Console.ReadLine().ToUpper();
+                        string item = Console.ReadLine().ToUpper();
                         switch (item)
                         {
                             case "BOMB":
                                 if (hero.bomb == true)
                                 {
-                                    dam = random.Next(1, 9);
+                                    int dam = random.Next(1, 9);
                                     PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {dam} damage");
                                     monster.health.curHP -= dam;
                                     hero.bomb = false;
@@ -818,21 +815,17 @@ namespace Studio_1
                                 break;
                         }
                     }
+
+                    // The united lines of monster health checking
                     if (monster.health.curHP > 0)
                     {
+                        // IT DOES WHAT IT DOES
                         monster.PrintHealthBar();
-                    }
-                    else
-                    {
-                        PrintDelayed($"{monster.name} has been defeated");
-                    }
-                    if (monster.health.curHP > 0)
-                    {
                         //Monster 'attacks'
                         player_roll = Roll(hero.finesse, ref random);
                         if (player_roll <= monster.dodgeDiff)
                         {
-                            dam = random.Next(1, monster.damDice + 1);
+                            int dam = random.Next(1, monster.damDice + 1);
                             hero.health.curHP -= dam;
                             PrintDelayed($"{monster.name} strikes you for {dam} damage");
                         }
@@ -841,6 +834,12 @@ namespace Studio_1
                             PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
                         }
                     }
+                    else
+                    {
+                        PrintDelayed($"{monster.name} has been defeated");
+                    }
+
+                    // Check on the hero
                     if (hero.health.curHP <= 0)
                     {
                         GameOver();
