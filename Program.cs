@@ -813,8 +813,11 @@ namespace Studio_1
 
         public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
-            PrintDelayed("You lose");
-            PrintDelayed("GAME OVER");
+            PrintDelayed("");
+            Console.ForegroundColor= ConsoleColor.Red;
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 25, 10); //Game over ASCII art
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 25, 10); //Game over ASCII art
             Environment.Exit(2000);
         }
