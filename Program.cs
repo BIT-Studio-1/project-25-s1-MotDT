@@ -62,7 +62,7 @@ namespace Studio_1
                     Console.Write("\nEnter your choice: ");
                     tmp = Console.ReadLine();
                     parse = int.TryParse(tmp, out menu);
-                } while (menu < 1 || menu > 3 || parse == false);
+                } while (menu < 1 || menu > 4 || parse == false);
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
@@ -559,7 +559,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
                 PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -733,6 +733,19 @@ namespace Studio_1
                             damDice = 6,
                             strength = 2,
                             finesse = 1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                    }
+                case 4:
+                    {
+                        return new Entity.Character
+                        {
+                            name = "Joe Biden",
+                            health = Entity.EntityHealth.InitHealth(4),
+                            damDice = 10,
+                            strength = 8,
+                            finesse = 0,
                             toughness = 0,
                             presence = 0
                         };
