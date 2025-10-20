@@ -485,26 +485,24 @@ namespace Studio_1
                 if (state.monsters[3].health.IsAlive == true)
                 {
 
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10); //Background 
-
-                    // art file for the monster needed
-
-                    //text for the room before combat
-                    PrintDelayed("A chilling presence fills the hall...");
-                    PrintDelayed("The Elite Wraith emerges from the shadows!");
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
+                    PrintDelayed("A chilling presence fills the chamber...");
+                    PrintDelayed("The runic circle begins to glow and a large Wraith emerges!");
+                    PrintDelayed("Prepare for combat...");
                     choice = Console.ReadLine().ToUpper();
 
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
                 }
-
                 // After combat, show the cleared room
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2.txt", "Art Files/F2EastHall2.txt" }), 25, 10);
-                PrintDelayed("The room is eerily quiet now.");
-                PrintDelayed("The Elite Wraith lies defeated, its essence fading.");
-                PrintDelayed("To the WEST is the way back.");
-                // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO WEST", "INSPECT WRAITH", "STATUS", "HELP"], "");
-
+                else
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2WraithDead.txt", "Art Files/F2EastHall2WraithDead.txt" }), 25, 10);
+                    PrintDelayed("The chamber is filled with a eerie silence.");
+                    PrintDelayed($"The {BLUE}WRAITH{RESET} has disintegrated, its faint miasma still lingering.");
+                    PrintDelayed($"The {BLUE}MAGIC CIRCLE{RESET} that summoned the wraith is still faintly glowing on the ground");
+                    PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} is the hole back.");
+                    choice = Selector.DefaultSelectorMenu(["GO WEST", "INSPECT WRAITH", "INSPECT MAGIC CIRCLE", "STATUS", "HELP"], "");
+                }
                 switch (choice)
                 {
                     case "GO WEST":
@@ -513,7 +511,7 @@ namespace Studio_1
                     case "INSPECT WRAITH":
                         if (state.monsters[3].item1 == true)
                         {
-                            PrintDelayed("\nYou find a strange glowing key among the Wraith’s remains.");
+                            PrintDelayed("\nYou find a strange glowing key on the floor where the wraith disintegrated.");
                             PrintDelayed("This must unlock something deeper in the tower...");
                             Console.ReadKey();
                             state.monsters[3].item1 = false;
@@ -521,9 +519,14 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("\nThere is nothing of use.");
+                            PrintDelayed("\nThe miasma left by the wraith chills your bones.");
                             Console.ReadKey();
                         }
+                        break;
+                    case "INSPECT MAGIC CIRCLE":
+                        PrintDelayed("The lines and runes of the circle pulse with a dull arcane purple.");
+                        PrintDelayed("You hope that the circle won't summon anything else");
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
