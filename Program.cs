@@ -886,7 +886,7 @@ namespace Studio_1
                 }
                 Thread.Sleep(1000);
                 
-            } while (hero.health.curHP > 0 || monster.health.curHP > 0);
+            } while (hero.health.curHP > 0 && monster.health.curHP > 0);
             Console.Clear();
         }
 
