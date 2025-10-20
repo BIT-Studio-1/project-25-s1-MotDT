@@ -549,9 +549,11 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background 
-                //Text goes here
-                // choice = Console.ReadLine().ToUpper();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background
+                PrintDelayed($"You find yourself in a large stone room in the middle of it there is a large {BLUE}magic circle{RESET} behind which there is a {BLUE}LECTERN{RESET}");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
+                PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE{RESET}");
                 choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT", "STATUS", "HELP"], "");
                 switch (choice)
                 {
@@ -884,7 +886,7 @@ namespace Studio_1
                 }
                 Thread.Sleep(1000);
                 
-            } while (monster.health.curHP > 0 || monster.health.curHP > 0);
+            } while (hero.health.curHP > 0 || monster.health.curHP > 0);
             Console.Clear();
         }
 
