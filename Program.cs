@@ -449,7 +449,7 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk drawers");
                         }
-                            Console.ReadKey();
+                        Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
@@ -559,7 +559,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
                 PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -569,20 +569,63 @@ namespace Studio_1
                         F2SouthHall2(state);
                         break;
                     case "INSPECT MAGIC CIRCLE":
+                        PrintDelayed("The circle is engraved with arcane runes beyond your understanding.");
+                        PrintDelayed("It appears to be dormant.");
                         Console.ReadKey();
                         break;
                     case "INSPECT LECTERN":
+                        if (state.hero.tomeInteract == true)
+                        {
+                            PrintDelayed("The lectern is now empty");
+                        }
+                        else
+                        {
+                            PrintDelayed("There is an aged tome bound by leather atop the lectern.");
+                            PrintDelayed("The cover has runes that you cannot understand engraved into the leather.");
+                            PrintDelayed("Do you want to open the tome?");
+                            if (Selector.BoolSelectorMenu(""))
+                            {
+                                PrintDelayed("You cautiously flip open the first page.");
+                                PrintDelayed("The page is covered in seemingly innocuous runes, although you can't understand any of it.");
+                                PrintDelayed("Just as you are about to put the tome down in disappointment, the runes on the page suddenly begin to glow and you feel mana begin to circulate within your body");
+                                PrintDelayed("You feel your will being tested...");
+                                Thread.Sleep(1000);
+                                int check = Roll(state.hero.toughness, ref state.random_gen);
+                                if (check > 10)
+                                {
+                                    PrintDelayed($"\nAfter some struggle you feel the mana settle within your body");
+                                    PrintDelayed("Your senses feel sharper!.");
+                                    PrintDelayed($"{GREEN}+1 Strength{RESET}");
+                                    state.hero.strength++;
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    PrintDelayed("The mana coursing through your body proves to be too much to handle");
+                                    PrintDelayed("Your senses feel a little duller");
+                                    PrintDelayed($"{RED}-1 Strength{RESET}");
+                                    state.hero.strength--;
+                                    Console.ReadKey();
+                                }
+                                PrintDelayed("The tome crumbles into dust in your hands.");
+                                state.hero.tomeInteract = true;
+                            }
+                            else
+                            {
+                                PrintDelayed("You decide reading a suspicious ancient tome may not be the best idea.");
+                            }
+                        }
                         Console.ReadKey();
                         break;
                     case "INSPECT CANDLE HOLDER":
                         if (!state.hero.candle2)
                         {
-                            PrintDelayed("You pull the last intact candle from the wall holder and decide to store it for later.");
+                            PrintDelayed($"You pull the last intact {MAGENTA}CANDLE{RESET} from the wall holder and decide to store it for later.");
                             state.hero.candle2 = true;
                         }
                         else
                         {
-                            PrintDelayed("You find only the burned out remains of the other candles.");
+                            PrintDelayed("There is only the burned out remains of the other candles left.");
                         }
                         Console.ReadKey();
                         break;
@@ -603,7 +646,6 @@ namespace Studio_1
         //Floor 2 South Hall 2
         //-> North F2SouthHall1
         //Room with locked chest containing key that needs a code
-        //Enemy in room you have to approach, has candle on body
         static void F2SouthHall2(GameState state)
         {
             string choice;
@@ -745,7 +787,7 @@ namespace Studio_1
                             health = Entity.EntityHealth.InitHealth(4),
                             damDice = 10,
                             strength = 8,
-                            finesse = 0,
+                            finesse = 1,
                             toughness = 0,
                             presence = 0
                         };
@@ -869,7 +911,7 @@ namespace Studio_1
                                 {
                                     int heal = random.Next(1, 9);
                                     PrintDelayed($"You drink your health potion and heal yourself for {heal}");
-                                    hero.health.curHP += heal;
+                                    hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
                                     hero.HealthPotion = false;
                                 }
                                 else

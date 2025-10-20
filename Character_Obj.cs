@@ -26,6 +26,7 @@ namespace Studio_1
             public bool candle1;
             public bool candle2;
             public bool candle3;
+            public bool tomeInteract;
 
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
