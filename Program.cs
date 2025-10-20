@@ -105,8 +105,8 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(20), // tougher HP
                         name = "Elite Wraith",                      // elite boss name
-                        damDice = 8,                               // stronger damage changed from 10 to 8
-                        dodgeDiff = 14,                             // harder to hit changed from 18 to14
+                        damDice = 6,                               // stronger damage changed from 10 to 6
+                        dodgeDiff = 14,                             // harder to hit changed from 18 to 14
                         hitDiff = 12,                               // harder to dodge changed from 14 to 12
                         item1 = true                                // drops the special key
     }
@@ -660,7 +660,7 @@ namespace Studio_1
         static void PrintDelayed(string text)
         {
             Console.WriteLine(text);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
         }
 
         /// <summary>Print merged with sleep(), with custom time</summary>
