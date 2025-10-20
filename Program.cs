@@ -139,7 +139,7 @@ namespace Studio_1
                 Console.WriteLine();
                 PrintDelayed("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT SKELETON","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT SKELETON", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -226,7 +226,7 @@ namespace Studio_1
                 PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
                 PrintDelayed("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","GO EAST","INSPECT TORCH","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "GO EAST", "INSPECT TORCH", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -302,7 +302,7 @@ namespace Studio_1
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Console.WriteLine("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO SOUTH","INSPECT GHOUL","INSPECT HOLE","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO SOUTH", "INSPECT GHOUL", "INSPECT HOLE", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -335,7 +335,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nThe hole is pitch black");
                             PrintDelayed("Would you like to go through anyway?");
-                            choice = Selector.DefaultSelectorMenu(["YES", "NO"],"");
+                            choice = Selector.DefaultSelectorMenu(["YES", "NO"], "");
                             if (choice == "YES")
                             {
                                 PrintDelayed("\nYou stumble forward into the darkness.");
@@ -382,7 +382,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a stone door with symbols carved into the frame");
                 PrintDelayed($"On the floor under one of the statues is a {BLUE}CANDLE{RESET}");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","GO EAST","GO WEST","INSPECT CANDLE","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "GO EAST", "GO WEST", "INSPECT CANDLE", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -432,7 +432,7 @@ namespace Studio_1
                 PrintDelayed($"By the north wall is a {BLUE}DESK{RESET} with a large ornate {BLUE}WINDOW{RESET} behind it.");
                 PrintDelayed($"{BLUE}BOOKSHELVES{RESET} filled with old parchments and scrolls line the walls.");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO EAST","GO WEST","INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO EAST", "GO WEST", "INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO EAST":
@@ -501,7 +501,7 @@ namespace Studio_1
                 PrintDelayed("The Elite Wraith lies defeated, its essence fading.");
                 PrintDelayed("To the WEST is the way back.");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO WEST","INSPECT WRAITH","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO WEST", "INSPECT WRAITH", "STATUS", "HELP"], "");
 
                 switch (choice)
                 {
@@ -550,7 +550,7 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background 
                 //Text goes here
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -589,7 +589,7 @@ namespace Studio_1
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
                 //Text goes here
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH","INSPECT","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "INSPECT", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -801,15 +801,18 @@ namespace Studio_1
                 {
                     PrintDelayed($"{hero.name} Strikes the {monster.name} and misses");
                 }
+
+                // If the player has any type of consumable.
                 if (hero.bomb || hero.HealthPotion)
                 {
                     PrintDelayed("\nWould you like to use an item Y/N ");
                     // string userResponse = Console.ReadLine().ToUpper();
+                    // if (userResponse == "Y")
                     if (Selector.BoolSelectorMenu(""))
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
                         // string item = Console.ReadLine().ToUpper();
-                        string item = Selector.DefaultSelectorMenu(["BOMB","POTION","CANCEL"],"");
+                        string item = Selector.DefaultSelectorMenu(["BOMB", "POTION", "CANCEL"], "");
                         switch (item)
                         {
                             case "BOMB":
@@ -843,42 +846,44 @@ namespace Studio_1
                         }
                     }
 
-                    // The united lines of monster health checking
-                    if (monster.health.curHP > 0)
-                    {
-                        // IT DOES WHAT IT DOES
-                        monster.PrintHealthBar();
-                        //Monster 'attacks'
-                        player_roll = Roll(hero.finesse, ref random);
-                        if (player_roll <= monster.dodgeDiff)
-                        {
-                            int dam = random.Next(1, monster.damDice + 1);
-                            hero.health.curHP -= dam;
-                            PrintDelayed($"{monster.name} strikes you for {dam} damage");
-                        }
-                        else
-                        {
-                            PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
-                        }
-                    }
-                    else
-                    {
-                        PrintDelayed($"{monster.name} has been defeated");
-                    }
+                }
 
-                    // Check on the hero
-                    if (hero.health.curHP <= 0)
+                // The united lines of monster health checking
+                if (monster.health.curHP > 0)
+                {
+                    // IT DOES WHAT IT DOES
+                    monster.PrintHealthBar();
+                    //Monster 'attacks'
+                    player_roll = Roll(hero.finesse, ref random);
+                    if (player_roll <= monster.dodgeDiff)
                     {
-                        GameOver();
+                        int dam = random.Next(1, monster.damDice + 1);
+                        hero.health.curHP -= dam;
+                        PrintDelayed($"{monster.name} strikes you for {dam} damage");
                     }
                     else
                     {
-                        hero.PrintHealthBar();
-                        Thread.Sleep(1000);
+                        PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
                     }
+                }
+                else
+                {
+                    PrintDelayed($"{monster.name} has been defeated");
+                }
+
+                // Check on the hero
+                if (hero.health.curHP <= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    hero.PrintHealthBar();
                     Thread.Sleep(1000);
                 }
-            } while (monster.health.curHP! > 0 || monster.health.curHP! > 0);
+                Thread.Sleep(1000);
+                
+            } while (monster.health.curHP > 0 || monster.health.curHP > 0);
         }
 
         /// <summary>Function that scans through a list of paths and returns the first valid one. Returns null if none found.</summary>
