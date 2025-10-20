@@ -884,6 +884,7 @@ namespace Studio_1
                 Thread.Sleep(1000);
                 
             } while (monster.health.curHP > 0 || monster.health.curHP > 0);
+            Console.Clear();
         }
 
         /// <summary>Function that scans through a list of paths and returns the first valid one. Returns null if none found.</summary>
