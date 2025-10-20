@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Security.Principal;
 using static Studio_1.Entity;
 
 namespace Studio_1
@@ -425,10 +426,13 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
-                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall wich eminates a ominus presance");
+                PrintDelayed("You enter what appears to be a Study dimly lit by moonlight coming through the windows.");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall which eminates a ominous presence");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
+                PrintDelayed($"By the north wall is a {BLUE}DESK{RESET} with a large ornate {BLUE}WINDOW{RESET} behind it.");
+                PrintDelayed($"{BLUE}BOOKSHELVES{RESET} filled with old parchments and scrolls line the walls.");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO EAST","GO WEST","INSPECT","STATUS","HELP"],"");
+                choice = Selector.DefaultSelectorMenu(["GO EAST","GO WEST","INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO EAST":
@@ -437,7 +441,18 @@ namespace Studio_1
                     case "GO WEST":
                         F2Main(state);
                         break;
-                    case "INSPECT":
+                    case "INSPECT DESK":
+                        PrintDelayed("The desk is covered covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
+                        PrintDelayed("Searching through the drawers you find a candle and stash it for later.");
+                        //add candle logic
+                        Console.ReadKey();
+                        break;
+                    case "INSPECT WINDOW":
+                        PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
+                        Console.ReadKey();
+                        break;
+                    case "INSPECT BOOKSHELVES":
+                        PrintDelayed("You spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
                         Console.ReadKey();
                         break;
                     case "STATUS":
