@@ -557,7 +557,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
                 PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
