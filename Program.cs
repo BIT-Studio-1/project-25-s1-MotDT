@@ -163,6 +163,8 @@ namespace Studio_1
                             // string search = Console.ReadLine().ToUpper();
                             if (Selector.BoolSelectorMenu(""))
                             {
+                                PrintDelayed("Testing your TOUGHNESS...");
+                                Thread.Sleep(1000);
                                 int check = Roll(state.hero.toughness, ref state.random_gen);
                                 if (check > 12)
                                 {
@@ -179,7 +181,7 @@ namespace Studio_1
                                     {
                                         PrintDelayed("You fall to the ground in agony as the rat bites your ankle");
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
-                                        PrintDelayed("bozo");
+                                        PrintDelayed("L bozo");
                                         GameOver();
                                     }
                                     Console.ReadKey();
@@ -488,8 +490,8 @@ namespace Studio_1
                 {
 
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
-                    PrintDelayed("A chilling presence fills the chamber...");
-                    PrintDelayed($"The runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
+                    PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
+                    PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
                     Console.ReadKey();
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
@@ -576,7 +578,7 @@ namespace Studio_1
                     case "INSPECT LECTERN":
                         if (state.hero.tomeInteract == true)
                         {
-                            PrintDelayed("The lectern is now empty");
+                            PrintDelayed("The lectern is empty");
                         }
                         else
                         {
@@ -588,7 +590,7 @@ namespace Studio_1
                                 PrintDelayed("You cautiously flip open the first page.");
                                 PrintDelayed("The page is covered in seemingly innocuous runes, although you can't understand any of it.");
                                 PrintDelayed("Just as you are about to put the tome down in disappointment, the runes on the page suddenly begin to glow and you feel mana begin to circulate within your body");
-                                PrintDelayed("You feel your will being tested...");
+                                PrintDelayed("Testing your TOUGHNESS...");
                                 Thread.Sleep(1000);
                                 int check = Roll(state.hero.toughness, ref state.random_gen);
                                 if (check > 10)
