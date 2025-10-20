@@ -65,13 +65,9 @@ namespace Studio_1
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
-                // Console.Write("Is this you? [y/n]: \n");
-                // confirm = Console.ReadLine();
             } while (!Selector.BoolSelectorMenu("Is this you?: \n"));
 
             Entity.Character hero = GetChar(menu);
-            Console.WriteLine("Press ENTER to begin");
-            Console.ReadLine();
 
             // Initialize the game's state.
             GameState initial_state = new GameState
@@ -147,9 +143,7 @@ namespace Studio_1
                         break;
                     case "GO SOUTH":
                         PrintDelayed("Do you wish to run in fear of THE TOWER!!!");
-                        Console.WriteLine("Y/N");
-                        char leave = char.ToUpper(Convert.ToChar(Console.ReadLine()));
-                        if (leave == 'Y')
+                        if (Selector.BoolSelectorMenu(""))
                         {
                             PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
                             PrintDelayed("You run back to your horse hitched outside and return to your life back home");
