@@ -873,7 +873,7 @@ namespace Studio_1
                                 {
                                     int heal = random.Next(1, 9);
                                     PrintDelayed($"You drink your health potion and heal yourself for {heal}");
-                                    hero.health.curHP += heal;
+                                    hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
                                     hero.HealthPotion = false;
                                 }
                                 else
