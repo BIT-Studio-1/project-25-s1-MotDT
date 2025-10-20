@@ -735,6 +735,19 @@ namespace Studio_1
                             presence = 0
                         };
                     }
+                case 4:
+                    {
+                        return new Entity.Character
+                        {
+                            name = "Joe Biden",
+                            health = Entity.EntityHealth.InitHealth(4),
+                            damDice = 10,
+                            strength = 3,
+                            finesse = 1,
+                            toughness = 0,
+                            presence = 0
+                        };
+                    }
                 default:
                     Console.WriteLine("Error Returning default");
                     return new Entity.Character
