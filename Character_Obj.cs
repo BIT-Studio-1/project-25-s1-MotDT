@@ -23,6 +23,9 @@ namespace Studio_1
             public bool F2Key1; //Exit condition for the demo
             public bool F2Key2; // Exit condition for the demo
             public bool torch; // Torch to see into dark hole
+            public bool candle1;
+            public bool candle2;
+            public bool candle3;
 
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()

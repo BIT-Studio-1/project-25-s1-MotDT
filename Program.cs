@@ -437,9 +437,16 @@ namespace Studio_1
                         break;
                     case "INSPECT DESK":
                         PrintDelayed("The desk is covered covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
-                        PrintDelayed("Searching through the drawers you find a candle and stash it for later.");
-                        //add candle logic
-                        Console.ReadKey();
+                        if (!state.hero.candle1)
+                        {
+                            PrintDelayed("Searching through the drawers you find a candle and stash it for later.");
+                            state.hero.candle1 = true;
+                        }
+                        else
+                        {
+                            PrintDelayed("You find nothing else of use inside the desk draws");
+                        }
+                            Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
