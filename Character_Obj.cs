@@ -33,7 +33,8 @@ namespace Studio_1
                 Console.WriteLine($@"┌──────────────────────────┐
 │ {Program.BOLD}{name.PadRight(17)}{Program.NOBOLD}  Stats │
 ├─────────────────┬────────┤
-│ Maximum Health  │ {health.curHP.ToString().PadRight(6)} │
+│ Maximum Health  │ {health.maxHP.ToString().PadRight(6)} │
+│ Current Health  │ {health.curHP.ToString().PadRight(6)} │
 │ Strength bonus  │ {strength.ToString().PadRight(6)} │
 │ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
 │ Toughness Bonus │ {toughness.ToString().PadRight(6)} │

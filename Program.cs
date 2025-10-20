@@ -765,7 +765,6 @@ namespace Studio_1
 │   USE {MAGENTA}[ITEM]{RESET}   │ Use an item in your inventory                                                    │
 │     STATUS     │ Shows the players character sheet                                                │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
-            PrintDelayed($"Note: Commands are not case sensitive.");
             PrintDelayed("◆ Press any key to continue");
             Console.ReadKey();
             Console.Clear();
