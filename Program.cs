@@ -898,7 +898,7 @@ namespace Studio_1
                             case "BOMB":
                                 if (hero.bomb == true)
                                 {
-                                    int dam = random.Next(1, 9);
+                                    int dam = random.Next(4, 9);
                                     PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {dam} damage");
                                     monster.health.curHP -= dam;
                                     hero.bomb = false;
@@ -911,7 +911,7 @@ namespace Studio_1
                             case "POTION":
                                 if (hero.HealthPotion == true)
                                 {
-                                    int heal = random.Next(1, 9);
+                                    int heal = random.Next(4, 9);
                                     PrintDelayed($"You drink your health potion and heal yourself for {heal}");
                                     hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
                                     hero.HealthPotion = false;
