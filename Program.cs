@@ -447,7 +447,7 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk draws");
                         }
-                            Console.ReadKey();
+                        Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
@@ -557,7 +557,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
                 PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -743,7 +743,7 @@ namespace Studio_1
                             health = Entity.EntityHealth.InitHealth(4),
                             damDice = 10,
                             strength = 8,
-                            finesse = 0,
+                            finesse = 1,
                             toughness = 0,
                             presence = 0
                         };
