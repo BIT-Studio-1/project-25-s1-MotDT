@@ -449,7 +449,7 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk drawers");
                         }
-                            Console.ReadKey();
+                        Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
@@ -787,7 +787,7 @@ namespace Studio_1
                             health = Entity.EntityHealth.InitHealth(4),
                             damDice = 10,
                             strength = 8,
-                            finesse = 0,
+                            finesse = 1,
                             toughness = 0,
                             presence = 0
                         };
@@ -857,8 +857,12 @@ namespace Studio_1
 
         public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
-            PrintDelayed("You lose");
-            PrintDelayed("GAME OVER");
+            PrintDelayed("");
+            Console.ForegroundColor= ConsoleColor.Red;
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 25, 10); //Game over ASCII art
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 25, 10); //Game over ASCII art
             Environment.Exit(2000);
         }
 
@@ -911,7 +915,7 @@ namespace Studio_1
                                 {
                                     int heal = random.Next(1, 9);
                                     PrintDelayed($"You drink your health potion and heal yourself for {heal}");
-                                    hero.health.curHP += heal;
+                                    hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
                                     hero.HealthPotion = false;
                                 }
                                 else
