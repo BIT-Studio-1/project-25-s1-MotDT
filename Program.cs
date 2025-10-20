@@ -34,6 +34,7 @@ namespace Studio_1
 
         static void Main()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             // Title Card
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
 
