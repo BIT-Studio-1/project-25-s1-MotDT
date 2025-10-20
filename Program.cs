@@ -49,7 +49,7 @@ namespace Studio_1
             PrintDelayed($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
             PrintDelayed($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-            string confirm;
+            // string confirm;
             int menu;
             do
             {
@@ -64,12 +64,12 @@ namespace Studio_1
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
-                Console.Write("Is this you? [y/n]: ");
-                confirm = Console.ReadLine();
-            } while (confirm.ToLower() != "y");
+                // Console.Write("Is this you? [y/n]: \n");
+                // confirm = Console.ReadLine();
+            } while (!Selector.BoolSelectorMenu("Is this you? [y/n]: \n"));
 
             Entity.Character hero = GetChar(menu);
-            Console.WriteLine("Press ENTER to begin");
+            Console.WriteLine("◆ Press ENTER to begin");
             Console.ReadLine();
 
             // Initialize the game's state.
@@ -163,8 +163,8 @@ namespace Studio_1
                         if (!state.hero.bomb)
                         {
                             PrintDelayed($"\nYou see something inside the Skeletons rib cage would you like to grab it Y/N");
-                            string search = Console.ReadLine().ToUpper();
-                            if (search == "Y")
+                            // string search = Console.ReadLine().ToUpper();
+                            if (Selector.BoolSelectorMenu(""))
                             {
                                 int check = Roll(state.hero.toughness, ref state.random_gen);
                                 if (check > 12)
@@ -180,8 +180,8 @@ namespace Studio_1
                                     state.hero.health.curHP -= 1;
                                     if (state.hero.health.curHP <= 0)
                                     {
-                                        PrintDelayed("You fall to the ground in agony as another rat bites your ancle");
-                                        PrintDelayed("Soon you are overwelmed by vermin and sucm to the swarm");
+                                        PrintDelayed("You fall to the ground in agony as another rat bites your ankle");
+                                        PrintDelayed("Soon you are overwhelmed by vermin and succumb to the swarm");
                                         GameOver();
                                     }
                                     Console.ReadKey();
@@ -190,7 +190,7 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("You find nothing of use on the crumpled remains of the skeleton");
+                            PrintDelayed("◆ You find nothing of use on the crumpled remains of the skeleton");
                             Console.ReadKey();
                         }
                         break;
@@ -201,7 +201,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.WriteLine($"\n◆ Sorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -237,26 +237,26 @@ namespace Studio_1
                     case "GO EAST":
                         if (state.hero.F1Key == true)
                         {
-                            PrintDelayed("You unlock the gate and proceed up the stairs");
+                            PrintDelayed("◆ You unlock the gate and proceed up the stairs");
                             Console.ReadKey();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
-                            PrintDelayed("You fiddle with the lock but it refuses to budge");
+                            PrintDelayed("◆ You fiddle with the lock but it refuses to budge");
                             Console.ReadKey();
                         }
                         break;
                     case "INSPECT TORCH":
                         if (!state.hero.torch)
                         {
-                            PrintDelayed($"\nYou decide to take the extra torch with you\nnever know when it might come in handy");
+                            PrintDelayed($"\n◆ You decide to take the extra torch with you\nnever know when it might come in handy");
                             state.hero.torch = true;
                             Console.ReadKey();
                         }
                         else
                         {
-                            PrintDelayed("\nYou have already taken the spare torch");
+                            PrintDelayed("\n◆ You have already taken the spare torch");
                             Console.ReadKey();
                         }
                         break;
@@ -311,14 +311,14 @@ namespace Studio_1
                         if (state.monsters[0].item1 == true)
                         {
                             PrintDelayed("\nYou find a key on the body of the ghoul");
-                            PrintDelayed("You think this may be the key to the stair case to ascend the tower");
+                            PrintDelayed("◆ You think this may be the key to the stair case to ascend the tower");
                             Console.ReadKey();
                             state.monsters[0].item1 = false;
                             state.hero.F1Key = true;
                         }
                         else
                         {
-                            PrintDelayed("\nYou find nothing of use");
+                            PrintDelayed("\n◆ You find nothing of use");
                             Console.ReadKey();
                         }
                         break;
@@ -344,7 +344,7 @@ namespace Studio_1
                             }
                             else
                             {
-                                PrintDelayed("\nYou decide its best to come back with some light");
+                                PrintDelayed("\n◆ You decide its best to come back with some light.");
                             }
                         }
                         Console.ReadKey();
@@ -447,7 +447,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.WriteLine($"\n◆ Sorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -497,14 +497,14 @@ namespace Studio_1
                         if (state.monsters[3].item1 == true)
                         {
                             PrintDelayed("\nYou find a strange glowing key among the Wraith’s remains.");
-                            PrintDelayed("This must unlock something deeper in the tower...");
+                            PrintDelayed("◆ This must unlock something deeper in the tower...");
                             Console.ReadKey();
                             state.monsters[3].item1 = false;
                             state.hero.F2Key1 = true;
                         }
                         else
                         {
-                            PrintDelayed("\nThere is nothing of use.");
+                            PrintDelayed("\n◆ There is nothing of use.");
                             Console.ReadKey();
                         }
                         break;
@@ -590,7 +590,7 @@ namespace Studio_1
                         Help(); //Call Help method
                         break;
                     default:
-                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.WriteLine($"\n◆ Sorry I don't understand the command \"{choice}\"");
                         Console.ReadKey();
                         break;
                 }
@@ -750,7 +750,7 @@ namespace Studio_1
 │     STATUS     │ Shows the players character sheet                                                │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
             PrintDelayed($"Note: Commands are not case sensitive.");
-            PrintDelayed("Press any key to continue");
+            PrintDelayed("◆ Press any key to continue");
             Console.ReadKey();
             Console.Clear();
         }
@@ -789,8 +789,8 @@ namespace Studio_1
                 if (hero.bomb || hero.HealthPotion)
                 {
                     PrintDelayed("\nWould you like to use an item Y/N ");
-                    string userResponse = Console.ReadLine().ToUpper();
-                    if (userResponse == "Y")
+                    // string userResponse = Console.ReadLine().ToUpper();
+                    if (Selector.BoolSelectorMenu(""))
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
                         // string item = Console.ReadLine().ToUpper();

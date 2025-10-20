@@ -9,10 +9,11 @@ namespace Studio_1
         static ConsoleKey UpKey = ConsoleKey.UpArrow;
         static ConsoleKey DownKey = ConsoleKey.DownArrow;
         static ConsoleKey SubmitKey = ConsoleKey.Enter;
-        const string SelectedTemplate = "\x1b[92m> {0}\x1b[0m";
+        const string SelectedTemplate = "\x1b[92m\x1b[1m▶ {0}\x1b[0m";
         const string DefaultTemplate = "  {0}";
 
-        /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys. Takes an array of strings to show as options, returns the selected option. </summary>
+        /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys.
+        //  Takes an array of strings to show as options, returns the selected string from the options. </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string DefaultSelectorMenu(string[] options,string header) {
             return options[SelectorMenuString(options,header,SelectedTemplate,DefaultTemplate)];
