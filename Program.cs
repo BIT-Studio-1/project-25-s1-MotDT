@@ -802,6 +802,7 @@ namespace Studio_1
         {
             PrintDelayed("You lose");
             PrintDelayed("GAME OVER");
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 25, 10); //Game over ASCII art
             Environment.Exit(2000);
         }
 
