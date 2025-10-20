@@ -815,13 +815,9 @@ namespace Studio_1
 
         public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
         {
-            PrintDelayed("");
-            Console.ForegroundColor= ConsoleColor.Red;
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 25, 10); //Game over ASCII art
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 25, 10); //Game over ASCII art
-            Environment.Exit(2000);
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12); //Game over ASCII art
+            Environment.Exit(3000);
         }
 
         // Singular function for a single round of combat
@@ -914,6 +910,9 @@ namespace Studio_1
                 // Check on the hero
                 if (hero.health.curHP <= 0)
                 {
+                    Console.Clear();
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
+                    Thread.Sleep(1000);
                     GameOver();
                 }
                 else
