@@ -109,9 +109,9 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(20), // tougher HP
                         name = "Elite Wraith",                      // elite boss name
-                        damDice = 10,                               // stronger damage
-                        dodgeDiff = 18,                             // harder to hit
-                        hitDiff = 14,                               // harder to dodge
+                        damDice = 8,                               // stronger damage changed from 10 to 8
+                        dodgeDiff = 14,                             // harder to hit changed from 18 to14
+                        hitDiff = 12,                               // harder to dodge changed from 14 to 12
                         item1 = true                                // drops the special key
     }
                     },
