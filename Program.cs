@@ -550,11 +550,11 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background
-                PrintDelayed($"You find yourself in a large stone room in the middle of it there is a large {BLUE}magic circle{RESET} behind which there is a {BLUE}LECTERN{RESET}");
+                PrintDelayed($"You find yourself in a large stone room in the middle of it there is a large {BLUE}MAGIC CIRCLE{RESET} behind which there is a {BLUE}LECTERN{RESET}");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
-                PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE{RESET}");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT", "STATUS", "HELP"], "");
+                PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT  LECTERN", "INSPECT CANDLE", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -563,7 +563,22 @@ namespace Studio_1
                     case "GO SOUTH":
                         F2SouthHall2(state);
                         break;
-                    case "INSPECT":
+                    case "INSPECT MAGIC CIRCLE":
+                        Console.ReadKey();
+                        break;
+                    case "INSPECT LECTERN":
+                        Console.ReadKey();
+                        break;
+                    case "INSPECT CANDLE HOLDER":
+                        if (!state.hero.candle2)
+                        {
+                            PrintDelayed("You pull the last intact candle from the wall holder and decide to store it for later.");
+                            state.hero.candle2 = true;
+                        }
+                        else
+                        {
+                            PrintDelayed("You find only the burned out remains of the other candles.");
+                        }
                         Console.ReadKey();
                         break;
                     case "STATUS":
