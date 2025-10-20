@@ -62,7 +62,7 @@ namespace Studio_1
                     Console.Write("\nEnter your choice: ");
                     tmp = Console.ReadLine();
                     parse = int.TryParse(tmp, out menu);
-                } while (menu < 1 || menu > 3 || parse == false);
+                } while (menu < 1 || menu > 4 || parse == false);
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
@@ -742,8 +742,8 @@ namespace Studio_1
                             name = "Joe Biden",
                             health = Entity.EntityHealth.InitHealth(4),
                             damDice = 10,
-                            strength = 3,
-                            finesse = 1,
+                            strength = 8,
+                            finesse = 0,
                             toughness = 0,
                             presence = 0
                         };
