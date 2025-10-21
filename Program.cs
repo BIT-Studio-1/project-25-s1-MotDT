@@ -127,7 +127,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room1.txt", "Art Files/Room1.txt" }), 25, 10); //Background 
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Entrance.txt", "Art Files/F1Entrance.txt" }), 25, 10); //Background 
                 PrintDelayed("You find yourself in the dark entrance way of the wizard's tower");
                 PrintDelayed("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 PrintDelayed($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
@@ -218,7 +218,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/RoomP.txt", "Art Files/RoomP.txt" }), 25, 10);
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Hall.txt", "Art Files/F1Hall.txt" }), 25, 10);
                 PrintDelayed("You find yourself in a large damp Hallway");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
