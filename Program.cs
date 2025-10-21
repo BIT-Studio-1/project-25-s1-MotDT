@@ -825,13 +825,14 @@ namespace Studio_1
             Console.ForegroundColor = (ConsoleColor)colour;
             try
             {
-                using (StreamReader sr = new StreamReader(file))
+                using (StreamReader sr = new StreamReader(@$"{file}"))
                 {
                     string? line;
                     while ((line = sr.ReadLine()) != null)
                     {
                         PrintDelayed(line, printDelay);
                     }
+                    sr.Close();
                 }
             }
             //If file could not be found in expected directory
