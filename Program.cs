@@ -698,16 +698,22 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
-                //Text goes here
-                // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "INSPECT", "STATUS", "HELP"], "");
+                PrintDelayed("You enter what appears to be a small treasury, although it has seemingly been pilfered by past adventurers.");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is the door you came in from.");
+                PrintDelayed($"In the corner of the room is a small ornate {BLUE}CHEST{RESET} next to an odd {BLUE}CANDELABRA{RESET}");
+                PrintDelayed($"In the centre of the room atop a pedestal is a small {BLUE}IDOL{RESET} of some kind");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "INSPECT CHEST", "INSPECT CANDELABRA", "INSPECT IDOL", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
                         F2SouthHall1(state);
                         break;
-                    case "INSPECT":
+                    case "INSPECT CHEST":
                         Console.ReadKey();
+                        break;
+                    case "INSPECT CANDELABRA":
+                        break;
+                    case "INSPECT IDOL":
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
