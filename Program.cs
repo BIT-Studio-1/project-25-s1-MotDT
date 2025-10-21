@@ -404,8 +404,16 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        choice = "";
-                        Console.WriteLine("WIP");
+                        if (state.hero.F2Key1 && state.hero.F2Key2)
+                        {
+                            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
+                            Environment.Exit(1000);
+                        }
+                        else
+                        {
+                            choice = "";
+                            Console.WriteLine("WIP");
+                        }
                         break;
                     case "GO EAST":
                         F2EastHall1(state);
