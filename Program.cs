@@ -337,10 +337,17 @@ namespace Studio_1
                     case "INSPECT HOLE":
                         if (state.hero.torch)
                         {
-                            PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
-                            PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
-                            PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
-                            state.hero.HealthPotion = true;
+                            if (state.hero.HealthPotion == false)
+                            {
+                                PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
+                                PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
+                                PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
+                                state.hero.HealthPotion = true;
+                            }
+                            else
+                            {
+                                PrintDelayed("Nothing remains inside the dark room");
+                            }
                         }
                         else
                         {
@@ -410,6 +417,15 @@ namespace Studio_1
                         F1Hall(state);
                         break;
                     case "INSPECT CANDLE":
+                        if (!state.hero.candle3)
+                        {
+                            PrintDelayed($"You Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the stature and store it for later.");
+                            state.hero.candle3 = true;
+                        }
+                        else
+                        {
+                            PrintDelayed("Nothing but a small pudddle of wax residue remains at the statues feet.");
+                        }
                         Console.ReadKey();
                         break;
                     case "STATUS":
