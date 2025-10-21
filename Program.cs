@@ -175,7 +175,8 @@ namespace Studio_1
                                 }
                                 else
                                 {
-                                    PrintDelayed("\nYou recoil as you are bitten by a giant rat hiding inside the skeleton and take 1 damage");
+                                    PrintDelayed("\nYou recoil as you are bitten by a giant rat hiding inside the skeleton.");
+                                    PrintDelayed($"{RED}You take 1 damage!{RESET}");
                                     state.hero.health.curHP -= 1;
                                     if (state.hero.health.curHP <= 0)
                                     {
@@ -556,7 +557,14 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1.txt", "Art Files/F2SouthHall1.txt" }), 25, 10); //Background
+                if (state.hero.tomeInteract == true)
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1NoTome.txt", "Art Files/F2SouthHall1NoTome.txt" }), 25, 10); //Background
+                }
+                else
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1Tome.txt", "Art Files/F2SouthHall1Tome.txt" }), 25, 10); //Background
+                }
                 PrintDelayed($"You find yourself in a large stone room in the middle of it there is a large {BLUE}MAGIC CIRCLE{RESET} behind which there is a {BLUE}LECTERN{RESET}");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
@@ -589,13 +597,13 @@ namespace Studio_1
                             {
                                 PrintDelayed("You cautiously flip open the first page.");
                                 PrintDelayed("The page is covered in seemingly innocuous runes, although you can't understand any of it.");
-                                PrintDelayed("Just as you are about to put the tome down in disappointment, the runes on the page suddenly begin to glow and you feel mana begin to circulate within your body");
+                                PrintDelayed("Just as you are about to put the tome down in disappointment, the runes on the page suddenly begin to glow and you feel mana begin to circulate within your body.");
                                 PrintDelayed("Testing your TOUGHNESS...");
                                 Thread.Sleep(1000);
                                 int check = Roll(state.hero.toughness, ref state.random_gen);
                                 if (check > 10)
                                 {
-                                    PrintDelayed($"\nAfter some struggle you feel the mana settle within your body");
+                                    PrintDelayed($"\nAfter some struggle you feel the mana settle within your body.");
                                     PrintDelayed("Your senses feel sharper!.");
                                     PrintDelayed($"{GREEN}+1 Strength{RESET}");
                                     state.hero.strength++;
@@ -603,7 +611,7 @@ namespace Studio_1
                                 }
                                 else
                                 {
-                                    PrintDelayed("The mana coursing through your body proves to be too much to handle");
+                                    PrintDelayed("The mana coursing through your body proves to be too much to handle.");
                                     PrintDelayed("Your senses feel a little duller");
                                     PrintDelayed($"{RED}-1 Strength{RESET}");
                                     state.hero.strength--;
