@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using static Studio_1.Entity;
 
@@ -218,12 +219,22 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Hall.txt", "Art Files/F1Hall.txt" }), 25, 10);
+                if (state.hero.torch == true)
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1HallNoTorch.txt", "Art Files/F1HallNoTorch.txt" }), 25, 10);
+                }
+                else
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Hall.txt", "Art Files/F1Hall.txt" }), 25, 10);
+                }          
                 PrintDelayed("You find yourself in a large damp Hallway");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
-                PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
+                if (state.hero.torch != true)
+                {
+                    PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
+                }
                 PrintDelayed("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
                 choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "GO EAST", "INSPECT TORCH", "STATUS", "HELP"], "");
@@ -286,7 +297,7 @@ namespace Studio_1
                 Console.Clear();
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3Ghoul.txt", "Art Files/Room3Ghoul.txt" }), 25, 10); //Background with enemy
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3Ghoul.txt", "Art Files/F1Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
@@ -296,7 +307,7 @@ namespace Studio_1
                 {
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
                 }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Room3GhoulDead.txt", "Art Files/Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3GhoulDead.txt", "Art Files/F1Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
                 PrintDelayed($"There is a small {BLUE}HOLE{RESET} in the wall");
                 PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
