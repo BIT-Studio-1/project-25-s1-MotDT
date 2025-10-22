@@ -81,7 +81,7 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(6),
                         name = "Ghoul",
-                        damDice = 4,
+                        damDice = 3,
                         dodgeDiff = 10,
                         hitDiff = 10,
                         item1 = true
@@ -108,9 +108,9 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(20), // tougher HP
                         name = "Elite Wraith",                      // elite boss name
-                        damDice = 6,                               // stronger damage changed from 10 to 6
-                        dodgeDiff = 14,                             // harder to hit changed from 18 to 14
-                        hitDiff = 12,                               // harder to dodge changed from 14 to 12
+                        damDice = 5,                               // stronger damage changed from 10 to 6
+                        dodgeDiff = 13,                             // harder to hit changed from 18 to 14
+                        hitDiff = 11,                               // harder to dodge changed from 14 to 12
                         item1 = true                                // drops the special key
     }
                     },
@@ -414,6 +414,7 @@ namespace Studio_1
                         {
                             choice = "";
                             Console.WriteLine("\nNeither of the doors budge an inch.");
+                            Console.ReadKey();
                         }
                         break;
                     case "GO EAST":
