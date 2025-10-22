@@ -191,6 +191,7 @@ namespace Studio_1
                                     {
                                         PrintDelayed("You fall to the ground in agony as the rat bites your ankle");
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
+                                        EndPrompts();
                                         GameOver("a swarm of angry rats");
                                     }
                                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
