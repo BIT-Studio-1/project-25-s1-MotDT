@@ -124,8 +124,7 @@ namespace Studio_1
         static void EndPrompts()
         {
 
-            Console.WriteLine($"{GREEN}◆{RESET}");
-            Console.ReadKey();
+            EndPrompts();
         }
 
         //Floor 1 entrance
@@ -503,13 +502,11 @@ namespace Studio_1
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("\nYou look out the window into the darkness of the night. The full moon shines brightly in the sky.");
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT BOOKSHELVES":
                         PrintDelayed("\nYou spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -543,8 +540,7 @@ namespace Studio_1
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    Console.WriteLine($"{GREEN}◆{RESET}");
-                    Console.ReadKey();
+                    EndPrompts();
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
                 }
                 // After combat, show the cleared room
@@ -573,14 +569,12 @@ namespace Studio_1
                             {
                                 PrintDelayed("\nThe miasma left by the wraith chills your bones.");
                             }
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                             break;
                         case "INSPECT MAGIC CIRCLE":
                             PrintDelayed("\nThe lines and runes of the circle pulse with a dull arcane purple.");
                             PrintDelayed("You hope that the circle won't summon anything else");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -632,8 +626,7 @@ namespace Studio_1
                     case "INSPECT MAGIC CIRCLE":
                         PrintDelayed("\nThe circle is engraved with arcane runes beyond your understanding.");
                         PrintDelayed("It appears to be dormant.");
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT LECTERN":
                         if (state.hero.F2tomeInteract == true)
@@ -675,8 +668,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide reading a suspicious ancient tome may not be the best idea.");
                             }
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT CANDLE HOLDER":
                         if (!state.hero.candle2)
@@ -688,8 +680,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nThere is only the burned out remains of the other candles left.");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -752,8 +743,7 @@ namespace Studio_1
                             PrintDelayed("\nThe chest appears to be locked, a small keyhole sits on the front");
                             PrintDelayed("Engraved into the wood on top of the chest are the words \"LIGHT THE WAY\"");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT CANDELABRA":
                         PrintDelayed("\nThe candelabra is surprisingly well maintained compared to everything else in the room.");
@@ -776,8 +766,7 @@ namespace Studio_1
                         {
                             PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT IDOL":
                         PrintDelayed("\nAn odd looking idol sits atop an ornate pedestal.");
@@ -824,8 +813,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nBetter not...");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
