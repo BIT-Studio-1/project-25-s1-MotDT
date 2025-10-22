@@ -303,7 +303,7 @@ namespace Studio_1
         //-> South F1Hall
         static void F1Room3(GameState state)
         {
-            string choice;
+            string choice = "";
             do
             {
                 Console.Clear();
@@ -311,89 +311,99 @@ namespace Studio_1
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3Ghoul.txt", "Art Files/F1Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
-                    PrintDelayed("You must vanquish it before you can act freely");
-                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                }
-                if (state.monsters[0].health.IsAlive == true)
-                {
-                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
-                }
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3GhoulDead.txt", "Art Files/F1Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
-                PrintDelayed($"There is a small {BLUE}HOLE{RESET} in the wall");
-                PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
-                PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
-                Console.WriteLine("What would you like to do?");
-                choice = Selector.DefaultSelectorMenu(new[] { "GO SOUTH", "INSPECT GHOUL", "INSPECT HOLE", "INVENTORY", "STATUS", "HELP" }, "");
-                switch (choice)
-                {
-                    case "GO SOUTH":
-                        F1Hall(state);
-                        break;
-                    case "INSPECT GHOUL":
-                        if (state.monsters[0].item1 == true)
-                        {
-                            PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
-                            PrintDelayed("You think this may be the key for the gate in front of the staircase.");
-                            state.monsters[0].item1 = false;
-                            state.hero.F1Key = true;
-                        }
-                        else
-                        {
-                            PrintDelayed("\nYou find nothing of use");
-                        }
+                    if (state.hero.name == "Joe Biden") // truely the best president
+                    {
+                        PrintDelayed($"You delete the {RED}GHOUL{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
+                        state.monsters[0].health.curHP = 0;
+                        EndPrompts();
+                    }
+                    else
+                    {
+                        PrintDelayed("You must vanquish it before you can act freely");
+                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        break;
-                    case "INSPECT HOLE":
-                        if (state.hero.torch)
-                        {
-                            if (state.hero.HealthPotion == false)
+                        Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
+                    }
+                }
+                else
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3GhoulDead.txt", "Art Files/F1Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                    PrintDelayed($"There is a small {BLUE}HOLE{RESET} in the wall");
+                    PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
+                    PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
+                    Console.WriteLine("What would you like to do?");
+                    choice = Selector.DefaultSelectorMenu(new[] { "GO SOUTH", "INSPECT GHOUL", "INSPECT HOLE", "INVENTORY", "STATUS", "HELP" }, "");
+                    switch (choice)
+                    {
+                        case "GO SOUTH":
+                            F1Hall(state);
+                            break;
+                        case "INSPECT GHOUL":
+                            if (state.monsters[0].item1 == true)
                             {
-                                PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
-                                PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
-                                PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
-                                state.hero.HealthPotion = true;
+                                PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
+                                PrintDelayed("You think this may be the key for the gate in front of the staircase.");
+                                state.monsters[0].item1 = false;
+                                state.hero.F1Key = true;
                             }
                             else
                             {
-                                PrintDelayed("\nNothing remains inside the dark room");
+                                PrintDelayed("\nYou find nothing of use");
                             }
-                        }
-                        else
-                        {
-                            PrintDelayed("\nThe hole is pitch black");
-                            PrintDelayed("Would you like to go through anyway?");
-                            
-                            if (Selector.BoolSelectorMenu(""))
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                            break;
+                        case "INSPECT HOLE":
+                            if (state.hero.torch)
                             {
-                                PrintDelayed("\nYou stumble forward into the darkness.");
-                                PrintDelayed("You feel shifting ground under your feet");
-                                PrintDelayed("The last thing you hear is the sound of stone scraping on stone.");
-                                GameOver("a hidden trap in the darkness");
+                                if (state.hero.HealthPotion == false)
+                                {
+                                    PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
+                                    PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
+                                    PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
+                                    state.hero.HealthPotion = true;
+                                }
+                                else
+                                {
+                                    PrintDelayed("\nNothing remains inside the dark room");
+                                }
                             }
                             else
                             {
-                                PrintDelayed("\nYou decide its best to come back with some light.");
+                                PrintDelayed("\nThe hole is pitch black");
+                                PrintDelayed("Would you like to go through anyway?");
+
+                                if (Selector.BoolSelectorMenu(""))
+                                {
+                                    PrintDelayed("\nYou stumble forward into the darkness.");
+                                    PrintDelayed("You feel shifting ground under your feet");
+                                    PrintDelayed("The last thing you hear is the sound of stone scraping on stone.");
+                                    GameOver("a hidden trap in the darkness");
+                                }
+                                else
+                                {
+                                    PrintDelayed("\nYou decide its best to come back with some light.");
+                                }
                             }
-                        }
-                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        break;
-                    case "INVENTORY":
-                        ShowInventory(state.hero);
-                        break;
-                    case "STATUS":
-                        state.hero.Status();
-                        break;
-                    case "HELP":
-                        Help(); //Call Help method
-                        break;
-                    default:
-                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
-                        Console.ReadKey();
-                        break;
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                            break;
+                        case "INVENTORY":
+                            ShowInventory(state.hero);
+                            break;
+                        case "STATUS":
+                            state.hero.Status();
+                            break;
+                        case "HELP":
+                            Help(); //Call Help method
+                            break;
+                        default:
+                            Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                            Console.ReadKey();
+                            break;
+                    }
+
                 }
             }
-            while (choice != "Go South");
+            while (choice != "GO SOUTH");
         }
 
         //Floor 2 Main
@@ -420,6 +430,7 @@ namespace Studio_1
                         if (state.hero.F2Key1 && state.hero.F2Key2)
                         {
                             PrintDelayed("You unlock the heavy door with the two keys.");
+                            EndPrompts();
                             Console.Clear();
                             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
                             Console.ReadKey();
@@ -554,9 +565,19 @@ namespace Studio_1
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
-                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                    if (state.hero.name == "Joe Biden")
+                    {
+                        PrintDelayed($"You delete the {RED}WRAITH{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
+                        state.monsters[3].health.curHP = 0;
+                        EndPrompts();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                        Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                    }
                 }
                 // After combat, show the cleared room
                 else
@@ -960,12 +981,12 @@ namespace Studio_1
                         return new Entity.Character
                         {
                             name = "Joe Biden",
-                            health = Entity.EntityHealth.InitHealth(4),
-                            damDice = 10,
-                            skill = 8,
-                            finesse = 1,
-                            toughness = 0,
-                            presence = 0
+                            health = Entity.EntityHealth.InitHealth(1),
+                            damDice = 99,
+                            skill = 99,
+                            finesse = -99,
+                            toughness = -99,
+                            presence = 99
                         };
                     }
                 default:
