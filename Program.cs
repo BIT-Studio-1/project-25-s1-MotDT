@@ -203,7 +203,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -282,7 +281,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -380,7 +378,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -460,7 +457,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -524,7 +520,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -596,7 +591,6 @@ namespace Studio_1
                             break;
                         case "INVENTORY":
                             Inventory(state);
-                            EndPrompts();
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -706,7 +700,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -843,7 +836,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -884,7 +876,6 @@ namespace Studio_1
                         break;
                     case "INVENTORY":
                         Inventory(state);
-                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
