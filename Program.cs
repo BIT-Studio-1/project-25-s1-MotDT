@@ -406,13 +406,15 @@ namespace Studio_1
                     case "GO NORTH":
                         if (state.hero.F2Key1 && state.hero.F2Key2)
                         {
+                            Console.Clear();
                             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
-                            Environment.Exit(1000);
+                            Console.ReadKey();
+                            Environment.Exit(0);
                         }
                         else
                         {
                             choice = "";
-                            Console.WriteLine("WIP");
+                            Console.WriteLine("Neither of the doors budge an inch.");
                         }
                         break;
                     case "GO EAST":
@@ -432,7 +434,7 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("Nothing but a small pudddle of wax residue remains at the statues feet.");
+                            PrintDelayed("Nothing but a small puddle of wax residue remains at the statues feet.");
                         }
                         Console.ReadKey();
                         break;
@@ -549,7 +551,7 @@ namespace Studio_1
                         case "INSPECT WRAITH":
                             if (state.monsters[3].item1 == true)
                             {
-                                PrintDelayed("\nYou find a strange glowing key on the floor where the wraith disintegrated.");
+                                PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
                                 Console.ReadKey();
                                 state.monsters[3].item1 = false;
@@ -592,7 +594,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.tomeInteract == true)
+                if (state.hero.F2tomeInteract == true)
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1NoTome.txt", "Art Files/F2SouthHall1NoTome.txt" }), 25, 10); //Background
                 }
@@ -619,7 +621,7 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INSPECT LECTERN":
-                        if (state.hero.tomeInteract == true)
+                        if (state.hero.F2tomeInteract == true)
                         {
                             PrintDelayed("The lectern is empty");
                         }
@@ -653,7 +655,7 @@ namespace Studio_1
                                     Console.ReadKey();
                                 }
                                 PrintDelayed("The tome crumbles into dust in your hands.");
-                                state.hero.tomeInteract = true;
+                                state.hero.F2tomeInteract = true;
                             }
                             else
                             {
@@ -697,7 +699,14 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
+                if (state.hero.F2candelabraInteract == true)
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2Candelabra.txt", "Art Files/F2SouthHall2Candelabra.txt" }), 25, 10);
+                }
+                else
+                {
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
+                }
                 PrintDelayed("You enter what appears to be a small treasury, although it has seemingly been pilfered by past adventurers.");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is the door you came in from.");
                 PrintDelayed($"In the corner of the room is a small ornate {BLUE}CHEST{RESET} next to an odd {BLUE}CANDELABRA{RESET}");
@@ -709,9 +718,49 @@ namespace Studio_1
                         F2SouthHall1(state);
                         break;
                     case "INSPECT CHEST":
+                        if (state.hero.F2Key2 == true)
+                        {
+                            PrintDelayed("You hope to find some chests with actual treasure in the future");
+
+                        }
+                        else if (state.hero.F2chestKey == true)
+                        {
+                            PrintDelayed($"The {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
+                            Thread.Sleep(1000);
+                            PrintDelayed("... another key.");
+                            PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
+                            state.hero.F2Key2 = true;
+                            state.hero.F2chestKey = false;
+                        }
+                        else
+                        {
+                            PrintDelayed("The chest appears to be locked, a small keyhole sits on the front");
+                            PrintDelayed("Engraved into the wood on top of the chest are the words \"LIGHT THE WAY\"");
+                        }
                         Console.ReadKey();
                         break;
                     case "INSPECT CANDELABRA":
+                        PrintDelayed("The candelabra is surprisingly well maintained compared to everything else in the room.");
+                        if (state.hero.F2candelabraInteract == true)
+                        {
+                            PrintDelayed("The candle flames flicker sporadically in the dark.");
+                        }
+                        else if (state.hero.candle1 == true && state.hero.candle2 == true && state.hero.candle3 == true)
+                        {
+                            PrintDelayed($"You place all 3 of your {MAGENTA}CANDLES{RESET} into the empty slots of the candelabra.");
+                            PrintDelayed("After a few seconds the candles suddenly light on their own!");
+                            PrintDelayed($"A brick in the wall behind the candelabra suddenly comes loose, revealing a {MAGENTA}SMALL KEY{RESET} behind it which you take.");
+                            state.hero.F2chestKey = true;
+                            state.hero.candle1 = false;
+                            state.hero.candle2 = false;
+                            state.hero.candle3 = false;
+                            state.hero.F2candelabraInteract = true;
+                        }
+                        else if (state.hero.candle1 == true || state.hero.candle2 == true || state.hero.candle3 == true)
+                        {
+                            PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
+                        }
+                        Console.ReadKey();
                         break;
                     case "INSPECT IDOL":
                         break;

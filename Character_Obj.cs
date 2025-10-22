@@ -26,7 +26,11 @@ namespace Studio_1
             public bool candle1;
             public bool candle2;
             public bool candle3;
-            public bool tomeInteract;
+            public bool F2chestKey;
+
+            //One-time Events
+            public bool F2tomeInteract;
+            public bool F2candelabraInteract;
 
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
