@@ -40,7 +40,8 @@ namespace Studio_1
 ├─────────────────┬────────┤
 │ Maximum Health  │ {health.maxHP.ToString().PadRight(6)} │
 │ Current Health  │ {health.curHP.ToString().PadRight(6)} │
-│ Strength bonus  │ {strength.ToString().PadRight(6)} │
+│ Damage Dice     │ {damDice.ToString().PadRight(6)} │
+│ Strength Bonus  │ {strength.ToString().PadRight(6)} │
 │ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
 │ Toughness Bonus │ {toughness.ToString().PadRight(6)} │
 │ Presence Bonus  │ {presence.ToString().PadRight(6)} │
