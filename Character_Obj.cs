@@ -35,17 +35,17 @@ namespace Studio_1
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
             {
-                Console.WriteLine($@"┌──────────────────────────┐
-│ {Program.BOLD}{name.PadRight(17)}{Program.NOBOLD}  Stats │
-├─────────────────┬────────┤
-│ Maximum Health  │ {health.maxHP.ToString().PadRight(6)} │
-│ Current Health  │ {health.curHP.ToString().PadRight(6)} │
-│ Damage Dice     │ {damDice.ToString().PadRight(6)} │
-│ Skill Bonus     │ {skill.ToString().PadRight(6)} │
-│ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
-│ Toughness Bonus │ {toughness.ToString().PadRight(6)} │
-│ Presence Bonus  │ {presence.ToString().PadRight(6)} │
-└─────────────────┴────────┘
+                Console.WriteLine($@"┌─────────────────┬────────┬────────────────────────────────┐
+│ {Program.BOLD}{name.PadRight(16)}{Program.NOBOLD}│ Stats  │ Description                    │
+├─────────────────┼────────┼────────────────────────────────┤
+│ Maximum Health  │ {health.maxHP.ToString().PadRight(6)} │ {"Maximum health points".PadRight(30)} │
+│ Current Health  │ {health.curHP.ToString().PadRight(6)} │ {"Current health points".PadRight(30)} │
+│ Damage Dice     │ {damDice.ToString().PadRight(6)} │ {"Maximum damage dealt (Min 1)".PadRight(30)} │
+│ Skill Bonus     │ {skill.ToString().PadRight(6)} │ {"Bonus to land attacks".PadRight(30)} │
+│ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │ {"Bonus to dodge attacks".PadRight(30)} │
+│ Toughness Bonus │ {toughness.ToString().PadRight(6)} │ {"Bonus for toughness checks".PadRight(30)} │
+│ Presence Bonus  │ {presence.ToString().PadRight(6)} │ {"Bonus for presence checks".PadRight(30)} │
+└─────────────────┴────────┴────────────────────────────────┘
             ");
                 Console.WriteLine("Press Enter to close");
                 Console.ReadLine();
