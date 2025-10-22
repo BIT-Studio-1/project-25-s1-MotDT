@@ -743,6 +743,7 @@ namespace Studio_1
                             PrintDelayed($"\nThe {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
                             Thread.Sleep(1000);
                             PrintDelayed("... another key.");
+                            Thread.Sleep(1000);
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
                             state.hero.F2Key2 = true;
                             state.hero.F2chestKey = false;
