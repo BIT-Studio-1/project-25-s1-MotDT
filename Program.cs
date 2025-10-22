@@ -1,4 +1,4 @@
-﻿git using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Xml;
@@ -144,7 +144,7 @@ namespace Studio_1
                 Console.WriteLine();
                 PrintDelayed("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT SKELETON", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT SKELETON", "INVENTORY", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -200,6 +200,10 @@ namespace Studio_1
                             PrintDelayed("\nThere is nothing left on the skeleton, other than an angry rat.");
                             EndPrompts();
                         }
+                        break;
+                    case "INVENTORY":
+                        Inventory(state);
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -277,14 +281,8 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
-                        EndPrompt();
+                        Inventory(state);
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -381,13 +379,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        Inventory(state);
                         EndPrompts();
                         break;
                     case "STATUS":
@@ -422,7 +414,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a stone door with symbols carved into the frame");
                 PrintDelayed($"On the floor under one of the statues is a {BLUE}CANDLE{RESET}");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(new[] { "GO NORTH", "GO SOUTH", "GO EAST", "GO WEST", "INSPECT CANDLE", "INVENTORY", "STATUS", "HELP" },
+                choice = Selector.DefaultSelectorMenu(new[] { "GO NORTH", "GO SOUTH", "GO EAST", "GO WEST", "INSPECT CANDLE", "INVENTORY", "STATUS", "HELP" }, "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -466,18 +458,10 @@ namespace Studio_1
                         }
                         EndPrompts();
                         break;
-
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        Inventory(state);
                         EndPrompts();
                         break;
-
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
                         break;
@@ -540,13 +524,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        Inventory(state);
                         EndPrompts();
                         break;
                     case "STATUS":
@@ -618,13 +596,7 @@ namespace Studio_1
                             EndPrompts();
                             break;
                         case "INVENTORY":
-                            Console.WriteLine("Inventory:");
-                            if (state.hero.bomb) Console.WriteLine("- Bomb");
-                            if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                            if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                            if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                            if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                            if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                            Inventory(state);
                             EndPrompts();
                             break;
                         case "STATUS":
@@ -734,14 +706,8 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
-                        EndPrompt();
+                        Inventory(state);
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -877,13 +843,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        Inventory(state);
                         EndPrompts();
                         break;
                     case "STATUS":
@@ -926,13 +886,7 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        Console.WriteLine("Inventory:");
-                        if (state.hero.bomb) Console.WriteLine("- Bomb");
-                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
-                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
-                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
-                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        Inventory(state);
                         EndPrompts();
                         break;
                     case "STATUS":
@@ -1064,6 +1018,18 @@ namespace Studio_1
                 Console.WriteLine($"File could not be read : {ex.Message}");
             }
             Console.ResetColor();
+        }
+
+        static void Inventory(GameState state)
+        {
+            Console.WriteLine("Inventory:");
+            if (state.hero.bomb) Console.WriteLine("- Bomb");
+            if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+            if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+            if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+            if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+            if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+            EndPrompts();
         }
 
         /// <summary>Help function to display commonly used commands in game</summary>
