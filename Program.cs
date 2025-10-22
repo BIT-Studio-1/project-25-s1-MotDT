@@ -108,9 +108,9 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(20), // tougher HP
                         name = "Elite Wraith",                      // elite boss name
-                        damDice = 5,                               // stronger damage changed from 10 to 6
-                        dodgeDiff = 13,                             // harder to hit changed from 18 to 14
-                        hitDiff = 11,                               // harder to dodge changed from 14 to 12
+                        damDice = 5,                               // stronger damage changed from 10 to 5
+                        dodgeDiff = 13,                             // harder to hit changed from 18 to 13
+                        hitDiff = 11,                               // harder to dodge changed from 14 to 11
                         item1 = true                                // drops the special key
     }
                     },
@@ -123,8 +123,8 @@ namespace Studio_1
 
         static void EndPrompts()
         {
-
-            EndPrompts();
+            Console.WriteLine($"{GREEN}◆{RESET}");
+            Console.ReadKey();
         }
 
         //Floor 1 entrance
@@ -242,7 +242,7 @@ namespace Studio_1
                 }
                 PrintDelayed("What would you like to do?");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "GO EAST", "INSPECT TORCH", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(new[] { "GO NORTH", "GO SOUTH", "GO EAST", "INSPECT TORCH", "INVENTORY", "STATUS", "HELP" }, "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -275,6 +275,16 @@ namespace Studio_1
                             PrintDelayed("\nYou have already taken the torch");
                         }
                         EndPrompts();
+                        break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompt();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -316,8 +326,7 @@ namespace Studio_1
                 PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
                 Console.WriteLine("What would you like to do?");
-                // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO SOUTH", "INSPECT GHOUL", "INSPECT HOLE", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(new[] { "GO SOUTH", "INSPECT GHOUL", "INSPECT HOLE", "INVENTORY", "STATUS", "HELP" }, "");
                 switch (choice)
                 {
                     case "GO SOUTH":
@@ -371,6 +380,16 @@ namespace Studio_1
                         }
                         EndPrompts();
                         break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompts();
+                        break;
                     case "STATUS":
                         state.hero.Status();
                         break;
@@ -403,7 +422,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is a stone door with symbols carved into the frame");
                 PrintDelayed($"On the floor under one of the statues is a {BLUE}CANDLE{RESET}");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "GO EAST", "GO WEST", "INSPECT CANDLE", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(new[] { "GO NORTH", "GO SOUTH", "GO EAST", "GO WEST", "INSPECT CANDLE", "INVENTORY", "STATUS", "HELP" },
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -447,6 +466,18 @@ namespace Studio_1
                         }
                         EndPrompts();
                         break;
+
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompts();
+                        break;
+
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
                         break;
@@ -478,7 +509,7 @@ namespace Studio_1
                 PrintDelayed($"By the north wall is a {BLUE}DESK{RESET} with a large ornate {BLUE}WINDOW{RESET} behind it.");
                 PrintDelayed($"{BLUE}BOOKSHELVES{RESET} filled with old parchments and scrolls line the walls.");
                 // choice = Console.ReadLine().ToUpper();
-                choice = Selector.DefaultSelectorMenu(["GO EAST", "GO WEST", "INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO EAST", "GO WEST", "INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "INVENTORY", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO EAST":
@@ -506,6 +537,16 @@ namespace Studio_1
                         break;
                     case "INSPECT BOOKSHELVES":
                         PrintDelayed("\nYou spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
+                        EndPrompts();
+                        break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
                         EndPrompts();
                         break;
                     case "STATUS":
@@ -551,7 +592,7 @@ namespace Studio_1
                     PrintDelayed($"The {BLUE}WRAITH{RESET} has disintegrated, its faint miasma still lingering.");
                     PrintDelayed($"The {BLUE}MAGIC CIRCLE{RESET} that summoned the wraith is still faintly glowing on the ground");
                     PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} is the hole back.");
-                    choice = Selector.DefaultSelectorMenu(["GO WEST", "INSPECT WRAITH", "INSPECT MAGIC CIRCLE", "STATUS", "HELP"], "");
+                    choice = Selector.DefaultSelectorMenu(["GO WEST", "INSPECT WRAITH", "INSPECT MAGIC CIRCLE", "INVENTORY", "STATUS", "HELP"], "");
                     switch (choice)
                     {
                         case "GO WEST":
@@ -574,6 +615,16 @@ namespace Studio_1
                         case "INSPECT MAGIC CIRCLE":
                             PrintDelayed("\nThe lines and runes of the circle pulse with a dull arcane purple.");
                             PrintDelayed("You hope that the circle won't summon anything else");
+                            EndPrompts();
+                            break;
+                        case "INVENTORY":
+                            Console.WriteLine("Inventory:");
+                            if (state.hero.bomb) Console.WriteLine("- Bomb");
+                            if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                            if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                            if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                            if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                            if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
                             EndPrompts();
                             break;
                         case "STATUS":
@@ -614,7 +665,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is a small ornate door that seems to lead behind the {BLUE}LECTERN{RESET}");
                 PrintDelayed($"on the wall adjacent to the entrance there is a {BLUE}CANDLE HOLDER{RESET} ");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT LECTERN", "INSPECT CANDLE HOLDER", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "GO SOUTH", "INSPECT MAGIC CIRCLE", "INSPECT LECTERN", "INSPECT CANDLE HOLDER", "INVENTORY", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -682,6 +733,16 @@ namespace Studio_1
                         }
                         EndPrompts();
                         break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompt();
+                        break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
                         break;
@@ -717,7 +778,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is the door you came in from.");
                 PrintDelayed($"In the corner of the room is a small ornate {BLUE}CHEST{RESET} next to an odd {BLUE}CANDELABRA{RESET}");
                 PrintDelayed($"In the centre of the room atop a pedestal is a small {BLUE}IDOL{RESET} of some kind");
-                choice = Selector.DefaultSelectorMenu(["GO NORTH", "INSPECT CHEST", "INSPECT CANDELABRA", "INSPECT IDOL", "STATUS", "HELP"], "");
+                choice = Selector.DefaultSelectorMenu(["GO NORTH", "INSPECT CHEST", "INSPECT CANDELABRA", "INSPECT IDOL", "INVENTORY", "STATUS", "HELP"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -815,6 +876,16 @@ namespace Studio_1
                         }
                         EndPrompts();
                         break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompts();
+                        break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
                         break;
@@ -853,6 +924,16 @@ namespace Studio_1
                         break;
                     case "INSPECT":
                         Console.ReadKey();
+                        break;
+                    case "INVENTORY":
+                        Console.WriteLine("Inventory:");
+                        if (state.hero.bomb) Console.WriteLine("- Bomb");
+                        if (state.hero.HealthPotion) Console.WriteLine("- Health Potion");
+                        if (state.hero.F1Key) Console.WriteLine("- Rusty Key");
+                        if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+                        if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
+                        if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
