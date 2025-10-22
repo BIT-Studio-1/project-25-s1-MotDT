@@ -701,15 +701,15 @@ namespace Studio_1
                                 {
                                     PrintDelayed($"\nAfter some struggle you feel the mana settle within your body.");
                                     PrintDelayed("Your senses feel sharper!.");
-                                    PrintDelayed($"{GREEN}+1 Strength{RESET}");
-                                    state.hero.strength++;
+                                    PrintDelayed($"{GREEN}+1 Skill{RESET}");
+                                    state.hero.skill++;
                                 }
                                 else
                                 {
                                     PrintDelayed("The mana coursing through your body proves to be too much to handle.");
                                     PrintDelayed("Your senses feel a little duller");
-                                    PrintDelayed($"{RED}-1 Strength{RESET}");
-                                    state.hero.strength--;
+                                    PrintDelayed($"{RED}-1 Skill{RESET}");
+                                    state.hero.skill--;
                                 }
                                 PrintDelayed("The tome crumbles into dust in your hands.");
                                 state.hero.F2tomeInteract = true;
@@ -977,11 +977,11 @@ namespace Studio_1
                         return new Entity.Character
                         {
                             name = "Beef",
-                            health = Entity.EntityHealth.InitHealth(12),
+                            health = Entity.EntityHealth.InitHealth(16),
                             damDice = 4,
-                            strength = 0,
-                            finesse = 0,
-                            toughness = 1,
+                            skill = 0,
+                            finesse = -2,
+                            toughness = 3,
                             presence = 1
                         };
                     }
@@ -992,10 +992,10 @@ namespace Studio_1
                             name = "Stabbs",
                             health = Entity.EntityHealth.InitHealth(8),
                             damDice = 8,
-                            strength = 1,
-                            finesse = -1,
-                            toughness = 0,
-                            presence = 0
+                            skill = 2,
+                            finesse = 0,
+                            toughness = 1,
+                            presence = -1
                         };
                     }
                 case 3:
@@ -1005,9 +1005,9 @@ namespace Studio_1
                             name = "Dodgio",
                             health = Entity.EntityHealth.InitHealth(10),
                             damDice = 6,
-                            strength = 2,
-                            finesse = 1,
-                            toughness = 0,
+                            skill = 1,
+                            finesse = 2,
+                            toughness = -1,
                             presence = 0
                         };
                     }
@@ -1018,7 +1018,7 @@ namespace Studio_1
                             name = "Joe Biden",
                             health = Entity.EntityHealth.InitHealth(4),
                             damDice = 10,
-                            strength = 8,
+                            skill = 8,
                             finesse = 1,
                             toughness = 0,
                             presence = 0
@@ -1031,7 +1031,7 @@ namespace Studio_1
                         name = "Beef",
                         health = Entity.EntityHealth.InitHealth(12),
                         damDice = 4,
-                        strength = 0,
+                        skill = 0,
                         finesse = 0,
                         toughness = 1,
                         presence = 1
@@ -1117,7 +1117,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                int player_roll = Roll(hero.strength, ref random);
+                int player_roll = Roll(hero.skill, ref random);
                 if (player_roll >= monster.hitDiff)
                 {
                     int dam = random.Next(1, hero.damDice + 1);

@@ -11,7 +11,7 @@ namespace Studio_1
             public required EntityHealth health; // character's health component
             public required string name; // character's name
             public int damDice;
-            public int strength; // this is used as hit mod
+            public int skill; // this is used as hit mod
             public int finesse;  // Used for dodging attacks
             public int toughness; // Can be used for room Events and such
             public int presence;  // Can be used for room Events and such
@@ -41,7 +41,7 @@ namespace Studio_1
 │ Maximum Health  │ {health.maxHP.ToString().PadRight(6)} │
 │ Current Health  │ {health.curHP.ToString().PadRight(6)} │
 │ Damage Dice     │ {damDice.ToString().PadRight(6)} │
-│ Strength Bonus  │ {strength.ToString().PadRight(6)} │
+│ Skill Bonus  │ {skill.ToString().PadRight(6)} │
 │ Finesse Bonus   │ {finesse.ToString().PadRight(6)} │
 │ Toughness Bonus │ {toughness.ToString().PadRight(6)} │
 │ Presence Bonus  │ {presence.ToString().PadRight(6)} │
