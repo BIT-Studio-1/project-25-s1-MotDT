@@ -642,7 +642,6 @@ namespace Studio_1
                                     PrintDelayed("Your senses feel sharper!.");
                                     PrintDelayed($"{GREEN}+1 Strength{RESET}");
                                     state.hero.strength++;
-                                    Console.ReadKey();
                                 }
                                 else
                                 {
@@ -650,7 +649,6 @@ namespace Studio_1
                                     PrintDelayed("Your senses feel a little duller");
                                     PrintDelayed($"{RED}-1 Strength{RESET}");
                                     state.hero.strength--;
-                                    Console.ReadKey();
                                 }
                                 PrintDelayed("The tome crumbles into dust in your hands.");
                                 state.hero.F2tomeInteract = true;
@@ -764,26 +762,29 @@ namespace Studio_1
                         PrintDelayed("An odd looking idol sits atop an ornate pedestal.");
                         PrintDelayed($"Something about it gives you a {RED}bad feeling...{RESET}");
                         PrintDelayed("Would you like to try and take it?");
-                        if (Selector.BoolSelectorMenu(""))
+                        bool idolChoice = Selector.BoolSelectorMenu("");
+                        if (idolChoice == true)
                         {
                             PrintDelayed($"As you wrap your hand around the idol it suddenly starts to glow a {RED}deep crimson{RESET}.");
                             PrintDelayed($"It feels as if your life is being {RED}drained{RESET}.");
                             PrintDelayed("Let go?");
-                            if (Selector.BoolSelectorMenu(""))
+                            idolChoice = Selector.BoolSelectorMenu("");
+                            if (idolChoice == true)
                             {
-                                PrintDelayed("Thankfully the pain stops as soon as you let go;");
+                                PrintDelayed("Thankfully the pain stops as soon as you let go.");
                             }
                             else
                             {
-                                PrintDelayed("Images of unknowable beings flood your mind as searing pain courses through your body");
+                                PrintDelayed("Images of unknowable beings flood your mind as searing pain courses through your body.");
                                 PrintDelayed($"{RED}L3tT G0¿{RESET}");
-                                if (Selector.BoolSelectorMenu(""))
+                                idolChoice = Selector.BoolSelectorMenu("");
+                                if (idolChoice == true)
                                 {
                                     PrintDelayed("As soon as you let go you feel completely fine as if nothing had ever happened.");
                                 }
                                 else
                                 {
-                                    for (int i = 0; i == 20; i ++)
+                                    for (int i = 0; i <= 5; i ++)
                                     {
                                         PrintDelayed($"{RED}KILL{RESET}");
                                         PrintDelayed($"{RED}KLSD2395HG54{RESET}");
@@ -792,14 +793,16 @@ namespace Studio_1
                                         PrintDelayed($"{RED}BLOOD{RESET}");
                                         PrintDelayed($"{RED}SJSALK41985SDLFKJ{RESET}");
                                     }
-                                    GameOver($"{RED}ERROR{RESET}");
+                                    Thread.Sleep(1000);
+                                    GameOver($"{RED}3Rr0R¿ =){RESET}");
                                 }
                             }
                         }
                         else
                         {
-
+                            PrintDelayed("Better not...");
                         }
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
