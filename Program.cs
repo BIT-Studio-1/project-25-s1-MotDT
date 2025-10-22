@@ -464,7 +464,7 @@ namespace Studio_1
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
                 PrintDelayed("You enter what appears to be a Study dimly lit by moonlight coming through the windows.");
-                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall which emanates a ominous presence");
+                PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall which emanates an {RED}ominous presence...{RESET}");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
                 PrintDelayed($"By the north wall is a {BLUE}DESK{RESET} with a large ornate {BLUE}WINDOW{RESET} behind it.");
                 PrintDelayed($"{BLUE}BOOKSHELVES{RESET} filled with old parchments and scrolls line the walls.");
@@ -763,6 +763,45 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INSPECT IDOL":
+                        PrintDelayed("An odd looking idol sits atop an ornate pedestal.");
+                        PrintDelayed($"Something about it gives you a {RED}bad feeling...{RESET}");
+                        PrintDelayed("Would you like to try and take it?");
+                        if (Selector.BoolSelectorMenu(""))
+                        {
+                            PrintDelayed($"As you wrap your hand around the idol it suddenly starts to glow a {RED}deep crimson{RESET}.");
+                            PrintDelayed($"It feels as if your life is being {RED}drained{RESET}.");
+                            PrintDelayed("Let go?");
+                            if (Selector.BoolSelectorMenu(""))
+                            {
+                                PrintDelayed("Thankfully the pain stops as soon as you let go;");
+                            }
+                            else
+                            {
+                                PrintDelayed("Images of unknowable beings flood your mind as searing pain courses through your body");
+                                PrintDelayed($"{RED}L3tT G0¿{RESET}");
+                                if (Selector.BoolSelectorMenu(""))
+                                {
+                                    PrintDelayed("As soon as you let go you feel completely fine as if nothing had ever happened.");
+                                }
+                                else
+                                {
+                                    for (int i = 0; i == 20; i ++)
+                                    {
+                                        PrintDelayed($"{RED}KILL{RESET}");
+                                        PrintDelayed($"{RED}KLSD2395HG54{RESET}");
+                                        PrintDelayed($"{RED}DEATH{RESET}");
+                                        PrintDelayed($"{RED}[]>&^&^$#&|!{RESET}");
+                                        PrintDelayed($"{RED}BLOOD{RESET}");
+                                        PrintDelayed($"{RED}SJSALK41985SDLFKJ{RESET}");
+                                    }
+                                    GameOver($"{RED}ERROR{RESET}");
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                        }
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
