@@ -1033,9 +1033,7 @@ namespace Studio_1
 │     STATUS     │ Shows your current character sheet                                               │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
             Console.WriteLine($"{MAGENTA}ITEMS{RESET} will be used if you have the correct items when inspecting objects.");
-            PrintDelayed("◆ Press any key to continue");
-            Console.ReadKey();
-            Console.Clear();
+            EndPrompts();
         }
 
         //For skill checks and combat so you pass it the skill you want to test and it simulates a dice roll and then returns the result 

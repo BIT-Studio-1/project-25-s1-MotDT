@@ -47,8 +47,8 @@ namespace Studio_1
 │ Presence Bonus  │ {presence.ToString().PadRight(6)} │ {"Bonus for presence checks".PadRight(30)} │
 └─────────────────┴────────┴────────────────────────────────┘
             ");
-                Console.WriteLine("Press Enter to close");
-                Console.ReadLine();
+                Console.WriteLine($"{Program.GREEN}◆{Program.RESET}");
+                Console.ReadKey();
             }
             // Prints the Hero's health bar.
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
