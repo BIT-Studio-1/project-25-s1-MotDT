@@ -152,6 +152,7 @@ namespace Studio_1
                         else
                         {
                             PrintDelayed("After some deliberation you decide to continue in search of riches in the tower");
+                            Console.ReadKey();
                         }
                         break;
                     case "INSPECT SKELETON":
@@ -1000,19 +1001,20 @@ namespace Studio_1
         public static void GameOver(string causeOfDeath) 
         {
             Console.Clear();
-            PrintDelayed($"You were slain by {causeOfDeath}..."); // tell the player what killed their character
-            Thread.Sleep(1000);
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
-            Environment.Exit(3000);
+            PrintDelayed($"\nYou were slain by {causeOfDeath}..."); // tell the player what killed their character
+            Console.ReadKey(); 
+            Environment.Exit(0);
         }
 
         public static void PeacefulEnding() // function for ending when the player exits the first room
         {
-            Console.Clear();
             PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
             PrintDelayed("You run back to your horse hitched outside and return to your life back home");
-            Thread.Sleep(1000);
+            Console.ReadKey();
+            Console.Clear();
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
+            Console.ReadKey();
             Environment.Exit(3000);
         }
 
@@ -1111,7 +1113,7 @@ namespace Studio_1
                     Console.Clear();
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
-                    GameOver($"the {monster.name}'s deadly attack");
+                    GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
                 else
                 {
