@@ -9,7 +9,7 @@ namespace Studio_1
         static ConsoleKey UpKey = ConsoleKey.UpArrow;
         static ConsoleKey DownKey = ConsoleKey.DownArrow;
         static ConsoleKey SubmitKey = ConsoleKey.Enter;
-        const string SelectedTemplate = "\x1b[92m\x1b[1m▶ {0}\x1b[0m";
+        const string SelectedTemplate = "\x1b[92m\x1b[1m◆ {0}\x1b[0m";
         const string DefaultTemplate = "  {0}";
 
         /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys.
@@ -58,7 +58,7 @@ namespace Studio_1
         {
             foreach (var (value, i) in options.Select((value, i) => (value, i)))
             {
-                // Prints out the option, but cooses the format string depending on if it is the current option.
+                // Prints out the option, but chooses the format string depending on if it is the current option.
                 Console.WriteLine(String.Format(i == index ? selectedTemplate : defaultTemplate, value));
             }
         }
