@@ -138,7 +138,6 @@ namespace Studio_1
             if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
         }
-``
 
         //Floor 1 entrance
         //-> North F1Hall
@@ -293,11 +292,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -394,11 +389,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -477,11 +468,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -544,11 +531,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -619,11 +602,7 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                             break;
                         case "INVENTORY":
-<<<<<<< HEAD
                             ShowInventory(state.hero);
-=======
-                            Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -732,11 +711,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -872,11 +847,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -916,11 +887,7 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INVENTORY":
-<<<<<<< HEAD
                         ShowInventory(state.hero);
-=======
-                        Inventory(state);
->>>>>>> c6d5e9dc873cbfdcc553282cfde0470d8712a40f
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
