@@ -127,6 +127,18 @@ namespace Studio_1
             Console.ReadKey();
         }
 
+        static void ShowInventory(Entity.Character hero)
+        {
+            Console.WriteLine("Inventory:");
+            if (hero.bomb) Console.WriteLine("- Bomb");
+            if (hero.HealthPotion) Console.WriteLine("- Health Potion");
+            if (hero.F1Key) Console.WriteLine("- Rusty Key");
+            if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
+            if (hero.F2chestKey) Console.WriteLine("- Small Key");
+            if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
+            EndPrompts();
+        }
+
         //Floor 1 entrance
         //-> North F1Hall
         static void F1Entrance(GameState state)
@@ -280,7 +292,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -377,7 +389,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -456,7 +468,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -519,7 +531,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -590,7 +602,7 @@ namespace Studio_1
                             EndPrompts();
                             break;
                         case "INVENTORY":
-                            Inventory(state);
+                            ShowInventory(state.hero);
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -699,7 +711,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -835,7 +847,7 @@ namespace Studio_1
                         EndPrompts();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -875,7 +887,7 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        Inventory(state);
+                        ShowInventory(state.hero);
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
