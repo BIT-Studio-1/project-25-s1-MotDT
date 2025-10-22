@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Design;
+﻿git using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using System.Xml;
@@ -413,16 +413,20 @@ namespace Studio_1
                     case "GO NORTH":
                         if (state.hero.F2Key1 && state.hero.F2Key2)
                         {
+                            PrintDelayed("You unlock the heavy door with the two keys.");
                             Console.Clear();
                             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
                             Console.ReadKey();
                             Environment.Exit(0);
                         }
+                        else if (state.hero.F2Key1 || state.hero.F2Key2)
+                        {
+                            PrintDelayed("You place a key into the lock, but another slot remains empty...");
+                            Console.ReadKey();
+                        }
                         else
                         {
-                            choice = "";
-                            Console.WriteLine("\nNeither of the doors budge an inch.");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
+                            PrintDelayed("The door won’t budge — it requires two keys.");
                             Console.ReadKey();
                         }
                         break;
