@@ -147,9 +147,7 @@ namespace Studio_1
                         PrintDelayed("Do you wish to run in fear of THE TOWER!!!");
                         if (Selector.BoolSelectorMenu(""))
                         {
-                            PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
-                            PrintDelayed("You run back to your horse hitched outside and return to your life back home");
-                            GameOver();
+                            PeacefulEnding();
                         }
                         else
                         {
@@ -184,7 +182,7 @@ namespace Studio_1
                                         PrintDelayed("You fall to the ground in agony as the rat bites your ankle");
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
                                         PrintDelayed("L bozo");
-                                        GameOver("a swarm of rats");
+                                        GameOver("a swarm of angry rats");
                                     }
                                     Console.ReadKey();
                                 }
@@ -359,7 +357,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou stumble forward into the darkness.");
                                 PrintDelayed("You feel shifting ground under your feet");
                                 PrintDelayed("The last thing you hear is the sound of stone scraping on stone.");
-                                GameOver();
+                                GameOver("a hidden trap in the darkness");
                             }
                             else
                             {
@@ -1005,6 +1003,18 @@ namespace Studio_1
             Environment.Exit(3000);
         }
 
+        public static void PeacefulEnding() // function for ending when the player exits the first room
+        {
+            Console.Clear();
+            PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
+            PrintDelayed("You run back to your horse hitched outside and return to your life back home");
+            Thread.Sleep(1000);
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
+            Environment.Exit(3000);
+        }
+
+
+
         // Singular function for a single round of combat
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
@@ -1098,7 +1108,7 @@ namespace Studio_1
                     Console.Clear();
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
-                    GameOver();
+                    GameOver($"the {monster.name}'s deadly attack");
                 }
                 else
                 {
