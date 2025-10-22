@@ -50,7 +50,7 @@ namespace Studio_1
             PrintDelayed("Choose a character! \n");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             PrintDelayed($"[1] BEEF   the {GREEN}TANKY{RESET} warrior");
-            PrintDelayed($"[2] Stabbs the {RED}DAMAGING{RESET} rouge");
+            PrintDelayed($"[2] Stabbs the {RED}DAMAGING{RESET} rogue");
             PrintDelayed($"[3] Dodgio the {BLUE}EVASIVE{RESET} acrobat");
             PrintDelayed("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
             // string confirm;
