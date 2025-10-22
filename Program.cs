@@ -153,6 +153,7 @@ namespace Studio_1
                         else
                         {
                             PrintDelayed("\nAfter some deliberation you decide to continue in search of riches in the tower");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                         }
                         break;
@@ -172,6 +173,7 @@ namespace Studio_1
                                     PrintDelayed($"\nYou push past the giant rat as it claws at your arm and find a small {MAGENTA}BOMB{RESET} hidden inside the skeletons ribs!");
                                     PrintDelayed("You stash it for later.");
                                     state.hero.bomb = true;
+                                    Console.WriteLine($"{GREEN}◆{RESET}");
                                     Console.ReadKey();
                                 }
                                 else
@@ -185,6 +187,7 @@ namespace Studio_1
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
                                         GameOver("a swarm of angry rats");
                                     }
+                                    Console.WriteLine($"{GREEN}◆{RESET}");
                                     Console.ReadKey();
                                 }
                             }
@@ -192,6 +195,7 @@ namespace Studio_1
                         else
                         {
                             PrintDelayed("\nThere is nothing left on the skeleton, other than an angry rat.");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                         }
                         break;
@@ -249,12 +253,14 @@ namespace Studio_1
                         if (state.hero.F1Key == true)
                         {
                             PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
                             PrintDelayed("\nYou fiddle with the lock but it refuses to budge");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                         }
                         break;
@@ -263,13 +269,13 @@ namespace Studio_1
                         {
                             PrintDelayed($"\nYou decide to take the {MAGENTA}TORCH{RESET} with you, never know when it might come in handy");
                             state.hero.torch = true;
-                            Console.ReadKey();
                         }
                         else
                         {
                             PrintDelayed("\nYou have already taken the torch");
-                            Console.ReadKey();
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
+                        Console.ReadKey();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -300,6 +306,7 @@ namespace Studio_1
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    Console.WriteLine($"{GREEN}◆{RESET}");
                     Console.ReadKey();
                 }
                 if (state.monsters[0].health.IsAlive == true)
@@ -323,15 +330,15 @@ namespace Studio_1
                         {
                             PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
                             PrintDelayed("You think this may be the key for the gate in front of the staircase.");
-                            Console.ReadKey();
                             state.monsters[0].item1 = false;
                             state.hero.F1Key = true;
                         }
                         else
                         {
                             PrintDelayed("\nYou find nothing of use");
-                            Console.ReadKey();
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
+                        Console.ReadKey();
                         break;
                     case "INSPECT HOLE":
                         if (state.hero.torch)
@@ -365,6 +372,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide its best to come back with some light.");
                             }
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -414,6 +422,7 @@ namespace Studio_1
                         {
                             choice = "";
                             Console.WriteLine("\nNeither of the doors budge an inch.");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                         }
                         break;
@@ -436,6 +445,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nNothing but a small puddle of wax residue remains at the statues feet.");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -489,14 +499,17 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk drawers");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("\nYou look out the window into the darkness of the night. The full moon shines brightly in the sky.");
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT BOOKSHELVES":
                         PrintDelayed("\nYou spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -531,6 +544,7 @@ namespace Studio_1
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    Console.WriteLine($"{GREEN}◆{RESET}");
                     Console.ReadKey();
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
                 }
@@ -553,19 +567,20 @@ namespace Studio_1
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
-                                Console.ReadKey();
                                 state.monsters[3].item1 = false;
                                 state.hero.F2Key1 = true;
                             }
                             else
                             {
                                 PrintDelayed("\nThe miasma left by the wraith chills your bones.");
-                                Console.ReadKey();
                             }
+                            Console.WriteLine($"{GREEN}◆{RESET}");
+                            Console.ReadKey();
                             break;
                         case "INSPECT MAGIC CIRCLE":
                             PrintDelayed("\nThe lines and runes of the circle pulse with a dull arcane purple.");
                             PrintDelayed("You hope that the circle won't summon anything else");
+                            Console.WriteLine($"{GREEN}◆{RESET}");
                             Console.ReadKey();
                             break;
                         case "STATUS":
@@ -618,6 +633,7 @@ namespace Studio_1
                     case "INSPECT MAGIC CIRCLE":
                         PrintDelayed("\nThe circle is engraved with arcane runes beyond your understanding.");
                         PrintDelayed("It appears to be dormant.");
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT LECTERN":
@@ -660,6 +676,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide reading a suspicious ancient tome may not be the best idea.");
                             }
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT CANDLE HOLDER":
@@ -672,6 +689,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nThere is only the burned out remains of the other candles left.");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -719,7 +737,6 @@ namespace Studio_1
                         if (state.hero.F2Key2 == true)
                         {
                             PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
-
                         }
                         else if (state.hero.F2chestKey == true)
                         {
@@ -735,6 +752,7 @@ namespace Studio_1
                             PrintDelayed("\nThe chest appears to be locked, a small keyhole sits on the front");
                             PrintDelayed("Engraved into the wood on top of the chest are the words \"LIGHT THE WAY\"");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT CANDELABRA":
@@ -758,6 +776,7 @@ namespace Studio_1
                         {
                             PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "INSPECT IDOL":
@@ -805,6 +824,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nBetter not...");
                         }
+                        Console.WriteLine($"{GREEN}◆{RESET}");
                         Console.ReadKey();
                         break;
                     case "STATUS":
