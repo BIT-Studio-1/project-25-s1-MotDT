@@ -61,7 +61,7 @@ namespace Studio_1
         {
             public required EntityHealth health; // monster's health component 
             public required string name; // monster's name
-            public string combatArt; 
+            public string? combatArt; 
             public int damDice;
             public int dodgeDiff;
             public int hitDiff;

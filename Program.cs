@@ -62,7 +62,7 @@ namespace Studio_1
                 bool parse;
                 do
                 {
-                    string tmp;
+                    string? tmp;
                     Console.Write("\nEnter your choice: ");
                     tmp = Console.ReadLine();
                     parse = int.TryParse(tmp, out menu);
@@ -886,7 +886,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
-                choice = Console.ReadLine().ToUpper();
+                choice = Selector.DefaultSelectorMenu(["CREATE", "OPTIONS", "LIKE", "THIS"], "");
                 switch (choice)
                 {
                     case "GO NORTH":
