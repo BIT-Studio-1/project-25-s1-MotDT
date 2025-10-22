@@ -121,7 +121,7 @@ namespace Studio_1
             F1Entrance(initial_state); // Call Entrance method
         }
 
-        static void EndPrompts()
+        static void EndPrompts() // method to stop repeated code/tidy up code
         {
             Console.WriteLine($"{GREEN}◆{RESET}");
             Console.ReadKey();
@@ -136,7 +136,7 @@ namespace Studio_1
             if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
             if (hero.F2chestKey) Console.WriteLine("- Small Key");
             if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
-            EndPrompts();
+            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
         }
 ``
 
@@ -172,7 +172,7 @@ namespace Studio_1
                         else
                         {
                             PrintDelayed("\nAfter some deliberation you decide to continue in search of riches in the tower");
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         }
                         break;
                     case "INSPECT SKELETON":
@@ -191,7 +191,7 @@ namespace Studio_1
                                     PrintDelayed($"\nYou push past the giant rat as it claws at your arm and find a small {MAGENTA}BOMB{RESET} hidden inside the skeletons ribs!");
                                     PrintDelayed("You stash it for later.");
                                     state.hero.bomb = true;
-                                    EndPrompts();
+                                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                                 }
                                 else
                                 {
@@ -204,14 +204,14 @@ namespace Studio_1
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
                                         GameOver("a swarm of angry rats");
                                     }
-                                    EndPrompts();
+                                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                                 }
                             }
                         }
                         else
                         {
                             PrintDelayed("\nThere is nothing left on the skeleton, other than an angry rat.");
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         }
                         break;
                     case "INVENTORY":
@@ -271,13 +271,13 @@ namespace Studio_1
                         if (state.hero.F1Key == true)
                         {
                             PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
                             PrintDelayed("\nYou fiddle with the lock but it refuses to budge");
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         }
                         break;
                     case "INSPECT TORCH":
@@ -290,7 +290,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nYou have already taken the torch");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -328,7 +328,7 @@ namespace Studio_1
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    EndPrompts();
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                 }
                 if (state.monsters[0].health.IsAlive == true)
                 {
@@ -357,7 +357,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nYou find nothing of use");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INSPECT HOLE":
                         if (state.hero.torch)
@@ -391,7 +391,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide its best to come back with some light.");
                             }
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -474,7 +474,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nNothing but a small puddle of wax residue remains at the statues feet.");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -533,15 +533,15 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk drawers");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("\nYou look out the window into the darkness of the night. The full moon shines brightly in the sky.");
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INSPECT BOOKSHELVES":
                         PrintDelayed("\nYou spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -582,7 +582,7 @@ namespace Studio_1
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    EndPrompts();
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
                 }
                 // After combat, show the cleared room
@@ -611,12 +611,12 @@ namespace Studio_1
                             {
                                 PrintDelayed("\nThe miasma left by the wraith chills your bones.");
                             }
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                             break;
                         case "INSPECT MAGIC CIRCLE":
                             PrintDelayed("\nThe lines and runes of the circle pulse with a dull arcane purple.");
                             PrintDelayed("You hope that the circle won't summon anything else");
-                            EndPrompts();
+                            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                             break;
                         case "INVENTORY":
 <<<<<<< HEAD
@@ -675,7 +675,7 @@ namespace Studio_1
                     case "INSPECT MAGIC CIRCLE":
                         PrintDelayed("\nThe circle is engraved with arcane runes beyond your understanding.");
                         PrintDelayed("It appears to be dormant.");
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT LECTERN":
                         if (state.hero.F2tomeInteract == true)
@@ -717,7 +717,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide reading a suspicious ancient tome may not be the best idea.");
                             }
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT CANDLE HOLDER":
                         if (!state.hero.candle2)
@@ -729,7 +729,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nThere is only the burned out remains of the other candles left.");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -799,7 +799,7 @@ namespace Studio_1
                             PrintDelayed("\nThe chest appears to be locked, a small keyhole sits on the front");
                             PrintDelayed("Engraved into the wood on top of the chest are the words \"LIGHT THE WAY\"");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT CANDELABRA":
                         PrintDelayed("\nThe candelabra is surprisingly well maintained compared to everything else in the room.");
@@ -822,7 +822,7 @@ namespace Studio_1
                         {
                             PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT IDOL":
                         PrintDelayed("\nAn odd looking idol sits atop an ornate pedestal.");
@@ -869,7 +869,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nBetter not...");
                         }
-                        EndPrompts();
+                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
 <<<<<<< HEAD
@@ -1062,7 +1062,7 @@ namespace Studio_1
             if (state.hero.F2Key1 || state.hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
             if (state.hero.F2chestKey) Console.WriteLine("- Small Key");
             if (state.hero.candle1 || state.hero.candle2 || state.hero.candle3) Console.WriteLine("- Candle(s)");
-            EndPrompts();
+            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
         }
 
         /// <summary>Help function to display commonly used commands in game</summary>
