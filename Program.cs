@@ -458,7 +458,7 @@ namespace Studio_1
                     case "INSPECT CANDLE":
                         if (!state.hero.candle3)
                         {
-                            PrintDelayed($"\nYou Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the stature and store it for later.");
+                            PrintDelayed($"\nYou Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the statue and store it for later.");
                             state.hero.candle3 = true;
                         }
                         else
