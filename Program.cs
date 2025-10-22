@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
+using System.Xml;
 using static Studio_1.Entity;
 
 namespace Studio_1
@@ -144,14 +145,14 @@ namespace Studio_1
                         F1Hall(state); //Call Room2 method
                         break;
                     case "GO SOUTH":
-                        PrintDelayed("Do you wish to run in fear of THE TOWER!!!");
+                        PrintDelayed("\nDo you wish to run in fear of THE TOWER!!!");
                         if (Selector.BoolSelectorMenu(""))
                         {
                             PeacefulEnding();
                         }
                         else
                         {
-                            PrintDelayed("After some deliberation you decide to continue in search of riches in the tower");
+                            PrintDelayed("\nAfter some deliberation you decide to continue in search of riches in the tower");
                             Console.ReadKey();
                         }
                         break;
@@ -182,7 +183,6 @@ namespace Studio_1
                                     {
                                         PrintDelayed("You fall to the ground in agony as the rat bites your ankle");
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
-                                        PrintDelayed("L bozo");
                                         GameOver("a swarm of angry rats");
                                     }
                                     Console.ReadKey();
@@ -191,7 +191,7 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("There is nothing left on the skeleton, other than an angry rat.");
+                            PrintDelayed("\nThere is nothing left on the skeleton, other than an angry rat.");
                             Console.ReadKey();
                         }
                         break;
@@ -248,13 +248,13 @@ namespace Studio_1
                     case "GO EAST":
                         if (state.hero.F1Key == true)
                         {
-                            PrintDelayed($"You unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
+                            PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
                             Console.ReadKey();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
-                            PrintDelayed("You fiddle with the lock but it refuses to budge");
+                            PrintDelayed("\nYou fiddle with the lock but it refuses to budge");
                             Console.ReadKey();
                         }
                         break;
@@ -345,7 +345,7 @@ namespace Studio_1
                             }
                             else
                             {
-                                PrintDelayed("Nothing remains inside the dark room");
+                                PrintDelayed("\nNothing remains inside the dark room");
                             }
                         }
                         else
@@ -413,7 +413,7 @@ namespace Studio_1
                         else
                         {
                             choice = "";
-                            Console.WriteLine("Neither of the doors budge an inch.");
+                            Console.WriteLine("\nNeither of the doors budge an inch.");
                         }
                         break;
                     case "GO EAST":
@@ -428,12 +428,12 @@ namespace Studio_1
                     case "INSPECT CANDLE":
                         if (!state.hero.candle3)
                         {
-                            PrintDelayed($"You Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the stature and store it for later.");
+                            PrintDelayed($"\nYou Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the stature and store it for later.");
                             state.hero.candle3 = true;
                         }
                         else
                         {
-                            PrintDelayed("Nothing but a small puddle of wax residue remains at the statues feet.");
+                            PrintDelayed("\nNothing but a small puddle of wax residue remains at the statues feet.");
                         }
                         Console.ReadKey();
                         break;
@@ -478,7 +478,7 @@ namespace Studio_1
                         F2Main(state);
                         break;
                     case "INSPECT DESK":
-                        PrintDelayed("The desk is covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
+                        PrintDelayed("\nThe desk is covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
                         if (!state.hero.candle1)
                         {
                             PrintDelayed($"Searching through the drawers you find a {MAGENTA}CANDLE{RESET} and stash it for later.");
@@ -491,11 +491,11 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INSPECT WINDOW":
-                        PrintDelayed("You look out the window into the darkness of the night. The full moon shines brightly in the sky.");
+                        PrintDelayed("\nYou look out the window into the darkness of the night. The full moon shines brightly in the sky.");
                         Console.ReadKey();
                         break;
                     case "INSPECT BOOKSHELVES":
-                        PrintDelayed("You spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
+                        PrintDelayed("\nYou spend some time rummaging through each bookshelf, however you cannot understand any of the writings and find nothing of use.");
                         Console.ReadKey();
                         break;
                     case "STATUS":
@@ -563,7 +563,7 @@ namespace Studio_1
                             }
                             break;
                         case "INSPECT MAGIC CIRCLE":
-                            PrintDelayed("The lines and runes of the circle pulse with a dull arcane purple.");
+                            PrintDelayed("\nThe lines and runes of the circle pulse with a dull arcane purple.");
                             PrintDelayed("You hope that the circle won't summon anything else");
                             Console.ReadKey();
                             break;
@@ -615,23 +615,23 @@ namespace Studio_1
                         F2SouthHall2(state);
                         break;
                     case "INSPECT MAGIC CIRCLE":
-                        PrintDelayed("The circle is engraved with arcane runes beyond your understanding.");
+                        PrintDelayed("\nThe circle is engraved with arcane runes beyond your understanding.");
                         PrintDelayed("It appears to be dormant.");
                         Console.ReadKey();
                         break;
                     case "INSPECT LECTERN":
                         if (state.hero.F2tomeInteract == true)
                         {
-                            PrintDelayed("The lectern is empty");
+                            PrintDelayed("\nThe lectern is empty");
                         }
                         else
                         {
-                            PrintDelayed("There is an aged tome bound by leather atop the lectern.");
+                            PrintDelayed("\nThere is an aged tome bound by leather atop the lectern.");
                             PrintDelayed("The cover has runes that you cannot understand engraved into the leather.");
                             PrintDelayed("Do you want to open the tome?");
                             if (Selector.BoolSelectorMenu(""))
                             {
-                                PrintDelayed("You cautiously flip open the first page.");
+                                PrintDelayed("\nYou cautiously flip open the first page.");
                                 PrintDelayed("The page is covered in seemingly innocuous runes, although you can't understand any of it.");
                                 PrintDelayed("Just as you are about to put the tome down in disappointment, the runes on the page suddenly begin to glow and you feel mana begin to circulate within your body.");
                                 PrintDelayed("Testing your TOUGHNESS...");
@@ -656,7 +656,7 @@ namespace Studio_1
                             }
                             else
                             {
-                                PrintDelayed("You decide reading a suspicious ancient tome may not be the best idea.");
+                                PrintDelayed("\nYou decide reading a suspicious ancient tome may not be the best idea.");
                             }
                         }
                         Console.ReadKey();
@@ -664,12 +664,12 @@ namespace Studio_1
                     case "INSPECT CANDLE HOLDER":
                         if (!state.hero.candle2)
                         {
-                            PrintDelayed($"You pull the last intact {MAGENTA}CANDLE{RESET} from the wall holder and decide to store it for later.");
+                            PrintDelayed($"\nYou pull the last intact {MAGENTA}CANDLE{RESET} from the wall holder and decide to store it for later.");
                             state.hero.candle2 = true;
                         }
                         else
                         {
-                            PrintDelayed("There is only the burned out remains of the other candles left.");
+                            PrintDelayed("\nThere is only the burned out remains of the other candles left.");
                         }
                         Console.ReadKey();
                         break;
@@ -717,12 +717,12 @@ namespace Studio_1
                     case "INSPECT CHEST":
                         if (state.hero.F2Key2 == true)
                         {
-                            PrintDelayed("You hope to find some chests with actual treasure in the future");
+                            PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
 
                         }
                         else if (state.hero.F2chestKey == true)
                         {
-                            PrintDelayed($"The {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
+                            PrintDelayed($"\nThe {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
                             Thread.Sleep(1000);
                             PrintDelayed("... another key.");
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
@@ -731,13 +731,13 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("The chest appears to be locked, a small keyhole sits on the front");
+                            PrintDelayed("\nThe chest appears to be locked, a small keyhole sits on the front");
                             PrintDelayed("Engraved into the wood on top of the chest are the words \"LIGHT THE WAY\"");
                         }
                         Console.ReadKey();
                         break;
                     case "INSPECT CANDELABRA":
-                        PrintDelayed("The candelabra is surprisingly well maintained compared to everything else in the room.");
+                        PrintDelayed("\nThe candelabra is surprisingly well maintained compared to everything else in the room.");
                         if (state.hero.F2candelabraInteract == true)
                         {
                             PrintDelayed("The candle flames flicker sporadically in the dark.");
@@ -760,28 +760,29 @@ namespace Studio_1
                         Console.ReadKey();
                         break;
                     case "INSPECT IDOL":
-                        PrintDelayed("An odd looking idol sits atop an ornate pedestal.");
+                        PrintDelayed("\nAn odd looking idol sits atop an ornate pedestal.");
                         PrintDelayed($"Something about it gives you a {RED}bad feeling...{RESET}");
                         PrintDelayed("Would you like to try and take it?");
                         bool idolChoice = Selector.BoolSelectorMenu("");
                         if (idolChoice == true)
                         {
-                            PrintDelayed($"As you wrap your hand around the idol it suddenly starts to glow a {RED}deep crimson{RESET}.");
+                            PrintDelayed($"\nAs you wrap your hand around the idol it suddenly starts to glow a {RED}deep crimson{RESET}.");
                             PrintDelayed($"It feels as if your life is being {RED}drained{RESET}.");
                             PrintDelayed("Let go?");
                             idolChoice = Selector.BoolSelectorMenu("");
                             if (idolChoice == true)
                             {
-                                PrintDelayed("Thankfully the pain stops as soon as you let go.");
+                                PrintDelayed("\nThankfully the pain stops as soon as you let go.");
                             }
                             else
                             {
-                                PrintDelayed("Images of unknowable beings flood your mind as searing pain courses through your body.");
+                                PrintDelayed("\nImages of unknowable beings flood your mind as searing pain courses through your body.");
+                                PrintDelayed($"{RED}You don't think you can handle anymore...{RESET}");
                                 PrintDelayed($"{RED}L3tT G0¿{RESET}");
                                 idolChoice = Selector.BoolSelectorMenu("");
                                 if (idolChoice == true)
                                 {
-                                    PrintDelayed("As soon as you let go you feel completely fine as if nothing had ever happened.");
+                                    PrintDelayed("\nAs soon as you let go you feel completely fine as if nothing had ever happened.");
                                 }
                                 else
                                 {
@@ -801,7 +802,7 @@ namespace Studio_1
                         }
                         else
                         {
-                            PrintDelayed("Better not...");
+                            PrintDelayed("\nBetter not...");
                         }
                         Console.ReadKey();
                         break;
@@ -1009,7 +1010,7 @@ namespace Studio_1
 
         public static void PeacefulEnding() // function for ending when the player exits the first room
         {
-            PrintDelayed("You decide that it may not be worth risking life and limb for treasure after all");
+            PrintDelayed("\nYou decide that it may not be worth risking life and limb for treasure after all");
             PrintDelayed("You run back to your horse hitched outside and return to your life back home");
             Console.ReadKey();
             Console.Clear();
