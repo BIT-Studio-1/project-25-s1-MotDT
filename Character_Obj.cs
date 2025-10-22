@@ -103,6 +103,7 @@ namespace Studio_1
                 // Create a string of '█' characters representing the character's current health
                 // Create a string of '_' characters representing missing health (maxHP - curHP)
                 // Print the character's name, the visual health bar, and the numeric HP values (current/max)
+                curHP = Math.Max(curHP, 0);
                 Console.WriteLine($"{name} HP: {new string('█', curHP)}{new string('_', maxHP - curHP)} ({curHP}/{maxHP})");
 
                 // Reset the console text color to white

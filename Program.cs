@@ -81,11 +81,11 @@ namespace Studio_1
                 monsters = new Monster[] {
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(6),
+                        health = Entity.EntityHealth.InitHealth(8),
                         name = "Ghoul",
                         combatArt = "../../../Art Files/CombatGhoul.txt",
                         damDice = 3,
-                        dodgeDiff = 10,
+                        dodgeDiff = 9,
                         hitDiff = 10,
                         item1 = true
                     },
@@ -1093,88 +1093,74 @@ namespace Studio_1
         // Singular function for a single round of combat
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
+            int round = 1;
+            string action = "";
+            string item = "";
+            bool useItem = false;
             do
             {
                 Console.Clear();
                 RenderFrame(@$"{monster.combatArt}", 25, 12); // Draw monster art
-                int player_roll = Roll(hero.skill, ref random);
-                if (player_roll >= monster.hitDiff)
+                PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
+                if (round > 1 && action == "ATTACK")
                 {
-                    int dam = random.Next(1, hero.damDice + 1);
-                    monster.health.curHP -= dam;
-                    PrintDelayed($"You strike the {monster.name} for {dam} damage");
-                }
-                else
-                {
-                    PrintDelayed($"{hero.name} Strikes the {monster.name} and misses");
-                }
-
-                // If the player has any type of consumable.
-                if (hero.bomb || hero.HealthPotion)
-                {
-                    PrintDelayed("\nWould you like to use an item Y/N ");
-                    // if (userResponse == "Y")
-                    if (Selector.BoolSelectorMenu(""))
+                    int hit_roll = Roll(hero.skill, ref random);
+                    if (hit_roll >= monster.hitDiff)
                     {
-                        PrintDelayed("Do you want to use a BOMB or a POTION");
-                        string item = Selector.DefaultSelectorMenu(["BOMB", "POTION", "CANCEL"], "");
-                        switch (item)
-                        {
-                            case "BOMB":
-                                if (hero.bomb == true)
-                                {
-                                    int dam = random.Next(4, 9);
-                                    PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {dam} damage");
-                                    monster.health.curHP -= dam;
-                                    hero.bomb = false;
-                                }
-                                else
-                                {
-                                    PrintDelayed($"You do not currently have a BOMB");
-                                }
-                                break;
-                            case "POTION":
-                                if (hero.HealthPotion == true)
-                                {
-                                    int heal = random.Next(4, 9);
-                                    PrintDelayed($"You drink your health potion and heal yourself for {heal}");
-                                    hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
-                                    hero.HealthPotion = false;
-                                }
-                                else
-                                {
-                                    PrintDelayed($"You do not currently have a POTION");
-                                }
-                                break;
-                            case "CANCEL":
-                                break;
-                        }
-                    }
-
-                }
-
-                // The united lines of monster health checking
-                if (monster.health.curHP > 0)
-                {
-                    // Monster's healthBar
-                    monster.PrintHealthBar();
-                    //Monster 'attacks'
-                    player_roll = Roll(hero.finesse, ref random);
-                    if (player_roll <= monster.dodgeDiff)
-                    {
-                        int dam = random.Next(1, monster.damDice + 1);
-                        hero.health.curHP -= dam;
-                        PrintDelayed($"{monster.name} strikes you for {dam} damage");
+                        int dam = random.Next(1, hero.damDice + 1);
+                        monster.health.curHP -= dam;
+                        PrintDelayed($"You strike the {RED}{monster.name}{RESET} for {RED}{dam} damage{RESET}.");
                     }
                     else
                     {
-                        PrintDelayed($"{hero.name} dodges the {monster.name}'s attack just in time");
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {monster.name} and misses.");
                     }
                 }
-                else
+                else if (round > 1 && useItem == true)
                 {
-                    PrintDelayed($"{monster.name} has been defeated");
+                    if (item == "BOMB")
+                    {
+                        int dam = random.Next(4, 9);
+                        PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
+                        monster.health.curHP -= dam;
+                        hero.bomb = false;
+                    }
+                    else if (item == "POTION")
+                    {
+                        int heal = random.Next(4, 9);
+                        PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
+                        hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
+                        hero.HealthPotion = false;
+                    }
+                    useItem = false;
                 }
+
+                // The united lines of monster health checking
+                if (monster.health.curHP > 0 && round > 1)
+                {
+                    // Monster's healthBar
+                    // Monster 'attacks'
+                    int dodge_roll = Roll(hero.finesse, ref random);
+                    if (dodge_roll <= monster.dodgeDiff)
+                    {
+                        int dam = random.Next(1, monster.damDice + 1);
+                        hero.health.curHP -= dam;
+                        PrintDelayed($"{RED}{monster.name}{RESET} strikes {GREEN}{hero.name}{RESET} for {RED}{dam} damage{RESET}.");
+                    }
+                    else
+                    {
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {monster.name}'s attack just in time.");
+                    }
+                }
+                else if (monster.health.curHP <= 0)
+                {
+                    PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
+                }
+
+                Console.WriteLine();
+                monster.PrintHealthBar(); // Monster health display
+                hero.PrintHealthBar();
+                EndPrompts();
 
                 // Check on the hero
                 if (hero.health.curHP <= 0)
@@ -1184,13 +1170,48 @@ namespace Studio_1
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
-                else
+
+                if (monster.health.curHP > 0)
                 {
-                    hero.PrintHealthBar();
-                    Thread.Sleep(1000);
+                    do
+                    {
+                        PrintDelayed($"\n{CYAN}CHOOSE YOUR ACTION!{RESET}");
+                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM"], "");
+                        if (action == "USE ITEM")
+                        {
+                            PrintDelayed("What do you want to use?");
+                            item = Selector.DefaultSelectorMenu(["BOMB", "POTION", "CANCEL"], "");
+                            switch (item)
+                            {
+                                case "BOMB":
+                                    if (hero.bomb == true)
+                                    {
+                                        useItem = true;
+                                        item = "BOMB";
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed($"You do not currently have a {MAGENTA}BOMB{RESET}.");
+                                    }
+                                    break;
+                                case "POTION":
+                                    if (hero.HealthPotion == true)
+                                    {
+                                        useItem = true;
+                                        item = "POTION";
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed($"You do not currently have a {MAGENTA}POTION{RESET}.");
+                                    }
+                                    break;
+                                case "CANCEL":
+                                    break;
+                            }
+                        }
+                    } while (action != "ATTACK" && useItem == false);
                 }
-                Thread.Sleep(1000);
-                
+                round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
             Console.Clear();
         }
