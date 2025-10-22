@@ -1025,9 +1025,10 @@ namespace Studio_1
         {
             Console.WriteLine(@$"┌────────────────┬──────────────────────────────────────────────────────────────────────────────────┐
 │ GO {YELLOW}{UNDERLINE}[DIRECTION]{RESET}{NOUNDERLINE} │ Takes you to a different room based on its relative position to the current room │
-│INSPECT {BLUE}[OBJECT]{RESET}│ Inspect an object in the current room                                            │
+│INSPECT {BLUE}[OBJECT]{RESET}│ Inspects an object in the current room                                           │
+│    INVENTORY   │ Shows your current inventory                                                     │
 │      HELP      │ Prints the help menu                                                             │
-│     STATUS     │ Shows the player's character sheet                                               │
+│     STATUS     │ Shows your current character sheet                                               │
 └────────────────┴──────────────────────────────────────────────────────────────────────────────────┘");
             Console.WriteLine($"{MAGENTA}ITEMS{RESET} will be used if you have the correct items when inspecting objects.");
             PrintDelayed("◆ Press any key to continue");
