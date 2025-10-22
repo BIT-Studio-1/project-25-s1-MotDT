@@ -43,7 +43,7 @@ namespace Studio_1
             EndPrompts();
             Console.Clear();
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12); // Titlecard
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             PrintDelayed($"\nAfter a long arduous journey on horseback you have finally arrived at the {RED}Dark Wizard's{RESET} tower.");
             PrintDelayed("In front of you is a large door that promises danger, but also a chance at riches and glory.");
             Console.WriteLine("Choose Beef, Stabbs, or Dodgio and prove your fate.\n");
@@ -83,6 +83,7 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(6),
                         name = "Ghoul",
+                        combatArt = "../../../Art Files/CombatGhoul.txt",
                         damDice = 3,
                         dodgeDiff = 10,
                         hitDiff = 10,
@@ -108,11 +109,12 @@ namespace Studio_1
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(20), // tougher HP
-                        name = "Elite Wraith",                      // elite boss name
-                        damDice = 5,                               // stronger damage changed from 10 to 5
-                        dodgeDiff = 13,                             // harder to hit changed from 18 to 13
-                        hitDiff = 11,                               // harder to dodge changed from 14 to 11
+                        health = Entity.EntityHealth.InitHealth(20), 
+                        name = "Elite Wraith",
+                        combatArt = "../../../Art Files/CombatWraith.txt",
+                        damDice = 5,                                
+                        dodgeDiff = 13,                             
+                        hitDiff = 11,                               
                         item1 = true                                // drops the special key
     }
                     },
@@ -1094,6 +1096,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
+                RenderFrame(@$"{monster.combatArt}", 25, 12); // Draw monster art
                 int player_roll = Roll(hero.skill, ref random);
                 if (player_roll >= monster.hitDiff)
                 {
