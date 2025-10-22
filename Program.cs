@@ -956,10 +956,13 @@ namespace Studio_1
             return rnd.Next(1, 21) + hitMod;
         }
 
-        public static void GameOver() //placeholder function for an animation and possible conditional like what killed you 
+
+        public static void GameOver(string causeOfDeath) 
         {
             Console.Clear();
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12); //Game over ASCII art
+            PrintDelayed($"You were slain by {causeOfDeath}..."); // tell the player what killed their character
+            Thread.Sleep(1000);
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
             Environment.Exit(3000);
         }
 
