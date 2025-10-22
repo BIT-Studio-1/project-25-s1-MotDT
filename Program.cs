@@ -508,7 +508,6 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
                 PrintDelayed($"By the north wall is a {BLUE}DESK{RESET} with a large ornate {BLUE}WINDOW{RESET} behind it.");
                 PrintDelayed($"{BLUE}BOOKSHELVES{RESET} filled with old parchments and scrolls line the walls.");
-                // choice = Console.ReadLine().ToUpper();
                 choice = Selector.DefaultSelectorMenu(["GO EAST", "GO WEST", "INSPECT DESK", "INSPECT WINDOW", "INSPECT BOOKSHELVES", "INVENTORY", "STATUS", "HELP"], "");
                 switch (choice)
                 {
@@ -909,9 +908,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
-                //Text goes here
                 choice = Console.ReadLine().ToUpper();
-                // choice = Selector.DefaultSelectorMenu(["GO NORTH","GO SOUTH","INSPECT","STATUS","HELP"],"");
                 switch (choice)
                 {
                     case "GO NORTH":
@@ -1133,12 +1130,10 @@ namespace Studio_1
                 if (hero.bomb || hero.HealthPotion)
                 {
                     PrintDelayed("\nWould you like to use an item Y/N ");
-                    // string userResponse = Console.ReadLine().ToUpper();
                     // if (userResponse == "Y")
                     if (Selector.BoolSelectorMenu(""))
                     {
                         PrintDelayed("Do you want to use a BOMB or a POTION");
-                        // string item = Console.ReadLine().ToUpper();
                         string item = Selector.DefaultSelectorMenu(["BOMB", "POTION", "CANCEL"], "");
                         switch (item)
                         {
@@ -1178,7 +1173,7 @@ namespace Studio_1
                 // The united lines of monster health checking
                 if (monster.health.curHP > 0)
                 {
-                    // IT DOES WHAT IT DOES
+                    // Monster's healthBar
                     monster.PrintHealthBar();
                     //Monster 'attacks'
                     player_roll = Roll(hero.finesse, ref random);
