@@ -184,7 +184,7 @@ namespace Studio_1
                                         PrintDelayed("You fall to the ground in agony as the rat bites your ankle");
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
                                         PrintDelayed("L bozo");
-                                        GameOver();
+                                        GameOver("a swarm of rats");
                                     }
                                     Console.ReadKey();
                                 }
