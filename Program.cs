@@ -37,13 +37,15 @@ namespace Studio_1
         static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            // Title Card
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12);
-
-            //intro paragraph
-            Console.WriteLine();
-            PrintDelayed("Cold stone and stale air greet you.");
-            PrintDelayed("To the south a rusted door that promises danger and a chance at freedom.");
+            Console.Clear();
+            PrintDelayed($"{CYAN}PLEASE FULLSCREEN THE CONSOLE FOR A BETTER EXPERIENCE{RESET}");
+            PrintDelayed($"{CYAN}WHENEVER YOU SEE A GREEN DIAMOND [{GREEN}◆{CYAN}] PRESS ANY KEY TO CONTINUE{RESET}");
+            EndPrompts();
+            Console.Clear();
+            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12); // Titlecard
+            Thread.Sleep(3000);
+            PrintDelayed($"\nAfter a long arduous journey on horseback you have finally arrived at the {RED}Dark Wizard's{RESET} tower.");
+            PrintDelayed("In front of you is a large door that promises danger, but also a chance at riches and glory.");
             Console.WriteLine("Choose Beef, Stabbs, or Dodgio and prove your fate.\n");
 
             // Character Selection dialog
@@ -136,7 +138,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Entrance.txt", "Art Files/F1Entrance.txt" }), 25, 10); //Background 
-                PrintDelayed("You find yourself in the dark entrance way of the wizard's tower");
+                PrintDelayed("You find yourself in the dark entrance way of the Dark Wizard's tower");
                 PrintDelayed("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 PrintDelayed($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
                 PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the door back to civilisation perhaps you should abandon your quest?");
