@@ -121,6 +121,13 @@ namespace Studio_1
             F1Entrance(initial_state); // Call Entrance method
         }
 
+        static void EndPrompts()
+        {
+
+            Console.WriteLine($"{GREEN}◆{RESET}");
+            Console.ReadKey();
+        }
+
         //Floor 1 entrance
         //-> North F1Hall
         static void F1Entrance(GameState state)
@@ -153,8 +160,7 @@ namespace Studio_1
                         else
                         {
                             PrintDelayed("\nAfter some deliberation you decide to continue in search of riches in the tower");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                         }
                         break;
                     case "INSPECT SKELETON":
@@ -173,8 +179,7 @@ namespace Studio_1
                                     PrintDelayed($"\nYou push past the giant rat as it claws at your arm and find a small {MAGENTA}BOMB{RESET} hidden inside the skeletons ribs!");
                                     PrintDelayed("You stash it for later.");
                                     state.hero.bomb = true;
-                                    Console.WriteLine($"{GREEN}◆{RESET}");
-                                    Console.ReadKey();
+                                    EndPrompts();
                                 }
                                 else
                                 {
@@ -187,16 +192,14 @@ namespace Studio_1
                                         PrintDelayed("More rats appear from the shadows and you are overwhelmed by vermin and succumb to the swarm");
                                         GameOver("a swarm of angry rats");
                                     }
-                                    Console.WriteLine($"{GREEN}◆{RESET}");
-                                    Console.ReadKey();
+                                    EndPrompts();
                                 }
                             }
                         }
                         else
                         {
                             PrintDelayed("\nThere is nothing left on the skeleton, other than an angry rat.");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                         }
                         break;
                     case "STATUS":
@@ -253,15 +256,13 @@ namespace Studio_1
                         if (state.hero.F1Key == true)
                         {
                             PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                             F2Main(state); //Call F2Main
                         }
                         else
                         {
                             PrintDelayed("\nYou fiddle with the lock but it refuses to budge");
-                            Console.WriteLine($"{GREEN}◆{RESET}");
-                            Console.ReadKey();
+                            EndPrompts();
                         }
                         break;
                     case "INSPECT TORCH":
@@ -274,8 +275,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nYou have already taken the torch");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -306,8 +306,7 @@ namespace Studio_1
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                    Console.WriteLine($"{GREEN}◆{RESET}");
-                    Console.ReadKey();
+                    EndPrompts();
                 }
                 if (state.monsters[0].health.IsAlive == true)
                 {
@@ -337,8 +336,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nYou find nothing of use");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT HOLE":
                         if (state.hero.torch)
@@ -372,8 +370,7 @@ namespace Studio_1
                                 PrintDelayed("\nYou decide its best to come back with some light.");
                             }
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -449,8 +446,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nNothing but a small puddle of wax residue remains at the statues feet.");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -503,8 +499,7 @@ namespace Studio_1
                         {
                             PrintDelayed("You find nothing else of use inside the desk drawers");
                         }
-                        Console.WriteLine($"{GREEN}◆{RESET}");
-                        Console.ReadKey();
+                        EndPrompts();
                         break;
                     case "INSPECT WINDOW":
                         PrintDelayed("\nYou look out the window into the darkness of the night. The full moon shines brightly in the sky.");
