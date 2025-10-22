@@ -1113,21 +1113,21 @@ namespace Studio_1
                     }
                     else
                     {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {monster.name} and misses.");
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
                     }
                 }
                 else if (round > 1 && useItem == true)
                 {
                     if (item == "BOMB")
                     {
-                        int dam = random.Next(4, 9);
+                        int dam = random.Next(6, 10);
                         PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
                         monster.health.curHP -= dam;
                         hero.bomb = false;
                     }
                     else if (item == "POTION")
                     {
-                        int heal = random.Next(4, 9);
+                        int heal = random.Next(4, 10);
                         PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
                         hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
                         hero.HealthPotion = false;
@@ -1149,7 +1149,7 @@ namespace Studio_1
                     }
                     else
                     {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {monster.name}'s attack just in time.");
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {RED}{monster.name}'s{RESET} attack just in time.");
                     }
                 }
                 else if (monster.health.curHP <= 0)
