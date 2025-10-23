@@ -16,21 +16,22 @@ namespace Studio_1
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string DefaultSelectorMenu(string[] options, string header)
         {
-            return options[SelectorMenuString(options, header, SelectedTemplate, DefaultTemplate)];
+            Console.WriteLine(header);
+            return options[SelectorMenuString(options,SelectedTemplate, DefaultTemplate)];
         }
 
         /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys. For Yes/No Dialog. </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool BoolSelectorMenu(string header)
         {
-            return SelectorMenuString(["YES", "NO"], header, SelectedTemplate, DefaultTemplate) == 0;
+            Console.WriteLine(header);
+            return SelectorMenuString(["YES", "NO"] ,SelectedTemplate, DefaultTemplate) == 0;
         }
 
         /// <summary> Creates a selection menu that can be navigated by arrow keys. Takes an array of strings to show as options, returns the selected option's index. </summary>
-        public static int SelectorMenuString(string[] options, string header, string selectedTemplate, string defaultTemplate)
+        public static int SelectorMenuString(string[] options, string selectedTemplate, string defaultTemplate)
         {
             int selection = 0;
-            Console.WriteLine(header);
             RenderSelectionList(options, selection, selectedTemplate, defaultTemplate);
 
             ConsoleKey KeyBuffer = InitialKey;
