@@ -38,6 +38,7 @@ namespace Studio_1
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Clear();
+            PrintDelayed($"{CYAN}CHANGE YOUR DEFAULT TERMINAL APPLICATION TO {GREEN}WINDOWS CONSOLE HOST{CYAN} TO AVOID WINDOWS 11 ISSUES{RESET}");
             PrintDelayed($"{CYAN}PLEASE FULLSCREEN THE CONSOLE FOR A BETTER EXPERIENCE{RESET}");
             PrintDelayed($"{CYAN}WHENEVER YOU SEE A GREEN DIAMOND [{GREEN}◆{CYAN}] PRESS ANY KEY TO CONTINUE{RESET}");
             EndPrompts();
