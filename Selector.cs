@@ -13,7 +13,6 @@ namespace Studio_1
 
         /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys.
         //  Takes an array of strings to show as options, returns the selected string from the options. </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string DefaultSelectorMenu(string[] options, string header)
         {
             Console.WriteLine(header);
@@ -21,7 +20,6 @@ namespace Studio_1
         }
 
         /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys. For Yes/No Dialog. </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool BoolSelectorMenu(string header)
         {
             Console.WriteLine(header);
@@ -57,8 +55,11 @@ namespace Studio_1
             }
             return selection;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        ///<summary> Renders all options in a series of lines.
+        /// int index: the 0-indexed entry that is the currently selected option.
+        /// selectedTemplate is the format string for the option that is selected.
+        /// defaultTemplate is the format for other options.
+        ///</summary>
         static void RenderSelectionList(string[] options, int index, string selectedTemplate, string defaultTemplate)
         {
             foreach (var (value, i) in options.Select((value, i) => (value, i)))
@@ -69,7 +70,6 @@ namespace Studio_1
         }
 
         // Somehow working
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static int mat_mod(int x, int m)
         {
             return (x % m + m) % m;
