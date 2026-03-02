@@ -122,7 +122,6 @@ namespace Studio_1
                 random_gen = new Random()
             };
 
-            GC.Collect();
             F1Entrance(initial_state); // Call Entrance method
         }
 
