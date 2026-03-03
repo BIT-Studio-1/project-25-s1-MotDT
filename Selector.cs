@@ -2,10 +2,13 @@ namespace Studio_1
 {
     internal class Selector
     {
+        // Keys used for naviagting the selector menu.
         const ConsoleKey InitialKey = ConsoleKey.Spacebar;
         const ConsoleKey UpKey = ConsoleKey.UpArrow;
         const ConsoleKey DownKey = ConsoleKey.DownArrow;
         const ConsoleKey SubmitKey = ConsoleKey.Enter;
+        
+        // Default String templates used for formatting the options in the list.
         const string SelectedTemplate = "\x1b[92m\x1b[1m◆ {0}\x1b[0m";
         const string DefaultTemplate = "  {0}";
 
