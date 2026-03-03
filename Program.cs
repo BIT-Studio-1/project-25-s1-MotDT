@@ -75,7 +75,7 @@ namespace Studio_1
 
             Entity.Character hero = GetChar(menu);
 
-            // Initialize the game's state.
+            //Initilises the game stat by loading the selected hero into the character class located in the gamestate struct as well as initilising the monster array with all the games monsters
             GameState initial_state = new GameState
             {
                 hero = hero,
@@ -92,31 +92,13 @@ namespace Studio_1
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(6),
-                        name = "Goblin",
-                        damDice = 4,
-                        dodgeDiff = 15,
-                        hitDiff = 12,
-                        item1 = false
-                    },
-                    new Entity.Monster
-                    {
-                        health = Entity.EntityHealth.InitHealth(6),
-                        name = "Dire Hound",
-                        damDice = 6,
-                        dodgeDiff = 13,
-                        hitDiff = 15,
-                        item1 = false
-                    },
-                    new Entity.Monster
-                    {
-                        health = Entity.EntityHealth.InitHealth(20), 
+                        health = Entity.EntityHealth.InitHealth(14), 
                         name = "Elite Wraith",
                         combatArt = "../../../Art Files/CombatWraith.txt",
                         damDice = 5,                                
                         dodgeDiff = 13,                             
                         hitDiff = 11,                               
-                        item1 = true                                // drops the special key
+                        item1 = true
     }
                     },
                 random_gen = new Random()
@@ -563,7 +545,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 // if the elite wraith is still alive, initiate combat
-                if (state.monsters[3].health.IsAlive == true)
+                if (state.monsters[1].health.IsAlive == true)
                 {
 
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
@@ -572,7 +554,7 @@ namespace Studio_1
                     if (state.hero.name == "Joe Biden")
                     {
                         PrintDelayed($"You delete the {RED}WRAITH{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
-                        state.monsters[3].health.curHP = 0;
+                        state.monsters[1].health.curHP = 0;
                         EndPrompts();
                         Console.Clear();
                     }
@@ -580,7 +562,7 @@ namespace Studio_1
                     {
                         PrintDelayed($"{RED}Prepare for combat...{RESET}");
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                        Combat(ref state.hero, ref state.monsters[1], ref state.random_gen);
                     }
                 }
                 // After combat, show the cleared room
@@ -598,11 +580,11 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (state.monsters[3].item1 == true)
+                            if (state.monsters[1].item1 == true)
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
-                                state.monsters[3].item1 = false;
+                                state.monsters[1].item1 = false;
                                 state.hero.F2Key1 = true;
                             }
                             else
