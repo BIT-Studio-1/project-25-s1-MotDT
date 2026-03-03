@@ -1073,7 +1073,15 @@ namespace Studio_1
 
 
 
-        // Singular function for a single round of combat
+        /// <summary>
+        /// This function handles the combat logic of the game. it takes in the player character, current monster and random class from the game state struct
+        /// and then runs through a round of combat starting by printing the round number and monster portrait and calling the healthbar function
+        /// then it calls the selector menu with a list of combat options then takes that input and checks to see what action the player has chosen 
+        /// and preforms it. afterwards the player attempts to doge the monster (that currently allways attacks) and if unsucessful takes damage. this process repeats untill one of the two characters dies
+        /// </summary>
+        /// <param name="hero">Refferance to the hero character in the gamestate struct</param>
+        /// <param name="monster">Refferance to the monster character in the gamestate struct</param>
+        /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
             int round = 1;
@@ -1083,7 +1091,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(@$"{monster.combatArt}", 25, 12); // Draw monster art
+                RenderFrame(@$"{monster.combatArt}", 25, 12);
                 PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
                 if (round > 1 && action == "ATTACK")
                 {
@@ -1119,11 +1127,8 @@ namespace Studio_1
                     useItem = false;
                 }
 
-                // The united lines of monster health checking
                 if (monster.health.curHP > 0 && round > 1)
                 {
-                    // Monster's healthBar
-                    // Monster 'attacks'
                     int dodge_roll = Roll(hero.finesse, ref random);
                     if (dodge_roll <= monster.dodgeDiff)
                     {
@@ -1140,13 +1145,10 @@ namespace Studio_1
                 {
                     PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
                 }
-
                 Console.WriteLine();
-                monster.PrintHealthBar(); // Monster health display
+                monster.PrintHealthBar();
                 hero.PrintHealthBar();
                 EndPrompts();
-
-                // Check on the hero
                 if (hero.health.curHP <= 0)
                 {
                     Console.Clear();
@@ -1154,7 +1156,6 @@ namespace Studio_1
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
-
                 if (monster.health.curHP > 0)
                 {
                     do
