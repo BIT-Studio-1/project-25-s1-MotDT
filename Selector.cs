@@ -1,4 +1,3 @@
-
 namespace Studio_1
 {
     internal class Selector
@@ -27,7 +26,7 @@ namespace Studio_1
         /// <summary> Creates a selection menu that can be navigated by arrow keys. Takes an array of strings to show as options, returns the selected option's index. </summary>
         public static int SelectorMenuString(string[] options, string selectedTemplate, string defaultTemplate)
         {
-            // Init the selection variable, and init the KeyBuffer.
+            // Init the selection variable to the first element.
             int selection = 0;
             // Initialize the keybuffer to a key that does nothing. 
             ConsoleKey KeyBuffer = InitialKey;
@@ -49,17 +48,17 @@ namespace Studio_1
                     default:
                         break;
                 }
-                // Set the cursor position to the top
+                // Set the cursor position to the top.
                 Console.SetCursorPosition(0, Console.CursorTop - options.Length);
                 // Render/Update the selection list.
                 RenderSelectionList(options, selection, selectedTemplate, defaultTemplate);
                 // Read keystroke and assign KeyBuffer to the result.
                 KeyBuffer = Console.ReadKey().Key;
             }
-            // Return fina selection value
+            // Return final selection value
             return selection;
         }
-        ///<summary> Renders all options in a series of lines. int index: the 0-indexed entry that is the currently selected option. selectedTemplate is the format string for the option that is selected. defaultTemplate is the format for other options. </summary>
+        ///<summary> Renders all options in a series of lines. int index: the 0-indexed entry that is the currently selected option. selectedTemplate is the format string for the option that is selected. defaultTemplate is used for other options. </summary>
         static void RenderSelectionList(string[] options, int index, string selectedTemplate, string defaultTemplate)
         {
             // Iterate through (value,index) pairs in a loop, so we can compare them with the selection index.
@@ -70,7 +69,7 @@ namespace Studio_1
             }
         }
 
-        ///<summary> Function used to make Selector index conform to length by looping around, because % does not handle negative numbers well. </summary>
+        ///<summary> Function used to make Selector index conform to length by looping around, because % does not handle negative numbers well, and Math has no suitable function. </summary>
         static int mat_mod(int x, int m)
         {
             return (x % m + m) % m;
