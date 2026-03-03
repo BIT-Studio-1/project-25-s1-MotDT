@@ -1099,21 +1099,22 @@ namespace Studio_1
                         PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
                     }
                 }
-                else if (round > 1 && useItem == true)
+                else if (useItem == true)
                 {
-                    if (item == "BOMB")
+                    switch (item)
                     {
-                        int dam = random.Next(6, 10);
-                        PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
-                        monster.health.curHP -= dam;
-                        hero.bomb = false;
-                    }
-                    else if (item == "POTION")
-                    {
-                        int heal = random.Next(4, 10);
-                        PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
-                        hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
-                        hero.HealthPotion = false;
+                        case "BOMB":
+                            int dam = random.Next(6, 10);
+                            PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
+                            monster.health.curHP -= dam;
+                            hero.bomb = false;
+                            break;
+                        case "POTION":
+                            int heal = random.Next(4, 10);
+                            PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
+                            hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
+                            hero.HealthPotion = false;
+                            break;
                     }
                     useItem = false;
                 }
