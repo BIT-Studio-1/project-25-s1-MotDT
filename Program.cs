@@ -1126,7 +1126,6 @@ namespace Studio_1
                     }
                     useItem = false;
                 }
-
                 if (monster.health.curHP > 0 && round > 1)
                 {
                     int dodge_roll = Roll(hero.finesse, ref random);
