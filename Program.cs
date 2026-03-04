@@ -1093,68 +1093,8 @@ namespace Studio_1
                 Console.Clear();
                 RenderFrame(@$"{monster.combatArt}", 25, 12);
                 PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
-                if (round > 1 && action == "ATTACK")
-                {
-                    int hit_roll = Roll(hero.skill, ref random);
-                    if (hit_roll >= monster.hitDiff)
-                    {
-                        int dam = random.Next(1, hero.damDice + 1);
-                        monster.health.curHP -= dam;
-                        PrintDelayed($"You strike the {RED}{monster.name}{RESET} for {RED}{dam} damage{RESET}.");
-                    }
-                    else
-                    {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
-                    }
-                }
-                else if (useItem == true)
-                {
-                    switch (item)
-                    {
-                        case "BOMB":
-                            int dam = random.Next(6, 10);
-                            PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
-                            monster.health.curHP -= dam;
-                            hero.bomb = false;
-                            break;
-                        case "POTION":
-                            int heal = random.Next(4, 10);
-                            PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
-                            hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
-                            hero.HealthPotion = false;
-                            break;
-                    }
-                    useItem = false;
-                }
-                if (monster.health.curHP > 0 && round > 1)
-                {
-                    int dodge_roll = Roll(hero.finesse, ref random);
-                    if (dodge_roll <= monster.dodgeDiff)
-                    {
-                        int dam = random.Next(1, monster.damDice + 1);
-                        hero.health.curHP -= dam;
-                        PrintDelayed($"{RED}{monster.name}{RESET} strikes {GREEN}{hero.name}{RESET} for {RED}{dam} damage{RESET}.");
-                    }
-                    else
-                    {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {RED}{monster.name}'s{RESET} attack just in time.");
-                    }
-                }
-                else if (monster.health.curHP <= 0)
-                {
-                    PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
-                }
-                Console.WriteLine();
                 monster.PrintHealthBar();
                 hero.PrintHealthBar();
-                EndPrompts();
-                if (hero.health.curHP <= 0)
-                {
-                    Console.Clear();
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
-                    Thread.Sleep(1000);
-                    GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
-                }
                 if (monster.health.curHP > 0)
                 {
                     do
@@ -1194,6 +1134,66 @@ namespace Studio_1
                             }
                         }
                     } while (action != "ATTACK" && useItem == false);
+                }
+                if (action == "ATTACK")
+                {
+                    int hit_roll = Roll(hero.skill, ref random);
+                    if (hit_roll >= monster.hitDiff)
+                    {
+                        int dam = random.Next(1, hero.damDice + 1);
+                        monster.health.curHP -= dam;
+                        PrintDelayed($"\nYou strike the {RED}{monster.name}{RESET} for {RED}{dam} damage{RESET}.");
+                    }
+                    else
+                    {
+                        PrintDelayed($"\n{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
+                    }
+                }
+                else if (useItem == true)
+                {
+                    switch (item)
+                    {
+                        case "BOMB":
+                            int dam = random.Next(6, 10);
+                            PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
+                            monster.health.curHP -= dam;
+                            hero.bomb = false;
+                            break;
+                        case "POTION":
+                            int heal = random.Next(4, 10);
+                            PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
+                            hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
+                            hero.HealthPotion = false;
+                            break;
+                    }
+                    useItem = false;
+                }
+                if (monster.health.curHP > 0)
+                {
+                    int dodge_roll = Roll(hero.finesse, ref random);
+                    if (dodge_roll <= monster.dodgeDiff)
+                    {
+                        int dam = random.Next(1, monster.damDice + 1);
+                        hero.health.curHP -= dam;
+                        PrintDelayed($"{RED}{monster.name}{RESET} strikes {GREEN}{hero.name}{RESET} for {RED}{dam} damage{RESET}.");
+                    }
+                    else
+                    {
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {RED}{monster.name}'s{RESET} attack just in time.");
+                    }
+                }
+                else if (monster.health.curHP <= 0)
+                {
+                    PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
+                }
+                Console.WriteLine();
+                EndPrompts();
+                if (hero.health.curHP <= 0)
+                {
+                    Console.Clear();
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
+                    Thread.Sleep(1000);
+                    GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
                 round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
