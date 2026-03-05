@@ -1084,7 +1084,7 @@ namespace Studio_1
         /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
-            int round = 1;
+            int round = 1,deffBuff = 0;
             string action = "";
             string item = "";
             bool useItem = false;
@@ -1194,6 +1194,10 @@ namespace Studio_1
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
+                }
+                if (deffBuff > 0)
+                {
+                    deffBuff--;
                 }
                 round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
