@@ -67,7 +67,7 @@ namespace Studio_1
                     Console.Write("\nEnter your choice: ");
                     tmp = Console.ReadLine();
                     parse = int.TryParse(tmp, out menu);
-                } while (menu < 1 || menu > 4 || parse == false);
+                } while (menu < 1 || menu > 3 || parse == false);
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
@@ -314,19 +314,11 @@ namespace Studio_1
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3Ghoul.txt", "Art Files/F1Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
-                    if (state.hero.name == "Joe Biden") // truely the best president
-                    {
-                        PrintDelayed($"You delete the {RED}GHOUL{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
-                        state.monsters[0].health.curHP = 0;
-                        EndPrompts();
-                    }
-                    else
-                    {
-                        PrintDelayed("You must vanquish it before you can act freely");
-                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
-                    }
+                    PrintDelayed("You must vanquish it before you can act freely");
+                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
+                    
                 }
                 else
                 {
@@ -568,19 +560,10 @@ namespace Studio_1
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
-                    if (state.hero.name == "Joe Biden")
-                    {
-                        PrintDelayed($"You delete the {RED}WRAITH{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
-                        state.monsters[3].health.curHP = 0;
-                        EndPrompts();
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
-                    }
+                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                    
                 }
                 // After combat, show the cleared room
                 else
@@ -974,19 +957,6 @@ namespace Studio_1
                             finesse = 2,
                             toughness = -1,
                             presence = 0
-                        };
-                    }
-                case 4:
-                    {
-                        return new Entity.Character
-                        {
-                            name = "Joe Biden",
-                            health = Entity.EntityHealth.InitHealth(1),
-                            damDice = 99,
-                            skill = 99,
-                            finesse = -99,
-                            toughness = -99,
-                            presence = 99
                         };
                     }
                 default:
