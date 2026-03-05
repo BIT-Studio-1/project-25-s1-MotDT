@@ -1142,7 +1142,7 @@ namespace Studio_1
                             switch (skill)
                             {
                                 case "EVADE":
-                                    if (deffBuff < 5)
+                                    if (deffBuff < 4)
                                     {
                                         deffBuff = (hero.finesse < 0) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
                                         useSkill = true;
