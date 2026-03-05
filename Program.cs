@@ -920,21 +920,18 @@ namespace Studio_1
 
 
 
-        /// <summary>Print merged with sleep(200)</summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PrintDelayed(string text)
-        {
-            Console.WriteLine(text);
-            Thread.Sleep(100);
-        }
 
-        /// <summary>Print merged with sleep(), with custom time</summary>
+        /// <summary>
+        /// Writes a line to the console and then sleeps for the specified duration (ms).
+        /// Default delay is 100ms.
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PrintDelayed(string text, int duration)
+        static void PrintDelayed(string text, int duration = 100)
         {
             Console.WriteLine(text);
             Thread.Sleep(duration);
         }
+
 
         public static Entity.Character GetChar(int menu)
         {
