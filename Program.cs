@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Xml;
 using static Studio_1.Entity;
@@ -1087,7 +1088,8 @@ namespace Studio_1
             int round = 1,deffBuff = 0;
             string action = "";
             string item = "";
-            bool useItem = false;
+            string skill = "";
+            bool useItem = false, useSkill = false;
             do
             {
                 Console.Clear();
@@ -1100,7 +1102,7 @@ namespace Studio_1
                     do
                     {
                         PrintDelayed($"\n{CYAN}CHOOSE YOUR ACTION!{RESET}");
-                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM"], "");
+                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM", "USE SKILL"], "");
                         if (action == "USE ITEM")
                         {
                             PrintDelayed("What do you want to use?");
@@ -1133,7 +1135,30 @@ namespace Studio_1
                                     break;
                             }
                         }
-                    } while (action != "ATTACK" && useItem == false);
+                        if (action == "USE SKILL")
+                        {
+                            PrintDelayed("\nChoose a skill to use");
+                            skill = Selector.DefaultSelectorMenu(["EVADE", "CANCEL"], "");
+                            switch (skill)
+                            {
+                                case "EVADE":
+                                    if (deffBuff < 5)
+                                    {
+                                        deffBuff = (hero.finesse < 0) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
+                                        useSkill = true;
+                                        Console.WriteLine($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nYou have already evaded as much as you can");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "CANCEL":
+                                    break;
+                            }
+                        }
+                    } while (action != "ATTACK" && !useItem && !useSkill);
                 }
                 if (action == "ATTACK")
                 {
@@ -1170,7 +1195,7 @@ namespace Studio_1
                 }
                 if (monster.health.curHP > 0)
                 {
-                    int dodge_roll = Roll(hero.finesse, ref random);
+                    int dodge_roll = Roll(hero.finesse, ref random) + deffBuff;
                     if (dodge_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
