@@ -16,6 +16,7 @@ namespace Studio_1
             public int toughness; // Can be used for room Events and such
             public int presence;  // Can be used for room Events and such
 
+            
             //Collectable Items
             public bool F1Key;  // Key to stairway door
             public bool HealthPotion;   // Checks to see if player has the health potion

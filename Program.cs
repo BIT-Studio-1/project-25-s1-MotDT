@@ -14,6 +14,7 @@ namespace Studio_1
             public Entity.Character hero;
             public Monster[] monsters;
             public Random random_gen;
+            public Inventory_Events.InventoryAndEvents;
         }
 
         //Global constants for changing colour of text, remember to always RESET!
