@@ -34,7 +34,8 @@ namespace Studio_1
         public const string REVERSE = "\x1b[7m";
         public const string NOREVERSE = "\x1b[27m";
 
-        /// <summary> This is the parent directory of the files. This points towards the object Root. This is platform-dependent, so it is not included in GameState. </summary>
+        /// <summary> This is the parent directory of the files. This points towards the project Root. This is platform-dependent, so it is not included in GameState.</summary>
+        // Note: This value gets set at startup.
         public static string? PARENT_DIR = ".";
 
         static void Main()
