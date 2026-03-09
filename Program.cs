@@ -1085,7 +1085,7 @@ namespace Studio_1
         /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
-            int round = 1,deffBuff = 0;
+            int round = 1, deffBuff = 0, hitBuff = 0;
             string action = "";
             string item = "";
             string skill = "";
@@ -1093,6 +1093,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
+                Console.WriteLine($"Curret focus {hitBuff} Current Evasion {deffBuff}");
                 RenderFrame(@$"{monster.combatArt}", 25, 12);
                 PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
                 monster.PrintHealthBar();
@@ -1138,19 +1139,33 @@ namespace Studio_1
                         if (action == "USE SKILL")
                         {
                             PrintDelayed("\nChoose a skill to use");
-                            skill = Selector.DefaultSelectorMenu(["EVADE", "CANCEL"], "");
+                            skill = Selector.DefaultSelectorMenu(["EVADE","FOCUS", "CANCEL"], "");
                             switch (skill)
                             {
                                 case "EVADE":
                                     if (deffBuff < 4)
                                     {
-                                        deffBuff = (hero.finesse < 0) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
+                                        deffBuff = (hero.finesse < 1) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
                                         useSkill = true;
                                         Console.WriteLine($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
                                     }
                                     else
                                     {
                                         Console.WriteLine("\nYou have already evaded as much as you can");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "FOCUS":
+                                    if (hitBuff < 4)
+                                    {
+                                        hitBuff = (hero.skill < 1) ? hitBuff = 1 : deffBuff + hero.skill + 1;
+                                        useSkill = true;
+                                        Console.WriteLine("You focus on your opponent waiting for the time to strike");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("As you try to focus you see the perfect opening");
+                                        Console.WriteLine("Now is the time to strike");
                                         useSkill = false;
                                     }
                                     break;
@@ -1162,7 +1177,7 @@ namespace Studio_1
                 }
                 if (action == "ATTACK")
                 {
-                    int hit_roll = Roll(hero.skill, ref random);
+                    int hit_roll = Roll(hero.skill, ref random) + hitBuff;
                     if (hit_roll >= monster.hitDiff)
                     {
                         int dam = random.Next(1, hero.damDice + 1);
@@ -1172,6 +1187,10 @@ namespace Studio_1
                     else
                     {
                         PrintDelayed($"\n{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
+                    }
+                    if (hitBuff > 0)
+                    {
+                        hitBuff = 0;
                     }
                 }
                 else if (useItem == true)
