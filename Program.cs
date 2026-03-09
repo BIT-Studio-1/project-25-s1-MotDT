@@ -67,7 +67,7 @@ namespace Studio_1
                     Console.Write("\nEnter your choice: ");
                     tmp = Console.ReadLine();
                     parse = int.TryParse(tmp, out menu);
-                } while (menu < 1 || menu > 4 || parse == false);
+                } while (menu < 1 || menu > 3 || parse == false);
                 Entity.Character display = GetChar(menu);
                 Console.WriteLine();
                 display.Status();
@@ -104,7 +104,6 @@ namespace Studio_1
                 random_gen = new Random()
             };
 
-            GC.Collect();
             F1Entrance(initial_state); // Call Entrance method
         }
 
@@ -297,19 +296,11 @@ namespace Studio_1
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3Ghoul.txt", "Art Files/F1Room3Ghoul.txt" }), 25, 10); //Background with enemy
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
-                    if (state.hero.name == "Joe Biden") // truely the best president
-                    {
-                        PrintDelayed($"You delete the {RED}GHOUL{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
-                        state.monsters[0].health.curHP = 0;
-                        EndPrompts();
-                    }
-                    else
-                    {
-                        PrintDelayed("You must vanquish it before you can act freely");
-                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
-                    }
+                    PrintDelayed("You must vanquish it before you can act freely");
+                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                    Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
+                    
                 }
                 else
                 {
@@ -551,19 +542,10 @@ namespace Studio_1
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
-                    if (state.hero.name == "Joe Biden")
-                    {
-                        PrintDelayed($"You delete the {RED}WRAITH{RESET} from existence using your {CYAN}BIDEN BLAST!™{RESET}.");
-                        state.monsters[1].health.curHP = 0;
-                        EndPrompts();
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        PrintDelayed($"{RED}Prepare for combat...{RESET}");
-                        EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                        Combat(ref state.hero, ref state.monsters[1], ref state.random_gen);
-                    }
+                    PrintDelayed($"{RED}Prepare for combat...{RESET}");
+                    EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                    
                 }
                 // After combat, show the cleared room
                 else
@@ -861,63 +843,18 @@ namespace Studio_1
             while (choice != "GO NORTH");
         }
 
-        /// <summary> Blueprint for making new rooms. Do not call this method!</summary>
-        static void RoomBlueprint(GameState state)
-        {
-            string choice;
-            do
-            {
-                Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
-                choice = Selector.DefaultSelectorMenu(["CREATE", "OPTIONS", "LIKE", "THIS"], "");
-                switch (choice)
-                {
-                    case "GO NORTH":
-                        break;
-                    case "GO EAST":
-                        break;
-                    case "GO SOUTH":
-                        break;
-                    case "GO WEST":
-                        break;
-                    case "INSPECT":
-                        Console.ReadKey();
-                        break;
-                    case "INVENTORY":
-                        ShowInventory(state.hero);
-                        break;
-                    case "STATUS":
-                        state.hero.Status(); //Call Status method from Character class
-                        break;
-                    case "HELP":
-                        Help(); //Call Help method
-                        break;
-                    default:
-                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
-                        Console.ReadKey();
-                        break;
-                }
-            }
-            while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
-        }
 
-
-
-        /// <summary>Print merged with sleep(200)</summary>
+        /// <summary>
+        /// Writes a line to the console and then sleeps for the specified duration (ms).
+        /// Default delay is 100ms.
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PrintDelayed(string text)
-        {
-            Console.WriteLine(text);
-            Thread.Sleep(100);
-        }
-
-        /// <summary>Print merged with sleep(), with custom time</summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PrintDelayed(string text, int duration)
+        static void PrintDelayed(string text, int duration = 100)
         {
             Console.WriteLine(text);
             Thread.Sleep(duration);
         }
+
 
         public static Entity.Character GetChar(int menu)
         {
@@ -960,19 +897,6 @@ namespace Studio_1
                             finesse = 2,
                             toughness = -1,
                             presence = 0
-                        };
-                    }
-                case 4:
-                    {
-                        return new Entity.Character
-                        {
-                            name = "Joe Biden",
-                            health = Entity.EntityHealth.InitHealth(1),
-                            damDice = 99,
-                            skill = 99,
-                            finesse = -99,
-                            toughness = -99,
-                            presence = 99
                         };
                     }
                 default:
