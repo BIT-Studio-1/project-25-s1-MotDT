@@ -35,7 +35,7 @@ namespace Studio_1
         public const string NOREVERSE = "\x1b[27m";
 
         /// <summary> This is the parent directory of the files. This points towards the object Root. This is platform-dependent, so it is not included in GameState. </summary>
-        public static string PARENT_DIR = ".";
+        public static string? PARENT_DIR = ".";
 
         static void Main()
         {
@@ -48,7 +48,6 @@ namespace Studio_1
             EndPrompts();
             Console.Clear();
             RenderFrame($"{PARENT_DIR}/Art Files/Title.txt", 200, 12); // Titlecard
-            Console.WriteLine($"TITLE_CARD rendered! {FindParentPath("RoomBlueprint.txt")}");
             Thread.Sleep(2000);
             PrintDelayed($"\nAfter a long arduous journey on horseback you have finally arrived at the {RED}Dark Wizard's{RESET} tower.");
             PrintDelayed("In front of you is a large door that promises danger, but also a chance at riches and glory.");
@@ -89,7 +88,7 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(8),
                         name = "Ghoul",
-                        combatArt = "../../../Art Files/CombatGhoul.txt",
+                        combatArt = $"{PARENT_DIR}/Art Files/CombatGhoul.txt",
                         damDice = 3,
                         dodgeDiff = 9,
                         hitDiff = 10,
@@ -99,7 +98,7 @@ namespace Studio_1
                     {
                         health = Entity.EntityHealth.InitHealth(14),
                         name = "Elite Wraith",
-                        combatArt = "../../../Art Files/CombatWraith.txt",
+                        combatArt = $"{PARENT_DIR}/Art Files/CombatWraith.txt",
                         damDice = 5,
                         dodgeDiff = 13,
                         hitDiff = 11,
@@ -126,7 +125,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Entrance.txt", "Art Files/F1Entrance.txt" }), 25, 10); //Background 
+                RenderFrame($"{PARENT_DIR}/Art Files/F1Entrance.txt", 25, 10); //Background 
                 PrintDelayed("You find yourself in the dark entrance way of the Dark Wizard's tower");
                 PrintDelayed("It is a small limestone room. A single torch dimly illuminates the otherwise dark entrance");
                 PrintDelayed($"There is a wooden door with a broken lock to the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE}");
@@ -221,11 +220,11 @@ namespace Studio_1
                 Console.Clear();
                 if (state.hero.torch == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1HallNoTorch.txt", "Art Files/F1HallNoTorch.txt" }), 25, 10);
+                    RenderFrame($"{PARENT_DIR}/Art Files/F1HallNoTorch.txt", 25, 10);
                 }
                 else
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Hall.txt", "Art Files/F1Hall.txt" }), 25, 10);
+                    RenderFrame($"{PARENT_DIR}/Art Files/F1Hall.txt", 25, 10);
                 }
                 PrintDelayed("You find yourself in a large damp Hallway");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
@@ -1149,9 +1148,10 @@ namespace Studio_1
         /// This function tries to find a suitable parent path based on a given filepath.
         /// </summary>
         /// <param name="testFile">The path of the file for testing. Should be located relative to the project root. No preceding slash.</param>
-        /// <return> The result path. Null if not found. </return>
-        public static string? FindParentPath(string testFile) {
-            string[] paths = [".","../../.."];
+        /// <returns> The result path. Null if not found. </returns>
+        public static string? FindParentPath(string testFile)
+        {
+            string[] paths = [".", "../../.."];
             // Look through all possible paths
             foreach (string path in paths)
             {
