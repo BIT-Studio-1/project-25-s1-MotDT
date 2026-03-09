@@ -40,21 +40,35 @@ namespace Studio_1
                 return inventory;
             }
 
-            public Dictionary<string, bool> TriggerEvent(string eventName) 
+            public Dictionary<string, bool> TriggerEvent(string eventName)
             {
                 if (!events.ContainsKey(eventName))
                 {
                     events.Add(eventName, true);
                     Console.WriteLine($"Event {eventName} triggered"); //Debugging line, can be removed later
                 }
-                else if (events.ContainsKey(eventName) && events[eventName] == false) //This condition is for events that can be retriggered. If the event exists and is currently false, it can be retriggered by setting it to true again.
+                else if (events.ContainsKey(eventName) && events[eventName] == false) //This condition is for events that can be retriggered. Reset events using the ResetEvent function to allow retriggering.
                 {
                     events[eventName] = true;
                     Console.WriteLine($"Event {eventName} retriggered"); //Debugging line, can be removed later
-                } 
+                }
                 else
                 {
                     Console.WriteLine("Event already triggered"); //Debugging line, can be removed later
+                }
+                return events;
+            }
+
+            public Dictionary<string, bool> ResetEvent(string eventName) //This function resets an event, allowing it to be triggered again.
+            {
+                if (events.ContainsKey(eventName))
+                {
+                    events[eventName] = false;
+                    Console.WriteLine($"Event {eventName} reset"); //Debugging line, can be removed later
+                }
+                else
+                {
+                    Console.WriteLine($"Could not reset event {eventName}"); //Debugging line, can be removed later
                 }
                 return events;
             }
