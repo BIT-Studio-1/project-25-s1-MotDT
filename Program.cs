@@ -1037,7 +1037,7 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void ShowInventory(Entity.Character hero)
+        static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
             if (hero.bomb) Console.WriteLine("- Bomb");
