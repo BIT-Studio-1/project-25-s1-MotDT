@@ -34,8 +34,21 @@ namespace Studio_1
         public const string REVERSE = "\x1b[7m";
         public const string NOREVERSE = "\x1b[27m";
 
+        /// <summary> This is the parent directory of the files. This points towards the object Root. This is platform-dependent, so it is not included in GameState. </summary>
+        public static string PARENT_DIR = ".";
+
         static void Main()
         {
+            // Set parent dir
+            // Are we running in visual studio?
+            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("VisualStudioEdition")))
+            {
+                PARENT_DIR = "../../..";
+            }
+            else
+            {
+                PARENT_DIR = ".";
+            }
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Clear();
             PrintDelayed($"{CYAN}CHANGE YOUR DEFAULT TERMINAL APPLICATION TO {GREEN}WINDOWS CONSOLE HOST{CYAN} TO AVOID WINDOWS 11 ISSUES{RESET}");
@@ -43,7 +56,8 @@ namespace Studio_1
             PrintDelayed($"{CYAN}WHENEVER YOU SEE A GREEN DIAMOND [{GREEN}◆{CYAN}] PRESS ANY KEY TO CONTINUE{RESET}");
             EndPrompts();
             Console.Clear();
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/Title.txt", "Art Files/Title.txt" }), 200, 12); // Titlecard
+            RenderFrame($"{PARENT_DIR}/Art Files/Title.txt", 200, 12); // Titlecard
+            Console.WriteLine("TITLE_CARD rendered!");
             Thread.Sleep(2000);
             PrintDelayed($"\nAfter a long arduous journey on horseback you have finally arrived at the {RED}Dark Wizard's{RESET} tower.");
             PrintDelayed("In front of you is a large door that promises danger, but also a chance at riches and glory.");
@@ -92,12 +106,12 @@ namespace Studio_1
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(14), 
+                        health = Entity.EntityHealth.InitHealth(14),
                         name = "Elite Wraith",
                         combatArt = "../../../Art Files/CombatWraith.txt",
-                        damDice = 5,                                
-                        dodgeDiff = 13,                             
-                        hitDiff = 11,                               
+                        damDice = 5,
+                        dodgeDiff = 13,
+                        hitDiff = 11,
                         item1 = true
     }
                     },
@@ -221,7 +235,7 @@ namespace Studio_1
                 else
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Hall.txt", "Art Files/F1Hall.txt" }), 25, 10);
-                }          
+                }
                 PrintDelayed("You find yourself in a large damp Hallway");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
@@ -300,7 +314,7 @@ namespace Studio_1
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                     Combat(ref state.hero, ref state.monsters[0], ref state.random_gen);
-                    
+
                 }
                 else
                 {
@@ -545,7 +559,7 @@ namespace Studio_1
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                     Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
-                    
+
                 }
                 // After combat, show the cleared room
                 else
@@ -805,7 +819,7 @@ namespace Studio_1
                                 }
                                 else
                                 {
-                                    for (int i = 0; i <= 5; i ++)
+                                    for (int i = 0; i <= 5; i++)
                                     {
                                         PrintDelayed($"{RED}KILL{RESET}");
                                         PrintDelayed($"{RED}KLSD2395HG54{RESET}");
@@ -975,12 +989,12 @@ namespace Studio_1
         }
 
 
-        public static void GameOver(string causeOfDeath) 
+        public static void GameOver(string causeOfDeath)
         {
             Console.Clear();
             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
             PrintDelayed($"\nYou were slain by {causeOfDeath}..."); // tell the player what killed their character
-            Console.ReadKey(); 
+            Console.ReadKey();
             Environment.Exit(0);
         }
 
