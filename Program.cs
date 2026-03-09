@@ -75,7 +75,7 @@ namespace Studio_1
 
             Entity.Character hero = GetChar(menu);
 
-            // Initialize the game's state.
+            //Initilises the game stat by loading the selected hero into the character class located in the gamestate struct as well as initilising the monster array with all the games monsters
             GameState initial_state = new GameState
             {
                 hero = hero,
@@ -92,31 +92,13 @@ namespace Studio_1
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(6),
-                        name = "Goblin",
-                        damDice = 4,
-                        dodgeDiff = 15,
-                        hitDiff = 12,
-                        item1 = false
-                    },
-                    new Entity.Monster
-                    {
-                        health = Entity.EntityHealth.InitHealth(6),
-                        name = "Dire Hound",
-                        damDice = 6,
-                        dodgeDiff = 13,
-                        hitDiff = 15,
-                        item1 = false
-                    },
-                    new Entity.Monster
-                    {
-                        health = Entity.EntityHealth.InitHealth(20), 
+                        health = Entity.EntityHealth.InitHealth(14), 
                         name = "Elite Wraith",
                         combatArt = "../../../Art Files/CombatWraith.txt",
                         damDice = 5,                                
                         dodgeDiff = 13,                             
                         hitDiff = 11,                               
-                        item1 = true                                // drops the special key
+                        item1 = true
     }
                     },
                 random_gen = new Random()
@@ -554,7 +536,7 @@ namespace Studio_1
             {
                 Console.Clear();
                 // if the elite wraith is still alive, initiate combat
-                if (state.monsters[3].health.IsAlive == true)
+                if (state.monsters[1].health.IsAlive == true)
                 {
 
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
@@ -580,11 +562,11 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (state.monsters[3].item1 == true)
+                            if (state.monsters[1].item1 == true)
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
-                                state.monsters[3].item1 = false;
+                                state.monsters[1].item1 = false;
                                 state.hero.F2Key1 = true;
                             }
                             else
@@ -1015,7 +997,15 @@ namespace Studio_1
 
 
 
-        // Singular function for a single round of combat
+        /// <summary>
+        /// This function handles the combat logic of the game. it takes in the player character, current monster and random class from the game state struct
+        /// and then runs through a round of combat starting by printing the round number and monster portrait and calling the healthbar function
+        /// then it calls the selector menu with a list of combat options then takes that input and checks to see what action the player has chosen 
+        /// and preforms it. afterwards the player attempts to doge the monster (that currently allways attacks) and if unsucessful takes damage. this process repeats untill one of the two characters dies
+        /// </summary>
+        /// <param name="hero">Refferance to the hero character in the gamestate struct</param>
+        /// <param name="monster">Refferance to the monster character in the gamestate struct</param>
+        /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
             int round = 1;
@@ -1025,77 +1015,10 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(@$"{monster.combatArt}", 25, 12); // Draw monster art
+                RenderFrame(@$"{monster.combatArt}", 25, 12);
                 PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
-                if (round > 1 && action == "ATTACK")
-                {
-                    int hit_roll = Roll(hero.skill, ref random);
-                    if (hit_roll >= monster.hitDiff)
-                    {
-                        int dam = random.Next(1, hero.damDice + 1);
-                        monster.health.curHP -= dam;
-                        PrintDelayed($"You strike the {RED}{monster.name}{RESET} for {RED}{dam} damage{RESET}.");
-                    }
-                    else
-                    {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
-                    }
-                }
-                else if (round > 1 && useItem == true)
-                {
-                    if (item == "BOMB")
-                    {
-                        int dam = random.Next(6, 10);
-                        PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
-                        monster.health.curHP -= dam;
-                        hero.bomb = false;
-                    }
-                    else if (item == "POTION")
-                    {
-                        int heal = random.Next(4, 10);
-                        PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
-                        hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
-                        hero.HealthPotion = false;
-                    }
-                    useItem = false;
-                }
-
-                // The united lines of monster health checking
-                if (monster.health.curHP > 0 && round > 1)
-                {
-                    // Monster's healthBar
-                    // Monster 'attacks'
-                    int dodge_roll = Roll(hero.finesse, ref random);
-                    if (dodge_roll <= monster.dodgeDiff)
-                    {
-                        int dam = random.Next(1, monster.damDice + 1);
-                        hero.health.curHP -= dam;
-                        PrintDelayed($"{RED}{monster.name}{RESET} strikes {GREEN}{hero.name}{RESET} for {RED}{dam} damage{RESET}.");
-                    }
-                    else
-                    {
-                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {RED}{monster.name}'s{RESET} attack just in time.");
-                    }
-                }
-                else if (monster.health.curHP <= 0)
-                {
-                    PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
-                }
-
-                Console.WriteLine();
-                monster.PrintHealthBar(); // Monster health display
+                monster.PrintHealthBar();
                 hero.PrintHealthBar();
-                EndPrompts();
-
-                // Check on the hero
-                if (hero.health.curHP <= 0)
-                {
-                    Console.Clear();
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
-                    Thread.Sleep(1000);
-                    GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
-                }
-
                 if (monster.health.curHP > 0)
                 {
                     do
@@ -1135,6 +1058,66 @@ namespace Studio_1
                             }
                         }
                     } while (action != "ATTACK" && useItem == false);
+                }
+                if (action == "ATTACK")
+                {
+                    int hit_roll = Roll(hero.skill, ref random);
+                    if (hit_roll >= monster.hitDiff)
+                    {
+                        int dam = random.Next(1, hero.damDice + 1);
+                        monster.health.curHP -= dam;
+                        PrintDelayed($"\nYou strike the {RED}{monster.name}{RESET} for {RED}{dam} damage{RESET}.");
+                    }
+                    else
+                    {
+                        PrintDelayed($"\n{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
+                    }
+                }
+                else if (useItem == true)
+                {
+                    switch (item)
+                    {
+                        case "BOMB":
+                            int dam = random.Next(6, 10);
+                            PrintDelayed($"You throw your bomb at the {monster.name} and it explodes dealing {RED}{dam} damage{RESET}.");
+                            monster.health.curHP -= dam;
+                            hero.bomb = false;
+                            break;
+                        case "POTION":
+                            int heal = random.Next(4, 10);
+                            PrintDelayed($"You drink your health potion and heal yourself for {GREEN}{heal} health{RESET}.");
+                            hero.health.curHP = Math.Min(hero.health.curHP + heal, hero.health.maxHP);
+                            hero.HealthPotion = false;
+                            break;
+                    }
+                    useItem = false;
+                }
+                if (monster.health.curHP > 0)
+                {
+                    int dodge_roll = Roll(hero.finesse, ref random);
+                    if (dodge_roll <= monster.dodgeDiff)
+                    {
+                        int dam = random.Next(1, monster.damDice + 1);
+                        hero.health.curHP -= dam;
+                        PrintDelayed($"{RED}{monster.name}{RESET} strikes {GREEN}{hero.name}{RESET} for {RED}{dam} damage{RESET}.");
+                    }
+                    else
+                    {
+                        PrintDelayed($"{GREEN}{hero.name}{RESET} dodges the {RED}{monster.name}'s{RESET} attack just in time.");
+                    }
+                }
+                else if (monster.health.curHP <= 0)
+                {
+                    PrintDelayed($"{RED}{monster.name}{RESET} has been defeated.");
+                }
+                Console.WriteLine();
+                EndPrompts();
+                if (hero.health.curHP <= 0)
+                {
+                    Console.Clear();
+                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
+                    Thread.Sleep(1000);
+                    GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
                 round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
