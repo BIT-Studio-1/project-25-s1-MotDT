@@ -82,6 +82,15 @@ namespace Studio_1
                 }
                 Console.ReadKey();
             }
+
+            public void DebugPrintEvents() //Debugging function to show the current state of events, can be removed later
+            {
+                foreach (var ev in events)
+                {
+                    Console.WriteLine($"{ev.Key}: {ev.Value}");
+                }
+                Console.ReadKey();
+            }
         }
     }
 }
