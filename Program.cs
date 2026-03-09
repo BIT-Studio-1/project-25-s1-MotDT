@@ -299,7 +299,7 @@ namespace Studio_1
                 Console.Clear();
                 if (state.monsters[0].health.IsAlive == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3Ghoul.txt", "Art Files/F1Room3Ghoul.txt" }), 25, 10); //Background with enemy
+                    RenderFrame($"{PARENT_DIR}/Art Files/F1Room3Ghoul.txt", 25, 10); //Background with enemy
                     PrintDelayed($"Before you can act a {RED}GHOUL{RESET} ambushes you");
                     PrintDelayed("You must vanquish it before you can act freely");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
@@ -309,7 +309,7 @@ namespace Studio_1
                 }
                 else
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1Room3GhoulDead.txt", "Art Files/F1Room3GhoulDead.txt" }), 25, 10); //Background with dead enemy
+                    RenderFrame($"{PARENT_DIR}/Art Files/F1Room3GhoulDead.txt", 25, 10); //Background with dead enemy
                     PrintDelayed($"There is a small {BLUE}HOLE{RESET} in the wall");
                     PrintDelayed($"The {BLUE}GHOUL{RESET} lays dead on the ground");
                     PrintDelayed($"To your {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} is the door back to the hallway");
@@ -397,7 +397,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2Main.txt", "Art Files/F2Main.txt" }), 25, 10); //Background 
+                RenderFrame($"{PARENT_DIR}/Art Files/F2Main.txt",25,10);
                 PrintDelayed("You exit the staircase to find a large stone room");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is a large door flanked by two stone statues with keyholes in them");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} there is an open archway that seems to lead into a large room");
@@ -414,7 +414,7 @@ namespace Studio_1
                             PrintDelayed("You unlock the heavy door with the two keys.");
                             EndPrompts();
                             Console.Clear();
-                            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
+                            RenderFrame($"{PARENT_DIR}/Art Files/End screen.txt", 25, 10);
                             Console.ReadKey();
                             Environment.Exit(0);
                         }
@@ -477,7 +477,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall1.txt", "Art Files/F2EastHall1.txt" }), 25, 10); //Background 
+                RenderFrame($"{PARENT_DIR}/Art Files/F2EastHall1.txt", 25, 10); //Background 
                 PrintDelayed("You enter what appears to be a Study dimly lit by moonlight coming through the windows.");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} there is a hole in the wall which emanates an {RED}ominous presence...{RESET}");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}WEST{RESET}{NOUNDERLINE} lies the door back to the main hall");
@@ -544,7 +544,7 @@ namespace Studio_1
                 if (state.monsters[1].health.IsAlive == true)
                 {
 
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2Wraith.txt", "Art Files/F2EastHall2Wraith.txt" }), 25, 10); //Background 
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2EastHall2Wraith.txt", 25, 10); //Background 
                     PrintDelayed("Crawling through the hole you enter a dank chamber with a runic circle engraved into the stone floor.");
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
@@ -555,7 +555,7 @@ namespace Studio_1
                 // After combat, show the cleared room
                 else
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2EastHall2WraithDead.txt", "Art Files/F2EastHall2WraithDead.txt" }), 25, 10);
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2EastHall2WraithDead.txt", 25, 10);
                     PrintDelayed("The chamber is filled with a eerie silence.");
                     PrintDelayed($"The {BLUE}WRAITH{RESET} has disintegrated, its faint miasma still lingering.");
                     PrintDelayed($"The {BLUE}MAGIC CIRCLE{RESET} that summoned the wraith is still faintly glowing on the ground");
@@ -616,11 +616,11 @@ namespace Studio_1
                 Console.Clear();
                 if (state.hero.F2tomeInteract == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1NoTome.txt", "Art Files/F2SouthHall1NoTome.txt" }), 25, 10); //Background
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall1NoTome.txt", 25, 10); //Background
                 }
                 else
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1Tome.txt", "Art Files/F2SouthHall1Tome.txt" }), 25, 10); //Background
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall1Tome.txt", 25, 10); //Background
                 }
                 PrintDelayed($"You find yourself in a large stone room in the middle of it there is a large {BLUE}MAGIC CIRCLE{RESET} behind which there is a {BLUE}LECTERN{RESET}");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} there is an archway that leads back into the floor 2 main hall");
@@ -722,11 +722,11 @@ namespace Studio_1
                 Console.Clear();
                 if (state.hero.F2candelabraInteract == true)
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2Candelabra.txt", "Art Files/F2SouthHall2Candelabra.txt" }), 25, 10);
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall2Candelabra.txt", 25, 10);
                 }
                 else
                 {
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2.txt", "Art Files/F2SouthHall2.txt" }), 25, 10); //Background 
+                    RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall2.txt", 25, 10); //Background 
                 }
                 PrintDelayed("You enter what appears to be a small treasury, although it has seemingly been pilfered by past adventurers.");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} is the door you came in from.");
@@ -983,7 +983,7 @@ namespace Studio_1
         public static void GameOver(string causeOfDeath)
         {
             Console.Clear();
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
+            RenderFrame($"{PARENT_DIR}/Art Files/GameOver.txt", 200, 12);
             PrintDelayed($"\nYou were slain by {causeOfDeath}..."); // tell the player what killed their character
             Console.ReadKey();
             Environment.Exit(0);
@@ -995,7 +995,7 @@ namespace Studio_1
             PrintDelayed("You run back to your horse hitched outside and return to your life back home");
             Console.ReadKey();
             Console.Clear();
-            RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/GameOver.txt", "Art Files/GameOver.txt" }), 200, 12);
+            RenderFrame($"{PARENT_DIR}/Art Files/GameOver.txt", 200, 12);
             Console.ReadKey();
             Environment.Exit(3000);
         }
@@ -1120,7 +1120,7 @@ namespace Studio_1
                 if (hero.health.curHP <= 0)
                 {
                     Console.Clear();
-                    RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
+                    RenderFrame( $"{PARENT_DIR}/Art Files/YouDied.txt", 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
                 }
