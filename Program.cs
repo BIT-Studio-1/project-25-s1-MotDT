@@ -14,7 +14,7 @@ namespace Studio_1
             public Entity.Character hero;
             public Monster[] monsters;
             public Random random_gen;
-            public Inventory_Events.InventoryAndEvents;
+            public Inventory_Events.InventoryAndEvents inventoryAndEventTracker;
         }
 
         //Global constants for changing colour of text, remember to always RESET!
@@ -111,16 +111,17 @@ namespace Studio_1
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(20), 
+                        health = Entity.EntityHealth.InitHealth(20),
                         name = "Elite Wraith",
                         combatArt = "../../../Art Files/CombatWraith.txt",
-                        damDice = 5,                                
-                        dodgeDiff = 13,                             
-                        hitDiff = 11,                               
+                        damDice = 5,
+                        dodgeDiff = 13,
+                        hitDiff = 11,
                         item1 = true                                // drops the special key
     }
                     },
-                random_gen = new Random()
+                random_gen = new Random(),
+                inventoryAndEventTracker = new Inventory_Events.InventoryAndEvents()
             };
 
             GC.Collect();
