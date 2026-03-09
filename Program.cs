@@ -39,16 +39,7 @@ namespace Studio_1
 
         static void Main()
         {
-            // Set parent dir
-            // Are we running in visual studio?
-            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("VisualStudioEdition")))
-            {
-                PARENT_DIR = "../../..";
-            }
-            else
-            {
-                PARENT_DIR = ".";
-            }
+            PARENT_DIR = FindParentPath("RoomBlueprint.txt");
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Clear();
             PrintDelayed($"{CYAN}CHANGE YOUR DEFAULT TERMINAL APPLICATION TO {GREEN}WINDOWS CONSOLE HOST{CYAN} TO AVOID WINDOWS 11 ISSUES{RESET}");
@@ -57,7 +48,7 @@ namespace Studio_1
             EndPrompts();
             Console.Clear();
             RenderFrame($"{PARENT_DIR}/Art Files/Title.txt", 200, 12); // Titlecard
-            Console.WriteLine("TITLE_CARD rendered!");
+            Console.WriteLine($"TITLE_CARD rendered! {FindParentPath("RoomBlueprint.txt")}");
             Thread.Sleep(2000);
             PrintDelayed($"\nAfter a long arduous journey on horseback you have finally arrived at the {RED}Dark Wizard's{RESET} tower.");
             PrintDelayed("In front of you is a large door that promises danger, but also a chance at riches and glory.");
@@ -1154,5 +1145,23 @@ namespace Studio_1
             return null;
         }
 
+        /// <summary>
+        /// This function tries to find a suitable parent path based on a given filepath.
+        /// </summary>
+        /// <param name="testFile">The path of the file for testing. Should be located relative to the project root. No preceding slash.</param>
+        /// <return> The result path. Null if not found. </return>
+        public static string? FindParentPath(string testFile) {
+            string[] paths = [".","../../.."];
+            // Look through all possible paths
+            foreach (string path in paths)
+            {
+                if (System.IO.File.Exists($"{path}/{testFile}"))
+                {
+                    return path;
+                }
+            }
+            Console.WriteLine("Could not find path.");
+            return null;
+        }
     }
 }
