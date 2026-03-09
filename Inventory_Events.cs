@@ -72,6 +72,16 @@ namespace Studio_1
                 }
                 return events;
             }
+
+            public void PrintInventory()
+            {
+                Console.WriteLine("Inventory:");
+                foreach (var item in inventory)
+                {
+                    Console.WriteLine($"{item.Key}: {item.Value}");
+                }
+                Console.ReadKey();
+            }
         }
     }
 }
