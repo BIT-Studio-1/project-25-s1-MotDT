@@ -1,44 +1,61 @@
-using System.Runtime.CompilerServices;
-
 namespace Studio_1
 {
     internal class Selector
     {
+        // Keys used for navigating the selector menu.
         const ConsoleKey InitialKey = ConsoleKey.Spacebar;
         const ConsoleKey UpKey = ConsoleKey.UpArrow;
         const ConsoleKey DownKey = ConsoleKey.DownArrow;
         const ConsoleKey SubmitKey = ConsoleKey.Enter;
+        
+        // Default String templates used for formatting the options in the list.
         const string SelectedTemplate = "\x1b[92m\x1b[1m◆ {0}\x1b[0m";
         const string DefaultTemplate = "  {0}";
 
-        /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys.
-        //  Takes an array of strings to show as options, returns the selected string from the options. </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// <summary>
+        ///  Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys.
+        /// </summary>
+        /// <param name="options">The list of options the player will choose from. Each string is a line.</param>
+        /// <param name="header">Content of optional print statement before running. Better to use Console.Writeline.</param>
+        /// <returns>The selected option as a string.</returns>
+
         public static string DefaultSelectorMenu(string[] options, string header)
         {
             Console.WriteLine(header);
-            return options[SelectorMenuString(options,SelectedTemplate, DefaultTemplate)];
+            return options[SelectorMenuString(options, SelectedTemplate, DefaultTemplate)];
         }
 
-        /// <summary> Wrapper function around SelectorMenuString. Creates a selection menu that can be navigated by arrow keys. For Yes/No Dialog. </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// <summary>
+        /// Wrapper function around SelectorMenuString. Used for yes/no 
+        /// </summary>
+        /// <param name="header">Content of optional print statement before running. Better to use Console.Writeline.</param>
+        /// <returns>Boolean value that the player chose. Yes=true, and No=false</returns>
         public static bool BoolSelectorMenu(string header)
         {
             Console.WriteLine(header);
-            return SelectorMenuString(["YES", "NO"] ,SelectedTemplate, DefaultTemplate) == 0;
+            return SelectorMenuString(["YES", "NO"], SelectedTemplate, DefaultTemplate) == 0;
         }
 
-        /// <summary> Creates a selection menu that can be navigated by arrow keys. Takes an array of strings to show as options, returns the selected option's index. </summary>
+        /// <summary>
+        /// Creates a selection menu that can be navigated by arrow keys. Has wrapper functions, and is not usually called directly.
+        /// </summary>
+        /// <param name="options">The list of options the player will choose from. Each string is a line.</param>
+        /// <param name="selectedTemplate">The Format string for formatting the selected option. ({0} is the option)</param>
+        /// <param name="defaultTemplate">The Format string for formatting all lines but the selected option. ({0} is the option)</param>
+        /// <returns>The index of the selected option as an integer.</returns>
         public static int SelectorMenuString(string[] options, string selectedTemplate, string defaultTemplate)
         {
+            // Init the selection variable to the first element.
             int selection = 0;
+            // Initialize the keybuffer to a key that does nothing. 
+            ConsoleKey KeyBuffer = InitialKey;
+            // Initially render the list.
             RenderSelectionList(options, selection, selectedTemplate, defaultTemplate);
 
-            ConsoleKey KeyBuffer = InitialKey;
-            // Repeat and refresh
+            // Repeat and refresh until the submitkey is pressed (usually ENTER)
             while (KeyBuffer != SubmitKey)
             {
-                // Check for keyboard input
+                // Check for keyboard input and react accordingly.
                 switch (KeyBuffer)
                 {
                     case UpKey:
@@ -50,17 +67,26 @@ namespace Studio_1
                     default:
                         break;
                 }
+                // Set the cursor position to the top.
                 Console.SetCursorPosition(0, Console.CursorTop - options.Length);
+                // Render/Update the selection list.
                 RenderSelectionList(options, selection, selectedTemplate, defaultTemplate);
-
+                // Read keystroke and assign KeyBuffer to the result.
                 KeyBuffer = Console.ReadKey().Key;
             }
+            // Return final selection value
             return selection;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// <summary>
+        /// Renders all options in a series of lines. 
+        /// </summary>
+        /// <param name="options">The list of options from the SelectorMenu.</param>
+        /// <param name="index">The index of the option that is currently selected.</param>
+        /// <param name="selectedTemplate">The Format string for formatting the selected option. </param>
+        /// <param name="defaultTemplate">The Format string for formatting all lines but the selected option.</param>
         static void RenderSelectionList(string[] options, int index, string selectedTemplate, string defaultTemplate)
         {
+            // Iterate through (value,index) pairs in a loop, so we can compare them with the selection index.
             foreach (var (value, i) in options.Select((value, i) => (value, i)))
             {
                 // Prints out the option, but chooses the format string depending on if it is the current option.
@@ -68,9 +94,8 @@ namespace Studio_1
             }
         }
 
-        // Somehow working
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static int mat_mod(int x, int m)
+        ///<summary> Function used to make Selector index conform to length by looping around, because % does not handle negative numbers well, and Math has no suitable function. </summary>
+        private static int mat_mod(int x, int m)
         {
             return (x % m + m) % m;
         }
