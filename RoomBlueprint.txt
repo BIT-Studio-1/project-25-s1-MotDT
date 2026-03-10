@@ -1,0 +1,39 @@
+/// <summary> Blueprint for making new rooms. Do not call this method!</summary>
+        static void RoomBlueprint(GameState state)
+        {
+            string choice;
+            do
+            {
+                Console.Clear();
+                RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/.txt", "Art Files/.txt" }), 25, 10); //Background 
+                choice = Selector.DefaultSelectorMenu(["CREATE", "OPTIONS", "LIKE", "THIS"], "");
+                switch (choice)
+                {
+                    case "GO NORTH":
+                        break;
+                    case "GO EAST":
+                        break;
+                    case "GO SOUTH":
+                        break;
+                    case "GO WEST":
+                        break;
+                    case "INSPECT":
+                        Console.ReadKey();
+                        break;
+                    case "INVENTORY":
+                        ShowInventory(state.hero);
+                        break;
+                    case "STATUS":
+                        state.hero.Status(); //Call Status method from Character class
+                        break;
+                    case "HELP":
+                        Help(); //Call Help method
+                        break;
+                    default:
+                        Console.WriteLine($"\nSorry I don't understand the command \"{choice}\"");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+            while (choice != "GO NORTH" || choice != "GO EAST" || choice != "GO SOUTH" || choice != "GO WEST");
+        }
