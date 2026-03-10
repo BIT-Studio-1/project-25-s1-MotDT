@@ -1093,7 +1093,6 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Curret focus {hitBuff} Current Evasion {deffBuff}");
                 RenderFrame(@$"{monster.combatArt}", 25, 12);
                 PrintDelayed($"\n{CYAN}{UNDERLINE}ROUND {round}{RESET}{NOUNDERLINE}");
                 monster.PrintHealthBar();
