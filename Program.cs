@@ -14,6 +14,7 @@ namespace Studio_1
             public Entity.Character hero;
             public Monster[] monsters;
             public Random random_gen;
+            public Inventory_Events.InventoryAndEvents inventoryAndEventTracker;
         }
 
         //Global constants for changing colour of text, remember to always RESET!
@@ -101,7 +102,8 @@ namespace Studio_1
                         item1 = true
     }
                     },
-                random_gen = new Random()
+                random_gen = new Random(),
+                inventoryAndEventTracker = new Inventory_Events.InventoryAndEvents()
             };
 
             F1Entrance(initial_state); // Call Entrance method
@@ -941,7 +943,7 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void ShowInventory(Entity.Character hero)
+        static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
             if (hero.bomb) Console.WriteLine("- Bomb");
