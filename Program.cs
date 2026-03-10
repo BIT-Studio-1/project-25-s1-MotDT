@@ -1129,22 +1129,6 @@ namespace Studio_1
             Console.Clear();
         }
 
-        /// <summary>Function that scans through a list of paths and returns the first valid one. Returns null if none found.</summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string? FindWorkingPath(string[] paths)
-        {
-            // Look through all possible paths
-            foreach (string? path in paths)
-            {
-                if (System.IO.File.Exists(path))
-                {
-                    return path;
-                }
-            }
-            // We found nothing and all paths are exhausted
-            return null;
-        }
-
         /// <summary>
         /// This function tries to find a suitable parent path based on a given filepath.
         /// </summary>
