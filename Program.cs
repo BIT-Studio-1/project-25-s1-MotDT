@@ -216,7 +216,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.torch == true)
+                if (state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F1HallNoTorch.txt", "Art Files/F1HallNoTorch.txt" }), 25, 10);
                 }
@@ -228,7 +228,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
-                if (state.hero.torch != true)
+                if (!state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                 {
                     PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
                 }
@@ -263,10 +263,10 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT TORCH":
-                        if (!state.hero.torch)
+                        if (!state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                         {
                             PrintDelayed($"\nYou decide to take the {MAGENTA}TORCH{RESET} with you, never know when it might come in handy");
-                            state.hero.torch = true;
+                            state.inventoryAndEventTracker.AddItem("Torch", 1);
                         }
                         else
                         {
@@ -338,13 +338,13 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                             break;
                         case "INSPECT HOLE":
-                            if (state.hero.torch)
+                            if (state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                             {
                                 if (state.hero.HealthPotion == false)
                                 {
-                                    PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
+                                    PrintDelayed($"\nYou shine your {MAGENTA}TORCH{RESET} inside the hole.");
                                     PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
-                                    PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
+                                    PrintDelayed($"You step around the pressure plate and pick up the {MAGENTA}HEALTH POTION{RESET}.");
                                     state.hero.HealthPotion = true;
                                 }
                                 else
