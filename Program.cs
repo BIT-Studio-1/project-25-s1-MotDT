@@ -244,10 +244,16 @@ namespace Studio_1
                         F1Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
-                        if (state.hero.F1Key == true)
+                        if (state.inventoryAndEventTracker.inventory["Rusty Key"] > 0)
                         {
                             PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
+                            state.inventoryAndEventTracker.UseItem("Rusty Key", 1);
+                            state.inventoryAndEventTracker.events.Add("F1HallGateOpened", true);
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                            F2Main(state); //Call F2Main
+                        }
+                        else if (state.inventoryAndEventTracker.events["F1HallGateOpened"] == true)
+                        {
                             F2Main(state); //Call F2Main
                         }
                         else
@@ -323,7 +329,7 @@ namespace Studio_1
                                 PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
                                 PrintDelayed("You think this may be the key for the gate in front of the staircase.");
                                 state.monsters[0].item1 = false;
-                                state.hero.F1Key = true;
+                                state.inventoryAndEventTracker.AddItem("Rusty Key", 1);
                             }
                             else
                             {
