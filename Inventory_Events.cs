@@ -28,7 +28,7 @@ namespace Studio_1
 
             public Dictionary<string, int> UseItem(string itemName, int amount) //This function uses an item from the inventory. If the item exists and there is enough amount, it decreases the amount. Otherwise, it does nothing.
             {
-                if (inventory.ContainsKey(itemName) && inventory[itemName] - amount! < 0)
+                if (inventory.ContainsKey(itemName) && inventory[itemName] >= amount)
                 {
                     inventory[itemName] -= amount;
                     Console.WriteLine($"Used {amount} {itemName}(s)");
