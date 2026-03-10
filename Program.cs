@@ -1146,11 +1146,11 @@ namespace Studio_1
                                     {
                                         deffBuff = (hero.finesse < 1) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
                                         useSkill = true;
-                                        Console.WriteLine($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
+                                        PrintDelayed($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
                                     }
                                     else
                                     {
-                                        Console.WriteLine("\nYou have already evaded as much as you can");
+                                        PrintDelayed("\nYou have already evaded as much as you can");
                                         useSkill = false;
                                     }
                                     break;
@@ -1159,12 +1159,12 @@ namespace Studio_1
                                     {
                                         hitBuff = (hero.skill < 1) ? hitBuff = 1 : deffBuff + hero.skill + 1;
                                         useSkill = true;
-                                        Console.WriteLine("You focus on your opponent waiting for the time to strike");
+                                        PrintDelayed("You focus on your opponent waiting for the time to strike");
                                     }
                                     else
                                     {
-                                        Console.WriteLine("As you try to focus you see the perfect opening");
-                                        Console.WriteLine("Now is the time to strike");
+                                        PrintDelayed("As you try to focus you see the perfect opening");
+                                        PrintDelayed("Now is the time to strike");
                                         useSkill = false;
                                     }
                                     break;
