@@ -80,7 +80,8 @@ namespace Studio_1
             GameState initial_state = new GameState
             {
                 hero = hero,
-                monsters = new Monster[] {
+                monsters = new Monster[]
+                {
                     new Entity.Monster
                     {
                         health = Entity.EntityHealth.InitHealth(8),
@@ -89,19 +90,17 @@ namespace Studio_1
                         damDice = 3,
                         dodgeDiff = 9,
                         hitDiff = 10,
-                        item1 = true
                     },
                     new Entity.Monster
                     {
-                        health = Entity.EntityHealth.InitHealth(14), 
+                        health = Entity.EntityHealth.InitHealth(14),
                         name = "Elite Wraith",
                         combatArt = "../../../Art Files/CombatWraith.txt",
-                        damDice = 5,                                
-                        dodgeDiff = 13,                             
-                        hitDiff = 11,                               
-                        item1 = true
-    }
-                    },
+                        damDice = 5,
+                        dodgeDiff = 13,
+                        hitDiff = 11,
+                    }
+                },
                 random_gen = new Random(),
                 inventoryAndEventTracker = new Inventory_Events.InventoryAndEvents()
             };
@@ -575,12 +574,12 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (!state.inventoryAndEventTracker.events.ContainsKey("GlowingKey1"))
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("WraithLooted"))
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
                                 state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
-                                state.inventoryAndEventTracker.events.Add("GlowingKey1", true);
+                                state.inventoryAndEventTracker.events.Add("WraithLooted", true);
                             }
                             else
                             {
@@ -729,7 +728,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.F2candelabraInteract == true)
+                if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzleSolved"))
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall2Candelabra.txt", "Art Files/F2SouthHall2Candelabra.txt" }), 25, 10);
                 }
@@ -748,7 +747,7 @@ namespace Studio_1
                         F2SouthHall1(state);
                         break;
                     case "INSPECT CHEST":
-                        if (state.inventoryAndEventTracker.events.ContainsKey("GlowingKey2"))
+                        if (state.inventoryAndEventTracker.events.ContainsKey("PuzzleChestLooted"))
                         {
                             PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
                         }
@@ -761,7 +760,7 @@ namespace Studio_1
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
                             state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
                             state.inventoryAndEventTracker.UseItem("Small Key", 1);
-                            state.inventoryAndEventTracker.events.Add("GlowingKey2", true);
+                            state.inventoryAndEventTracker.events.Add("PuzzleChestLooted", true);
                         }
                         else
                         {
@@ -783,9 +782,9 @@ namespace Studio_1
                             PrintDelayed($"A brick in the wall behind the candelabra suddenly comes loose, revealing a {MAGENTA}SMALL KEY{RESET} behind it which you take.");
                             state.inventoryAndEventTracker.AddItem("Small Key", 1);
                             state.inventoryAndEventTracker.UseItem("Candle", 3);
-                            state.inventoryAndEventTracker.events.Add("CandlePuzzle", true);
+                            state.inventoryAndEventTracker.events.Add("CandlePuzzleSolved", true);
                         }
-                        else if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzle"))
+                        else if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzleSolved"))
                         {
                             PrintDelayed("The candle flames flicker sporadically in the dark.");
                         }

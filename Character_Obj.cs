@@ -49,7 +49,6 @@ namespace Studio_1
             public int damDice;
             public int dodgeDiff;
             public int hitDiff;
-            public bool item1; // item the monster can have that the player can loot
 
             // Prints the Monster's health bar.
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
