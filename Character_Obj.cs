@@ -16,6 +16,9 @@ namespace Studio_1
             public int toughness; // Can be used for room Events and such
             public int presence;  // Can be used for room Events and such
 
+            public bool bomb;
+            public bool HealthPotion;
+
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
             {

@@ -324,7 +324,7 @@ namespace Studio_1
                             F1Hall(state);
                             break;
                         case "INSPECT GHOUL":
-                            if (state.inventoryAndEventTracker.events.ContainsKey("GhoulLooted"))
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("GhoulLooted"))
                             {
                                 PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
                                 PrintDelayed("You think this may be the key for the gate in front of the staircase.");
