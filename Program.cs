@@ -749,7 +749,7 @@ namespace Studio_1
                         {
                             PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
                         }
-                        else if (state.hero.F2chestKey == true)
+                        else if (state.inventoryAndEventTracker.inventory["Small Key"] == 1)
                         {
                             PrintDelayed($"\nThe {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
                             Thread.Sleep(1000);
@@ -757,7 +757,8 @@ namespace Studio_1
                             Thread.Sleep(1000);
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
                             state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
-                            state.hero.F2chestKey = false;
+                            state.inventoryAndEventTracker.UseItem("Small Key", 1);
+                            state.inventoryAndEventTracker.events.Add("GlowingKey2", true);
                         }
                         else
                         {
@@ -777,7 +778,7 @@ namespace Studio_1
                             PrintDelayed($"You place all 3 of your {MAGENTA}CANDLES{RESET} into the empty slots of the candelabra.");
                             PrintDelayed("After a few seconds the candles suddenly light on their own!");
                             PrintDelayed($"A brick in the wall behind the candelabra suddenly comes loose, revealing a {MAGENTA}SMALL KEY{RESET} behind it which you take.");
-                            state.hero.F2chestKey = true;
+                            state.inventoryAndEventTracker.AddItem("Small Key", 1);
                             state.hero.candle1 = false;
                             state.hero.candle2 = false;
                             state.hero.candle3 = false;
