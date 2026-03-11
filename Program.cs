@@ -414,18 +414,19 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        if (state.hero.F2Key1 && state.hero.F2Key2)
+                        if (state.inventoryAndEventTracker.inventory["Glowing Key"] == 2)
                         {
                             PrintDelayed("You unlock the heavy door with the two keys.");
+                            state.inventoryAndEventTracker.UseItem("Glowing Key", 2);
                             EndPrompts();
                             Console.Clear();
                             RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/End screen.txt", "Art Files/End screen.txt" }), 25, 10);
                             Console.ReadKey();
                             Environment.Exit(0);
                         }
-                        else if (state.hero.F2Key1 || state.hero.F2Key2)
+                        else if (state.inventoryAndEventTracker.inventory["Glowing Key"] == 1)
                         {
-                            PrintDelayed("You place a key into the lock, but another slot remains empty...");
+                            PrintDelayed($"You try using the {MAGENTA}GLOWING KEY{RESET} but it seems you need to open both locks at the same time");
                             Console.ReadKey();
                         }
                         else
@@ -572,12 +573,12 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (state.monsters[1].item1 == true)
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("WraithKey"))
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
-                                state.monsters[1].item1 = false;
-                                state.hero.F2Key1 = true;
+                                state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
+                                state.inventoryAndEventTracker.events.Add("WraithKey", true);
                             }
                             else
                             {
@@ -954,7 +955,6 @@ namespace Studio_1
         static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
-            if (hero.F1Key) Console.WriteLine("- Rusty Key");
             if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
             if (hero.F2chestKey) Console.WriteLine("- Small Key");
             if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
