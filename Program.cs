@@ -341,12 +341,13 @@ namespace Studio_1
                         case "INSPECT HOLE":
                             if (state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                             {
-                                if (state.hero.HealthPotion == false)
+                                if (!state.inventoryAndEventTracker.events.ContainsKey("DarkRoomPotion"))
                                 {
                                     PrintDelayed($"\nYou shine your {MAGENTA}TORCH{RESET} inside the hole.");
                                     PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
                                     PrintDelayed($"You step around the pressure plate and pick up the {MAGENTA}HEALTH POTION{RESET}.");
-                                    state.hero.HealthPotion = true;
+                                    state.inventoryAndEventTracker.AddItem("Health Potion", 1);
+                                    state.inventoryAndEventTracker.events.Add("DarkRoomPotion", true);
                                 }
                                 else
                                 {
@@ -953,7 +954,6 @@ namespace Studio_1
         static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
-            if (hero.HealthPotion) Console.WriteLine("- Health Potion");
             if (hero.F1Key) Console.WriteLine("- Rusty Key");
             if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
             if (hero.F2chestKey) Console.WriteLine("- Small Key");
