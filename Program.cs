@@ -622,7 +622,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.F2tomeInteract == true)
+                if (state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1TomeInteract"))
                 {
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/F2SouthHall1NoTome.txt", "Art Files/F2SouthHall1NoTome.txt" }), 25, 10); //Background
                 }
@@ -649,7 +649,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT LECTERN":
-                        if (state.hero.F2tomeInteract == true)
+                        if (state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1TomeInteract"))
                         {
                             PrintDelayed("\nThe lectern is empty");
                         }
@@ -681,7 +681,7 @@ namespace Studio_1
                                     state.hero.skill--;
                                 }
                                 PrintDelayed("The tome crumbles into dust in your hands.");
-                                state.hero.F2tomeInteract = true;
+                                state.inventoryAndEventTracker.events.Add("F2SouthHall1TomeInteract", true);
                             }
                             else
                             {
