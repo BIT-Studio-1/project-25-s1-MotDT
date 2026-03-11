@@ -78,7 +78,10 @@ namespace Studio_1
                 Console.WriteLine("Inventory:");
                 foreach (var item in inventory)
                 {
-                    Console.WriteLine($"{item.Key}: {item.Value}");
+                    if (item.Value > 0)  // Only print items that have a quantity greater than 0
+                    { 
+                        Console.WriteLine($"{item.Key}: {item.Value}");
+                    }
                 }
                 Console.ReadKey();
             }
