@@ -573,12 +573,12 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (!state.inventoryAndEventTracker.events.ContainsKey("WraithKey"))
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("GlowingKey1"))
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
                                 state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
-                                state.inventoryAndEventTracker.events.Add("WraithKey", true);
+                                state.inventoryAndEventTracker.events.Add("GlowingKey1", true);
                             }
                             else
                             {
@@ -745,7 +745,7 @@ namespace Studio_1
                         F2SouthHall1(state);
                         break;
                     case "INSPECT CHEST":
-                        if (state.hero.F2Key2 == true)
+                        if (state.inventoryAndEventTracker.events.ContainsKey("GlowingKey2"))
                         {
                             PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
                         }
@@ -756,7 +756,7 @@ namespace Studio_1
                             PrintDelayed("... another key.");
                             Thread.Sleep(1000);
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
-                            state.hero.F2Key2 = true;
+                            state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
                             state.hero.F2chestKey = false;
                         }
                         else
@@ -955,7 +955,6 @@ namespace Studio_1
         static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
-            if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
             if (hero.F2chestKey) Console.WriteLine("- Small Key");
             if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
