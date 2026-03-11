@@ -953,12 +953,6 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
-        {
-            Console.WriteLine("Inventory:");
-            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-        }
-
         /// <summary>Help function to display commonly used commands in game</summary>
         static void Help()
         {
