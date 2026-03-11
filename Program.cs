@@ -191,7 +191,7 @@ namespace Studio_1
                         }
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -275,7 +275,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -373,7 +373,7 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                             break;
                         case "INVENTORY":
-                            ShowInventory(state.hero);
+                            state.inventoryAndEventTracker.PrintInventory();
                             break;
                         case "STATUS":
                             state.hero.Status();
@@ -457,7 +457,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -521,7 +521,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -593,7 +593,7 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                             break;
                         case "INVENTORY":
-                            ShowInventory(state.hero);
+                            state.inventoryAndEventTracker.PrintInventory();
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -703,7 +703,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -838,7 +838,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
