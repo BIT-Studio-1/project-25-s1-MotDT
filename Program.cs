@@ -151,7 +151,7 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT SKELETON":
-                        if (!state.hero.bomb)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("SkeletonSearched"))
                         {
                             PrintDelayed("\nYou see something round alongside an angry looking rat inside the skeletons rib cage.");
                             PrintDelayed("Would you like to try and grab it?");
@@ -165,7 +165,8 @@ namespace Studio_1
                                 {
                                     PrintDelayed($"\nYou push past the giant rat as it claws at your arm and find a small {MAGENTA}BOMB{RESET} hidden inside the skeletons ribs!");
                                     PrintDelayed("You stash it for later.");
-                                    state.hero.bomb = true;
+                                    state.inventoryAndEventTracker.AddItem("Bomb", 1);
+                                    state.inventoryAndEventTracker.events.Add("SkeletonSearched", true);
                                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                                 }
                                 else
@@ -952,7 +953,6 @@ namespace Studio_1
         static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
-            if (hero.bomb) Console.WriteLine("- Bomb");
             if (hero.HealthPotion) Console.WriteLine("- Health Potion");
             if (hero.F1Key) Console.WriteLine("- Rusty Key");
             if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
