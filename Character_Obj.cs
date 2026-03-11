@@ -16,23 +16,6 @@ namespace Studio_1
             public int toughness; // Can be used for room Events and such
             public int presence;  // Can be used for room Events and such
 
-            
-            //Collectable Items - to be removed and replaced with new inventory system once all dependant code is replaced
-            public bool F1Key;  // Key to stairway door
-            public bool HealthPotion;   // Checks to see if player has the health potion
-            public bool bomb;   // Checks to see if player has the bomb
-            public bool F2Key1; //Exit condition for the demo
-            public bool F2Key2; // Exit condition for the demo
-            public bool torch; // Torch to see into dark hole
-            public bool candle1;
-            public bool candle2;
-            public bool candle3;
-            public bool F2chestKey;
-
-            //One-time Events - to be removed and replaced with new event system once all dependant code is replaced
-            public bool F2tomeInteract;
-            public bool F2candelabraInteract;
-
             /// <summary>Prints the big beautiful table of player stats</summary>
             public void Status()
             {
