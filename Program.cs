@@ -445,10 +445,11 @@ namespace Studio_1
                         F1Hall(state);
                         break;
                     case "INSPECT CANDLE":
-                        if (!state.hero.candle3)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2MainCandle"))
                         {
                             PrintDelayed($"\nYou Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the statue and store it for later.");
-                            state.hero.candle3 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2MainCandle", true);
                         }
                         else
                         {
@@ -500,10 +501,11 @@ namespace Studio_1
                         break;
                     case "INSPECT DESK":
                         PrintDelayed("\nThe desk is covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
-                        if (!state.hero.candle1)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2EastHall1Candle"))
                         {
                             PrintDelayed($"Searching through the drawers you find a {MAGENTA}CANDLE{RESET} and stash it for later.");
-                            state.hero.candle1 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2EastHall1Candle", true);
                         }
                         else
                         {
@@ -689,10 +691,11 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT CANDLE HOLDER":
-                        if (!state.hero.candle2)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1Candle"))
                         {
                             PrintDelayed($"\nYou pull the last intact {MAGENTA}CANDLE{RESET} from the wall holder and decide to store it for later.");
-                            state.hero.candle2 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2SouthHall1Candle", true);
                         }
                         else
                         {
@@ -769,24 +772,22 @@ namespace Studio_1
                         break;
                     case "INSPECT CANDELABRA":
                         PrintDelayed("\nThe candelabra is surprisingly well maintained compared to everything else in the room.");
-                        if (state.hero.F2candelabraInteract == true)
+                        if (state.inventoryAndEventTracker.inventory["Candle"] < 3)
                         {
-                            PrintDelayed("The candle flames flicker sporadically in the dark.");
+                            PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
                         }
-                        else if (state.hero.candle1 == true && state.hero.candle2 == true && state.hero.candle3 == true)
+                        else if (state.inventoryAndEventTracker.inventory["Candle"] == 3)
                         {
                             PrintDelayed($"You place all 3 of your {MAGENTA}CANDLES{RESET} into the empty slots of the candelabra.");
                             PrintDelayed("After a few seconds the candles suddenly light on their own!");
                             PrintDelayed($"A brick in the wall behind the candelabra suddenly comes loose, revealing a {MAGENTA}SMALL KEY{RESET} behind it which you take.");
                             state.inventoryAndEventTracker.AddItem("Small Key", 1);
-                            state.hero.candle1 = false;
-                            state.hero.candle2 = false;
-                            state.hero.candle3 = false;
-                            state.hero.F2candelabraInteract = true;
+                            state.inventoryAndEventTracker.UseItem("Candle", 3);
+                            state.inventoryAndEventTracker.events.Add("CandlePuzzle", true);
                         }
-                        else if (state.hero.candle1 == true || state.hero.candle2 == true || state.hero.candle3 == true)
+                        else if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzle"))
                         {
-                            PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
+                            PrintDelayed("The candle flames flicker sporadically in the dark.");
                         }
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
@@ -956,8 +957,6 @@ namespace Studio_1
         static void ShowInventory(Entity.Character hero) //To be removed once new inventory system code is implemented to all dependant areas
         {
             Console.WriteLine("Inventory:");
-            if (hero.F2chestKey) Console.WriteLine("- Small Key");
-            if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
         }
 
