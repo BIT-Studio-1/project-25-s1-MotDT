@@ -2,7 +2,6 @@
 
 C# .Net 8 Project
 
-change so I can psuh!
-
 Team Standards Go Here!
 
+Initial commit for pull request

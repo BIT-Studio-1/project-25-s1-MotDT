@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Xml;
 using static Studio_1.Entity;
@@ -14,6 +15,7 @@ namespace Studio_1
             public Entity.Character hero;
             public Monster[] monsters;
             public Random random_gen;
+            public Inventory_Events.InventoryAndEvents inventoryAndEventTracker;
         }
 
         //Global constants for changing colour of text, remember to always RESET!
@@ -84,7 +86,8 @@ namespace Studio_1
             GameState initial_state = new GameState
             {
                 hero = hero,
-                monsters = new Monster[] {
+                monsters = new Monster[]
+                {
                     new Entity.Monster
                     {
                         health = Entity.EntityHealth.InitHealth(8),
@@ -93,7 +96,6 @@ namespace Studio_1
                         damDice = 3,
                         dodgeDiff = 9,
                         hitDiff = 10,
-                        item1 = true
                     },
                     new Entity.Monster
                     {
@@ -103,10 +105,10 @@ namespace Studio_1
                         damDice = 5,
                         dodgeDiff = 13,
                         hitDiff = 11,
-                        item1 = true
-    }
-                    },
-                random_gen = new Random()
+                    }
+                },
+                random_gen = new Random(),
+                inventoryAndEventTracker = new Inventory_Events.InventoryAndEvents()
             };
 
             F1Entrance(initial_state); // Call Entrance method
@@ -154,7 +156,7 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT SKELETON":
-                        if (!state.hero.bomb)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("SkeletonSearched"))
                         {
                             PrintDelayed("\nYou see something round alongside an angry looking rat inside the skeletons rib cage.");
                             PrintDelayed("Would you like to try and grab it?");
@@ -168,7 +170,8 @@ namespace Studio_1
                                 {
                                     PrintDelayed($"\nYou push past the giant rat as it claws at your arm and find a small {MAGENTA}BOMB{RESET} hidden inside the skeletons ribs!");
                                     PrintDelayed("You stash it for later.");
-                                    state.hero.bomb = true;
+                                    state.inventoryAndEventTracker.AddItem("Bomb", 1);
+                                    state.inventoryAndEventTracker.events.Add("SkeletonSearched", true);
                                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                                 }
                                 else
@@ -194,7 +197,7 @@ namespace Studio_1
                         }
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -219,7 +222,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.torch == true)
+                if (state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                 {
                     RenderFrame($"{PARENT_DIR}/Art Files/F1HallNoTorch.txt", 25, 10);
                 }
@@ -231,7 +234,7 @@ namespace Studio_1
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}NORTH{RESET}{NOUNDERLINE} lies a creaking wooden door. You hear shuffling behind it");
                 PrintDelayed($"To the {YELLOW}{UNDERLINE}EAST{RESET}{NOUNDERLINE} is an iron gate with a small lock blocking the way to the stairs");
                 PrintDelayed($"behind you to the {YELLOW}{UNDERLINE}SOUTH{RESET}{NOUNDERLINE} lies the path back to the entrance");
-                if (state.hero.torch != true)
+                if (!state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                 {
                     PrintDelayed($"On the wall you see a spare {BLUE}TORCH{RESET}");
                 }
@@ -247,10 +250,16 @@ namespace Studio_1
                         F1Entrance(state); //Call Entrance method
                         break;
                     case "GO EAST":
-                        if (state.hero.F1Key == true)
+                        if (state.inventoryAndEventTracker.inventory["Rusty Key"] > 0)
                         {
                             PrintDelayed($"\nYou unlock the gate using the {MAGENTA}RUSTY KEY{RESET} and proceed up the stairs");
+                            state.inventoryAndEventTracker.UseItem("Rusty Key", 1);
+                            state.inventoryAndEventTracker.events.Add("F1HallGateOpened", true);
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
+                            F2Main(state); //Call F2Main
+                        }
+                        else if (state.inventoryAndEventTracker.events["F1HallGateOpened"] == true)
+                        {
                             F2Main(state); //Call F2Main
                         }
                         else
@@ -260,10 +269,10 @@ namespace Studio_1
                         }
                         break;
                     case "INSPECT TORCH":
-                        if (!state.hero.torch)
+                        if (!state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                         {
                             PrintDelayed($"\nYou decide to take the {MAGENTA}TORCH{RESET} with you, never know when it might come in handy");
-                            state.hero.torch = true;
+                            state.inventoryAndEventTracker.AddItem("Torch", 1);
                         }
                         else
                         {
@@ -272,7 +281,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status();
@@ -321,12 +330,12 @@ namespace Studio_1
                             F1Hall(state);
                             break;
                         case "INSPECT GHOUL":
-                            if (state.monsters[0].item1 == true)
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("GhoulLooted"))
                             {
                                 PrintDelayed($"\nYou find a {MAGENTA}RUSTY KEY{RESET} on the body of the ghoul");
                                 PrintDelayed("You think this may be the key for the gate in front of the staircase.");
-                                state.monsters[0].item1 = false;
-                                state.hero.F1Key = true;
+                                state.inventoryAndEventTracker.AddItem("Rusty Key", 1);
+                                state.inventoryAndEventTracker.events.Add("GhoulLooted", true);
                             }
                             else
                             {
@@ -335,14 +344,15 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                             break;
                         case "INSPECT HOLE":
-                            if (state.hero.torch)
+                            if (state.inventoryAndEventTracker.inventory.ContainsKey("Torch"))
                             {
-                                if (state.hero.HealthPotion == false)
+                                if (!state.inventoryAndEventTracker.events.ContainsKey("DarkRoomPotion"))
                                 {
-                                    PrintDelayed($"\nYou shine the {MAGENTA}TORCH{RESET} inside the hole.");
+                                    PrintDelayed($"\nYou shine your {MAGENTA}TORCH{RESET} inside the hole.");
                                     PrintDelayed("On the floor there is a large stone pressure plate and in the far corner of the room a bright red vial lies on the floor.");
-                                    PrintDelayed($"Thankfully with the help of the torch avoiding the pressure plate is easy and you pick up the {MAGENTA}HEALTH POTION{RESET}.");
-                                    state.hero.HealthPotion = true;
+                                    PrintDelayed($"You step around the pressure plate and pick up the {MAGENTA}HEALTH POTION{RESET}.");
+                                    state.inventoryAndEventTracker.AddItem("Health Potion", 1);
+                                    state.inventoryAndEventTracker.events.Add("DarkRoomPotion", true);
                                 }
                                 else
                                 {
@@ -369,7 +379,7 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                             break;
                         case "INVENTORY":
-                            ShowInventory(state.hero);
+                            state.inventoryAndEventTracker.PrintInventory();
                             break;
                         case "STATUS":
                             state.hero.Status();
@@ -409,18 +419,19 @@ namespace Studio_1
                 switch (choice)
                 {
                     case "GO NORTH":
-                        if (state.hero.F2Key1 && state.hero.F2Key2)
+                        if (state.inventoryAndEventTracker.inventory["Glowing Key"] == 2)
                         {
                             PrintDelayed("You unlock the heavy door with the two keys.");
+                            state.inventoryAndEventTracker.UseItem("Glowing Key", 2);
                             EndPrompts();
                             Console.Clear();
                             RenderFrame($"{PARENT_DIR}/Art Files/End screen.txt", 25, 10);
                             Console.ReadKey();
                             Environment.Exit(0);
                         }
-                        else if (state.hero.F2Key1 || state.hero.F2Key2)
+                        else if (state.inventoryAndEventTracker.inventory["Glowing Key"] == 1)
                         {
-                            PrintDelayed("You place a key into the lock, but another slot remains empty...");
+                            PrintDelayed($"You try using the {MAGENTA}GLOWING KEY{RESET} but it seems you need to open both locks at the same time");
                             Console.ReadKey();
                         }
                         else
@@ -439,10 +450,11 @@ namespace Studio_1
                         F1Hall(state);
                         break;
                     case "INSPECT CANDLE":
-                        if (!state.hero.candle3)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2MainCandle"))
                         {
                             PrintDelayed($"\nYou Decide to pick the small {MAGENTA}CANDLE{RESET} up from underneath the statue and store it for later.");
-                            state.hero.candle3 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2MainCandle", true);
                         }
                         else
                         {
@@ -451,7 +463,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -494,10 +506,11 @@ namespace Studio_1
                         break;
                     case "INSPECT DESK":
                         PrintDelayed("\nThe desk is covered in a mess of papers each covered with undecipherable scrawls. A dried up ink pot sits on the corner.");
-                        if (!state.hero.candle1)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2EastHall1Candle"))
                         {
                             PrintDelayed($"Searching through the drawers you find a {MAGENTA}CANDLE{RESET} and stash it for later.");
-                            state.hero.candle1 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2EastHall1Candle", true);
                         }
                         else
                         {
@@ -514,7 +527,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -549,8 +562,8 @@ namespace Studio_1
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
-
+                    Combat(ref state.hero, ref state.monsters[1], ref state.random_gen);
+                    
                 }
                 // After combat, show the cleared room
                 else
@@ -567,12 +580,12 @@ namespace Studio_1
                             F2EastHall1(state);
                             break;
                         case "INSPECT WRAITH":
-                            if (state.monsters[1].item1 == true)
+                            if (!state.inventoryAndEventTracker.events.ContainsKey("WraithLooted"))
                             {
                                 PrintDelayed($"\nYou find a strange {MAGENTA}GLOWING KEY{RESET} on the floor where the wraith disintegrated.");
                                 PrintDelayed("This must unlock something deeper in the tower...");
-                                state.monsters[1].item1 = false;
-                                state.hero.F2Key1 = true;
+                                state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
+                                state.inventoryAndEventTracker.events.Add("WraithLooted", true);
                             }
                             else
                             {
@@ -586,7 +599,7 @@ namespace Studio_1
                             EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                             break;
                         case "INVENTORY":
-                            ShowInventory(state.hero);
+                            state.inventoryAndEventTracker.PrintInventory();
                             break;
                         case "STATUS":
                             state.hero.Status(); //Call Status method from Character class
@@ -614,7 +627,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.F2tomeInteract == true)
+                if (state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1TomeInteract"))
                 {
                     RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall1NoTome.txt", 25, 10); //Background
                 }
@@ -641,7 +654,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT LECTERN":
-                        if (state.hero.F2tomeInteract == true)
+                        if (state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1TomeInteract"))
                         {
                             PrintDelayed("\nThe lectern is empty");
                         }
@@ -673,7 +686,7 @@ namespace Studio_1
                                     state.hero.skill--;
                                 }
                                 PrintDelayed("The tome crumbles into dust in your hands.");
-                                state.hero.F2tomeInteract = true;
+                                state.inventoryAndEventTracker.events.Add("F2SouthHall1TomeInteract", true);
                             }
                             else
                             {
@@ -683,10 +696,11 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INSPECT CANDLE HOLDER":
-                        if (!state.hero.candle2)
+                        if (!state.inventoryAndEventTracker.events.ContainsKey("F2SouthHall1Candle"))
                         {
                             PrintDelayed($"\nYou pull the last intact {MAGENTA}CANDLE{RESET} from the wall holder and decide to store it for later.");
-                            state.hero.candle2 = true;
+                            state.inventoryAndEventTracker.AddItem("Candle", 1);
+                            state.inventoryAndEventTracker.events.Add("F2SouthHall1Candle", true);
                         }
                         else
                         {
@@ -695,7 +709,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -720,7 +734,7 @@ namespace Studio_1
             do
             {
                 Console.Clear();
-                if (state.hero.F2candelabraInteract == true)
+                if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzleSolved"))
                 {
                     RenderFrame($"{PARENT_DIR}/Art Files/F2SouthHall2Candelabra.txt", 25, 10);
                 }
@@ -739,19 +753,20 @@ namespace Studio_1
                         F2SouthHall1(state);
                         break;
                     case "INSPECT CHEST":
-                        if (state.hero.F2Key2 == true)
+                        if (state.inventoryAndEventTracker.events.ContainsKey("PuzzleChestLooted"))
                         {
                             PrintDelayed("\nYou hope to find some chests with actual treasure in the future");
                         }
-                        else if (state.hero.F2chestKey == true)
+                        else if (state.inventoryAndEventTracker.inventory["Small Key"] == 1)
                         {
                             PrintDelayed($"\nThe {MAGENTA}SMALL KEY{RESET} fits into the lock as the chest pops open revealing...");
                             Thread.Sleep(1000);
                             PrintDelayed("... another key.");
                             Thread.Sleep(1000);
                             PrintDelayed($"You sigh and pocket the {MAGENTA}GLOWING KEY{RESET} for later.");
-                            state.hero.F2Key2 = true;
-                            state.hero.F2chestKey = false;
+                            state.inventoryAndEventTracker.AddItem("Glowing Key", 1);
+                            state.inventoryAndEventTracker.UseItem("Small Key", 1);
+                            state.inventoryAndEventTracker.events.Add("PuzzleChestLooted", true);
                         }
                         else
                         {
@@ -762,24 +777,22 @@ namespace Studio_1
                         break;
                     case "INSPECT CANDELABRA":
                         PrintDelayed("\nThe candelabra is surprisingly well maintained compared to everything else in the room.");
-                        if (state.hero.F2candelabraInteract == true)
+                        if (state.inventoryAndEventTracker.inventory["Candle"] < 3)
                         {
-                            PrintDelayed("The candle flames flicker sporadically in the dark.");
+                            PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
                         }
-                        else if (state.hero.candle1 == true && state.hero.candle2 == true && state.hero.candle3 == true)
+                        else if (state.inventoryAndEventTracker.inventory["Candle"] == 3)
                         {
                             PrintDelayed($"You place all 3 of your {MAGENTA}CANDLES{RESET} into the empty slots of the candelabra.");
                             PrintDelayed("After a few seconds the candles suddenly light on their own!");
                             PrintDelayed($"A brick in the wall behind the candelabra suddenly comes loose, revealing a {MAGENTA}SMALL KEY{RESET} behind it which you take.");
-                            state.hero.F2chestKey = true;
-                            state.hero.candle1 = false;
-                            state.hero.candle2 = false;
-                            state.hero.candle3 = false;
-                            state.hero.F2candelabraInteract = true;
+                            state.inventoryAndEventTracker.AddItem("Small Key", 1);
+                            state.inventoryAndEventTracker.UseItem("Candle", 3);
+                            state.inventoryAndEventTracker.events.Add("CandlePuzzleSolved", true);
                         }
-                        else if (state.hero.candle1 == true || state.hero.candle2 == true || state.hero.candle3 == true)
+                        else if (state.inventoryAndEventTracker.events.ContainsKey("CandlePuzzleSolved"))
                         {
-                            PrintDelayed("It seems like you could insert candles into the empty slots on the candelabra, however you don't have enough to fill all 3 slots.");
+                            PrintDelayed("The candle flames flicker sporadically in the dark.");
                         }
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
@@ -831,7 +844,7 @@ namespace Studio_1
                         EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();;
                         break;
                     case "INVENTORY":
-                        ShowInventory(state.hero);
+                        state.inventoryAndEventTracker.PrintInventory();
                         break;
                     case "STATUS":
                         state.hero.Status(); //Call Status method from Character class
@@ -946,18 +959,6 @@ namespace Studio_1
             Console.ResetColor();
         }
 
-        static void ShowInventory(Entity.Character hero)
-        {
-            Console.WriteLine("Inventory:");
-            if (hero.bomb) Console.WriteLine("- Bomb");
-            if (hero.HealthPotion) Console.WriteLine("- Health Potion");
-            if (hero.F1Key) Console.WriteLine("- Rusty Key");
-            if (hero.F2Key1 || hero.F2Key2) Console.WriteLine("- Glowing Key(s)");
-            if (hero.F2chestKey) Console.WriteLine("- Small Key");
-            if (hero.candle1 || hero.candle2 || hero.candle3) Console.WriteLine("- Candle(s)");
-            EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-        }
-
         /// <summary>Help function to display commonly used commands in game</summary>
         static void Help()
         {
@@ -1013,10 +1014,11 @@ namespace Studio_1
         /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
-            int round = 1;
+            int round = 1, deffBuff = 0, hitBuff = 0;
             string action = "";
             string item = "";
-            bool useItem = false;
+            string skill = "";
+            bool useItem = false, useSkill = false;
             do
             {
                 Console.Clear();
@@ -1029,7 +1031,7 @@ namespace Studio_1
                     do
                     {
                         PrintDelayed($"\n{CYAN}CHOOSE YOUR ACTION!{RESET}");
-                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM"], "");
+                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM", "USE SKILL"], "");
                         if (action == "USE ITEM")
                         {
                             PrintDelayed("What do you want to use?");
@@ -1062,11 +1064,48 @@ namespace Studio_1
                                     break;
                             }
                         }
-                    } while (action != "ATTACK" && useItem == false);
+                        if (action == "USE SKILL")
+                        {
+                            PrintDelayed("\nChoose a skill to use");
+                            skill = Selector.DefaultSelectorMenu(["EVADE - Gain a decaying buff to your dodge chance","FOCUS - Gain a stacking buff to hit until you attack", "CANCEL"], "");
+                            switch (skill)
+                            {
+                                case "EVADE - Gain a decaying buff to your dodge chance":
+                                    if (deffBuff < 4)
+                                    {
+                                        deffBuff = (hero.finesse < 1) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
+                                        useSkill = true;
+                                        PrintDelayed($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed("\nYou have already evaded as much as you can");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "FOCUS - Gain a stacking buff to hit until you attack":
+                                    if (hitBuff < 4)
+                                    {
+                                        hitBuff = (hero.skill < 1) ? hitBuff = 1 : deffBuff + hero.skill + 1;
+                                        useSkill = true;
+                                        PrintDelayed("You focus on your opponent waiting for the time to strike");
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed("As you try to focus you see the perfect opening");
+                                        PrintDelayed("Now is the time to strike");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "CANCEL":
+                                    break;
+                            }
+                        }
+                    } while (action != "ATTACK" && !useItem && !useSkill);
                 }
                 if (action == "ATTACK")
                 {
-                    int hit_roll = Roll(hero.skill, ref random);
+                    int hit_roll = Roll(hero.skill, ref random) + hitBuff;
                     if (hit_roll >= monster.hitDiff)
                     {
                         int dam = random.Next(1, hero.damDice + 1);
@@ -1076,6 +1115,10 @@ namespace Studio_1
                     else
                     {
                         PrintDelayed($"\n{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
+                    }
+                    if (hitBuff > 0)
+                    {
+                        hitBuff = 0;
                     }
                 }
                 else if (useItem == true)
@@ -1099,7 +1142,7 @@ namespace Studio_1
                 }
                 if (monster.health.curHP > 0)
                 {
-                    int dodge_roll = Roll(hero.finesse, ref random);
+                    int dodge_roll = Roll(hero.finesse, ref random) + deffBuff;
                     if (dodge_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
@@ -1123,6 +1166,10 @@ namespace Studio_1
                     RenderFrame( $"{PARENT_DIR}/Art Files/YouDied.txt", 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
+                }
+                if (deffBuff > 0)
+                {
+                    deffBuff--;
                 }
                 round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
