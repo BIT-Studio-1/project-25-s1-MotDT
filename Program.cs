@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Xml;
 using static Studio_1.Entity;
@@ -1010,10 +1011,11 @@ namespace Studio_1
         /// <param name="random">Refferance to the random initilisation in the gamestate struct </param>
         public static void Combat(ref Character hero, ref Monster monster, ref Random random)
         {
-            int round = 1;
+            int round = 1, deffBuff = 0, hitBuff = 0;
             string action = "";
             string item = "";
-            bool useItem = false;
+            string skill = "";
+            bool useItem = false, useSkill = false;
             do
             {
                 Console.Clear();
@@ -1026,7 +1028,7 @@ namespace Studio_1
                     do
                     {
                         PrintDelayed($"\n{CYAN}CHOOSE YOUR ACTION!{RESET}");
-                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM"], "");
+                        action = Selector.DefaultSelectorMenu(["ATTACK", "USE ITEM", "USE SKILL"], "");
                         if (action == "USE ITEM")
                         {
                             PrintDelayed("What do you want to use?");
@@ -1059,11 +1061,48 @@ namespace Studio_1
                                     break;
                             }
                         }
-                    } while (action != "ATTACK" && useItem == false);
+                        if (action == "USE SKILL")
+                        {
+                            PrintDelayed("\nChoose a skill to use");
+                            skill = Selector.DefaultSelectorMenu(["EVADE - Gain a decaying buff to your dodge chance","FOCUS - Gain a stacking buff to hit until you attack", "CANCEL"], "");
+                            switch (skill)
+                            {
+                                case "EVADE - Gain a decaying buff to your dodge chance":
+                                    if (deffBuff < 4)
+                                    {
+                                        deffBuff = (hero.finesse < 1) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
+                                        useSkill = true;
+                                        PrintDelayed($"\nYou take an evasive stance gaining a + {deffBuff} to your evasion chance");
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed("\nYou have already evaded as much as you can");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "FOCUS - Gain a stacking buff to hit until you attack":
+                                    if (hitBuff < 4)
+                                    {
+                                        hitBuff = (hero.skill < 1) ? hitBuff = 1 : deffBuff + hero.skill + 1;
+                                        useSkill = true;
+                                        PrintDelayed("You focus on your opponent waiting for the time to strike");
+                                    }
+                                    else
+                                    {
+                                        PrintDelayed("As you try to focus you see the perfect opening");
+                                        PrintDelayed("Now is the time to strike");
+                                        useSkill = false;
+                                    }
+                                    break;
+                                case "CANCEL":
+                                    break;
+                            }
+                        }
+                    } while (action != "ATTACK" && !useItem && !useSkill);
                 }
                 if (action == "ATTACK")
                 {
-                    int hit_roll = Roll(hero.skill, ref random);
+                    int hit_roll = Roll(hero.skill, ref random) + hitBuff;
                     if (hit_roll >= monster.hitDiff)
                     {
                         int dam = random.Next(1, hero.damDice + 1);
@@ -1073,6 +1112,10 @@ namespace Studio_1
                     else
                     {
                         PrintDelayed($"\n{GREEN}{hero.name}{RESET} strikes the {RED}{monster.name}{RESET} and misses.");
+                    }
+                    if (hitBuff > 0)
+                    {
+                        hitBuff = 0;
                     }
                 }
                 else if (useItem == true)
@@ -1096,7 +1139,7 @@ namespace Studio_1
                 }
                 if (monster.health.curHP > 0)
                 {
-                    int dodge_roll = Roll(hero.finesse, ref random);
+                    int dodge_roll = Roll(hero.finesse, ref random) + deffBuff;
                     if (dodge_roll <= monster.dodgeDiff)
                     {
                         int dam = random.Next(1, monster.damDice + 1);
@@ -1120,6 +1163,10 @@ namespace Studio_1
                     RenderFrame(FindWorkingPath(new string[] { "../../../Art Files/YouDied.txt", "Art Files/YouDied.txt" }), 200, 12); //Game over ASCII art
                     Thread.Sleep(1000);
                     GameOver($"the {RED}{monster.name}'s{RESET} deadly attack");
+                }
+                if (deffBuff > 0)
+                {
+                    deffBuff--;
                 }
                 round++;
             } while (hero.health.curHP > 0 && monster.health.curHP > 0);
