@@ -546,7 +546,7 @@ namespace Studio_1
                     PrintDelayed($"A moment later the runic circle begins to glow a vibrant purple and a large {RED}WRAITH{RESET} emerges!");
                     PrintDelayed($"{RED}Prepare for combat...{RESET}");
                     EndPrompts(); // replaces Console.WriteLine($"{GREEN}◆{RESET}"); and Console.ReadKey();
-                    Combat(ref state.hero, ref state.monsters[3], ref state.random_gen);
+                    Combat(ref state.hero, ref state.monsters[1], ref state.random_gen);
                     
                 }
                 // After combat, show the cleared room
