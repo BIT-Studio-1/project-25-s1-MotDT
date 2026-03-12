@@ -1138,10 +1138,10 @@ namespace Studio_1
                         if (action == "USE SKILL")
                         {
                             PrintDelayed("\nChoose a skill to use");
-                            skill = Selector.DefaultSelectorMenu(["EVADE","FOCUS", "CANCEL"], "");
+                            skill = Selector.DefaultSelectorMenu(["EVADE - Gain a decaying buff to your dodge chance","FOCUS - Gain a stacking buff to hit until you attack", "CANCEL"], "");
                             switch (skill)
                             {
-                                case "EVADE":
+                                case "EVADE - Gain a decaying buff to your dodge chance":
                                     if (deffBuff < 4)
                                     {
                                         deffBuff = (hero.finesse < 1) ? deffBuff = 1 : deffBuff = deffBuff + hero.finesse + 1;
@@ -1154,7 +1154,7 @@ namespace Studio_1
                                         useSkill = false;
                                     }
                                     break;
-                                case "FOCUS":
+                                case "FOCUS - Gain a stacking buff to hit until you attack":
                                     if (hitBuff < 4)
                                     {
                                         hitBuff = (hero.skill < 1) ? hitBuff = 1 : deffBuff + hero.skill + 1;
